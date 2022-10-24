@@ -12,7 +12,9 @@ import blogicon from "../../assets/blog.webp";
 const index = () => {
   const [nav, setNav] = useState(false);
   const transition = useTransition(nav,{
-
+    from : {x:0,y:-1000, opacity : 0.7},
+    enter : {x:0,y:0,opacity : 1},
+    leave : {x:0,y:-1000, opacity : 0.7}
   })
   const handleToggle = () => {
     console.log("clicked");
@@ -20,12 +22,12 @@ const index = () => {
   };
   const navigate = useNavigate();
   const handleNavigate = () => {
-    navigate("blog/home");
+    navigate("app/home");
   };
   return (
     <div className="">
-      <img src={background} alt="" />
-      <div className="fixed top-0 left-0 w-full h-[80px">
+      <img src={background}  className="absolute w-full h-full mix-blend-overlay object-cover"alt="" />
+      <div className="fixed top-0 left-0 w-full h-[80px]">
         <div className="px-2 flex justify-around  w-full h-full">
           <div className="flex justify-center items-center">
             <img
@@ -36,23 +38,7 @@ const index = () => {
             />
           </div>
 
-          <ul className="hidden md:flex ">
-            <li
-              
-              className=" text-2xl font-bold flex flex-row items-center text-white  hover:cursor-pointer p-2 hover:text-slate-400 ease-out duration-200"
-            >
-              HOME
-            </li>
-            <li  className=" text-2xl font-bold flex flex-row items-center text-white  hover:cursor-pointer p-2 hover:text-slate-400 ease-out duration-200">
-              ABOUT
-            </li>
-            <li className=" text-2xl font-bold flex flex-row items-center text-white  hover:cursor-pointer p-2 hover:text-slate-400 ease-out duration-200">
-              WRITE
-            </li>
-            <li  className=" text-2xl font-bold flex flex-row items-center text-white  hover:cursor-pointer p-2 hover:text-slate-400 ease-out duration-200">
-              CONTACT
-            </li>
-          </ul>
+        
 
           <ul className="  hidden md:flex">
             <li
@@ -67,9 +53,7 @@ const index = () => {
           </ul>
 
           <div className="hoverclass md:hidden">
-            {nav ? (
-              <div className="flex  h-full justify-center items-center"><img onClick={handleToggle} src={x_mark} alt="/" className="w-7 hover:opacity-80 hover:cursor-pointer" /></div>
-            ) : (
+           
               <div className="w-full h-full flex justify-center items-center">
 <Bars4Icon
                 className=" text-white h-[50px] w-[50px] hover:cursor-pointer p-2 hover:text-slate-400 ease-out duration-200 "
@@ -77,28 +61,37 @@ const index = () => {
               />
               </div>
               
-            )}
+            
           </div>
         </div>
-        <ul
-          className={
-            !nav ? "hidden" : "md:hidden absolute top-0 left-0 py-5 font-bold bg-zinc-100 w-full px-8"
-          }
+       
+       {
+        transition((style,item)=>
+          item? 
+          
+          <animated.div className="md:hidden absolute top-0 left-0 w-full flex justify-center" style = {style}>
+            <ul
+      
+          // className={
+          //   !nav ? "hidden" : "md:hidden absolute top-0 left-0 py-5 font-bold bg-zinc-100 w-full px-8"
+          // }
+
+          className="rounded-xl  m-5  py-5 font-bold bg-orange-200 w-[80%] px-8"
         >
-           <div className="flex  h-full items-center justify-end"><img onClick={handleToggle} src={x_mark} alt="/" className="w-7 hover:opacity-80 hover:cursor-pointer" /></div>
-          <li onClick = {handleToggle} className="hover:cursor-pointer flex justify-center border-b-2 border-zinc-300 w-full p-2 hover:text-slate-400 ease-out duration-200">
-            HOME
+           <div className="flex  items-center justify-end"><img onClick={handleToggle} src={x_mark} alt="/" className="w-7 hover:opacity-80 hover:cursor-pointer" /></div>
+          <li onClick = {handleToggle} className=" font-trispace text-xl text-white hover:cursor-pointer flex justify-center  border-zinc-300 w-full p-2 hover:text-slate-400 ease-out duration-200">
+            LOGIN
           </li>
-          <li className="hover:cursor-pointer flex justify-center border-b-2 border-zinc-300 w-full p-2 hover:text-slate-400 ease-out duration-200">
-            ABOUT
+          <li onClick = {handleToggle} className="font-trispace text-xl text-white hover:cursor-pointer flex justify-center  border-zinc-300 w-full p-2 hover:text-slate-400 ease-out duration-200">
+            REGISTER
           </li>
-          <li className="hover:cursor-pointer flex justify-center border-b-2 border-zinc-300 w-full p-2 hover:text-slate-400 ease-out duration-200">
-            WRITE
-          </li>
-          <li className=" hover:cursor-pointer flex justify-center border-b-2 border-zinc-300 w-full p-2 hover:text-slate-400 ease-out duration-200">
-            CONTACT
-          </li>
+          
         </ul>
+          </animated.div>
+          : ''
+        )
+       }
+        
       </div>
     </div>
   );

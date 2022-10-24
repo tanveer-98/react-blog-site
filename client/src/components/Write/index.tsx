@@ -2,7 +2,9 @@ import React from 'react'
 
 const index = () => {
   return (
-    <div>index</div>
+    <div className="my-[100px] w-full h-screen flex justify-center ">
+       WRITE PAGE
+    </div>
   )
 }
 
