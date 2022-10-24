@@ -13,6 +13,7 @@
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
     "react-router-dom": "^6.4.2",
+    "react-spring": "^9.5.5",
     "tw-elements": "^1.0.0-alpha12"
   },
   "devDependencies": {
