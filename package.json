@@ -9,11 +9,18 @@
     "server": "cd client && yarn watch --prefix server",
     "client": "cd server && yarn vite --prefix client",
     "dev": "concurrently \"cd server && yarn watch\" \"cd client && yarn vite\""
-},
+  },
   "keywords": [],
   "author": "",
   "license": "ISC",
   "dependencies": {
-    "concurrently": "^7.5.0"
+    "@heroicons/react": "^2.0.12",
+    "@types/react-icons": "^3.0.0",
+    "concurrently": "^7.5.0",
+    "formik": "^2.2.9",
+    "react-scroll": "^1.8.8"
+  },
+  "devDependencies": {
+    "@types/react-scroll": "^1.8.4"
   }
 }

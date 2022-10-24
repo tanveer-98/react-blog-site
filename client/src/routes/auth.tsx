@@ -1,9 +1,9 @@
 import React from 'react'
 import { Link} from 'react-router-dom'
+import Auth from '../components/Auth'
 const auth = () => {
-  return (
-    <div>Login Page  <Link to="/home"> Go to HOME PAGE</Link> </div>
-  )
+  return <Auth/>
+  
 }
 
 export default auth
