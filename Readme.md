@@ -1,0 +1,1 @@
+# Was facing issue with httpOnly cookie which was fixed only after using proxy in vite server

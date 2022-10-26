@@ -1,10 +1,69 @@
 import React from 'react'
 import blogicon from '../../assets/blog.webp'
 import { useNavigate} from 'react-router-dom'
+import {login,getCookie} from '../../services/service'
+import axios from 'axios'
+
 const index = () => {
     const navigate = useNavigate();
     const navigateRegister = () =>{
         navigate('/register')
+    }
+
+    const onSubmitHandler = (event : any)=>{
+      // HTMLElement is superset of HTMLELement
+      event.preventDefault();
+
+      // METHOD : 1
+      // const target = event.target as typeof event.target & {
+      //   email: { value: string };
+      //   password: { value: string };
+      // }
+      // const email  = target.email.value
+      // const password = target.password.value;
+
+
+      // METHOD 2
+      const formData = new FormData(event.target);
+
+      const values = [...formData.entries()];
+  
+      const formDataObj = Object.fromEntries(formData.entries());
+
+      // login(formDataObj)
+      // .then((response)=>{
+      //   console.log(response.data)
+      //     // window.localStorage.setItem('user',)
+      //   window.sessionStorage.setItem('user', response.data.user.name)
+      //   window.sessionStorage.setItem('authToken', response.data.token)
+      //   console.log(window.sessionStorage.getItem('user'))
+      //   navigate('/app/home')
+      // })
+      // .catch(err=>{
+      //   // console.log(err)
+      //   alert(`ERROR-${err.response.status} : ${err.response.data.message}`)
+      // })
+
+      // STORING JWT IN HTTPONLY COOKIE
+      getCookie(formDataObj)
+      .then((response)=>{
+        console.log(response)
+          // window.localStorage.setItem('user',)
+        // window.sessionStorage.setItem('user', response.data.user.name)
+        // window.sessionStorage.setItem('authToken', response.data.token)
+        // console.log(window.sessionStorage.getItem('user'))
+        // navigate('/app/home')
+      })
+      .catch(err=>{
+        console.log(err)
+        if(!err.response) console.log("no response")
+        // console.log(err.response.data.message)
+        // alert(`ERROR-${err.response.status} : ${err.response.data.message}`)
+      })
+
+
+      // alert(JSON.stringify(formDataObj))
+       
     }
   return (
     <section className="h-screen w-screen shadow-2xl shadow-teal-300 md:h-screen">
@@ -12,7 +71,7 @@ const index = () => {
       <div className="flex justify-center items-center flex-wrap h-full g-6 text-gray-800">
         <div className="xl:w-10/12">
           <div className="block bg-white shadow-lg rounded-lg">
-            <div className="lg:flex lg:flex-wrap g-0">
+            <div className="flex flex-row g-0">
             <div
                 className="lg:w-6/12 flex items-center lg:rounded-r-lg rounded-b-lg lg:rounded-bl-none"
                 style={{ background: "linear-gradient(to right, #ee7724, #d8363a, #dd3675, #b44593);"}}
@@ -36,28 +95,31 @@ const index = () => {
                 
                 <div className="md:p-12 md:mx-6">
                  
-                  <form>
+                  <form onSubmit= {e=>onSubmitHandler(e)}>
                     <p className="mb-4">Please login to your account</p>
                     <div className="mb-4">
                       <input
                         type="text"
                         className="form-control block w-full px-3 py-1.5 text-base font-normal text-gray-700 bg-white bg-clip-padding border border-solid border-gray-300 rounded transition ease-in-out m-0 focus:text-gray-700 focus:bg-white focus:border-blue-600 focus:outline-none"
-                        id="exampleFormControlInput1"
-                        placeholder="Username"
+                        id="email"
+                        placeholder="Email"
+                        name="email"
                       />
                     </div>
                     <div className="mb-4">
                       <input
                         type="password"
                         className="form-control block w-full px-3 py-1.5 text-base font-normal text-gray-700 bg-white bg-clip-padding border border-solid border-gray-300 rounded transition ease-in-out m-0 focus:text-gray-700 focus:bg-white focus:border-blue-600 focus:outline-none"
-                        id="exampleFormControlInput1"
+                        id="password"
                         placeholder="Password"
+                        name="password"
                       />
                     </div>
-                    <div className="text-center pt-1 mb-12 pb-1">
+                    <div className="flex flex-col text-center pt-1 mb-12 pb-1">
+                     
                       <button
-                        className="inline-block px-6 py-2.5 text-white font-medium text-xs leading-tight uppercase rounded shadow-md hover:bg-blue-700 hover:shadow-lg focus:shadow-lg focus:outline-none focus:ring-0 active:shadow-lg transition duration-150 ease-in-out w-full mb-3"
-                        type="button"
+                        className="inline-block px-6 py-2.5 text-white font-medium text-xs leading-tight uppercase rounded shadow-md hover:bg-blue-700 hover:shadow-lg  focus:outline-none  active:shadow-lg transition duration-150 ease-in-out w-full mb-3"
+                        type="submit"
                         data-mdb-ripple="true"
                         data-mdb-ripple-color="light"
                         style={{
@@ -66,13 +128,16 @@ const index = () => {
                       >
                         Log in
                       </button>
+
+                    
+                    
                       <a className="text-gray-500" href="#!">Forgot password?</a>
                     </div>
                     <div className="flex items-center justify-between pb-6">
                       <p className="mb-0 mr-2">Don't have an account?</p>
                       <button
                         type="button"
-                        className="inline-block px-6 py-2 border-2 border-red-600 text-red-600 font-medium text-xs leading-tight uppercase rounded hover:bg-black hover:bg-opacity-5 focus:outline-none focus:ring-0 transition duration-150 ease-in-out"
+                        className="inline-block px-6 py-2 border-2 border-red-600 text-red-600 font-medium text-xs leading-tight uppercase rounded hover:bg-black hover:bg-opacity-5 focus:outline-none  transition duration-150 ease-in-out"
                         data-mdb-ripple="true"
                         data-mdb-ripple-color="light"
                         onClick = {navigateRegister}

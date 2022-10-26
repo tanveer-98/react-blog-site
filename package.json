@@ -18,7 +18,8 @@
     "@types/react-icons": "^3.0.0",
     "concurrently": "^7.5.0",
     "formik": "^2.2.9",
-    "react-scroll": "^1.8.8"
+    "react-scroll": "^1.8.8",
+    "validator": "^13.7.0"
   },
   "devDependencies": {
     "@types/react-scroll": "^1.8.4"

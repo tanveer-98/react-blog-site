@@ -11,6 +11,7 @@ import background from '../../assets/background.jpg'
 import { useTransition ,animated } from "react-spring";
 const index = () => {
   const [nav, setNav] = useState(false);
+
   const handleToggle = () => {
     console.log("clicked");
     setNav(!nav);
@@ -27,7 +28,7 @@ const index = () => {
   return (
     <Fragment>
      <div className="">
-      <img src={background}  className="absolute top-0 left-0 w-full h-full mix-blend-overlay object-cover"alt="" />
+      <img src={background}  className={`${nav?'blur-md':' '} absolute top-0 left-0 w-full h-full mix-blend-overlay object-cover transition-all ease-linear duration-150`} alt="" />
       <div className="fixed top-0 left-0 w-full h-[80px]">
         <div className="px-2 flex justify-around  w-full h-full">
           <div className="flex justify-center items-center">

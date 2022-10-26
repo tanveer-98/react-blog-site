@@ -1,4 +1,5 @@
 import React from 'react'
+import {register} from '../../services/service'
 import {
     Formik,
     Form,
@@ -9,6 +10,7 @@ import {
   } from "formik";
   import {FiSend} from 'react-icons/fi'
 import { useNavigate } from 'react-router-dom';
+import PasswordShowHide from '../PasswordShowHide';
   const styles = {
     label: "block text-gray-700 text-sm font-bold pt-2 pb-1",
     field:
@@ -61,22 +63,37 @@ const index = () => {
           }
 
           if (!values.password) {
-            errors.mobile = "Password is Required";
-          } else if (!/^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,}$/i.test(values.password)) {
-            errors.mobile = "Password should contain Minimum eight characters, at least one letter, one number and one special character";
+            errors.password = "Password is Required";
+            console.log(/^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!#%*?&]{8,}$/i.test(values.password))
+          } else if (!/^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9])(?=.*?[#?!@$%^&*-]).{8,}$/i.test(values.password)) {
+            errors.password = "Password should contain Minimum eight characters, at least one letter, one number and one special character among @$!%*?&#";
           }
 
           if (!values.confirmPassword) {
-            errors.message = "Confirm Password is Required";
+            errors.confirmPassword = "Confirm Password is Required";
           }
-          else if(values.confirmPassword && values.confirmPassword != values.password){
-            errors.message = "Passwords donot match"
+          else if(values.confirmPassword && (values.confirmPassword != values.password)){
+            errors.confirmPassword = "Passwords donot match"
           }
           return errors;
         }}
         onSubmit={(values, { setSubmitting, resetForm }) => {
           setSubmitting(false);
-          
+          const requiredData = {
+            name : values.fName.concat(" ",values.lName),
+            email : values.email, 
+            password: values.password            
+          }
+          console.log(requiredData)
+          register(requiredData).then(()=>{
+            alert('successfully registered , Please Login');
+            navigate('/login')
+          })
+          .catch(err=>{
+            console.log(err)
+            alert(`ERROR-${err.response.status} : ${err.response.data.message}`)
+          });
+          resetForm();
         }}
       >
         {({
@@ -86,9 +103,11 @@ const index = () => {
           errors,
           touched,
           setFieldValue,
+          
+       
         }) => (
           <div className="w-full flex justify-center my-10">
-            <Form className=" form-training w-[300px] sm:w-[600px] lg:w-[800px]">
+            <Form className=" form-training w-[300px] sm:w-[600px] lg:w-[800px]" >
               <div className="form-group row py-sm-1 px-sm-3">
                 <label className={styles.label} htmlFor="fName">
                   First Name{errors.fName?<span className={styles.errorMsg}>*</span>:""}
@@ -152,9 +171,9 @@ const index = () => {
                   className={`${styles.field} ${
                     touched.password && errors.password ? "is-invalid" : ""
                   } `}
-                  type="text"
-                  rows="4"
+                  
                   name="password"
+                  type = "text"
                   placeholder="Enter a Password"
                 />
 
@@ -174,8 +193,8 @@ const index = () => {
                   className={`${styles.field} ${
                     touched.confirmPassword && errors.confirmPassword ? "is-invalid" : ""
                   } `}
-                  type="text"
-                  rows="4"
+                  component = {PasswordShowHide}
+                
                   name="confirmPassword"
                   placeholder="Enter a Password"
                 />
@@ -214,9 +233,11 @@ const index = () => {
                   data-mdb-ripple="true"
                   data-mdb-ripple-color="light"
                 >
-                  <div className="flex flex-row gap-1">
-                    REGISTER <FiSend />
-                  </div>
+                 <div className="flex gap-2">
+                 REGISTER <FiSend />
+                  
+                 </div>
+                    
                 </button>
                 
               </div>
