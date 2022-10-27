@@ -18,7 +18,7 @@ router.get("/users", async (req, res) => {
 
 router.get('/users/me',auth,async (req,res)=>{
   // res.send('hello')
-  res.send({user:req.user,token:req.token})
+  res.send({user:req.user})
 })
 
 
@@ -177,6 +177,7 @@ router.post('/users/signup',async (req,res)=>{
 
 
 router.post('/users/getCookie', async ( req,res)=>{
+    console.log('USERS GET COOKIE REQUESTED')
     // return res
     // .status(202)
     // .cookie('rememberme', '1', { maxAge: 900000, httpOnly: true })
@@ -206,14 +207,20 @@ router.post('/users/getCookie', async ( req,res)=>{
         .status(200)
         .cookie('token',token, {
 
-             sameSite : 'none',
+             sameSite : 'strict',
              path: "/",
              expires : new Date( new Date().getTime() +  50* 1000),
              httpOnly: true ,
-             secure : true
+            //  secure : true
+            secure : false // incase of development else cookie wont be saved in postman
             
            
         })
+
+
+       // NOTE : in case you are using https:// you have to set sameSite: 'none' and secure : false  or you want cross-site requests enabled 
+       // strict and lax is only allowed to have same site cross-site requests 
+       
       //   .cookie('user',data.name, {
 
       //       sameSite : 'strict',
@@ -228,6 +235,14 @@ router.post('/users/getCookie', async ( req,res)=>{
       return res.status(404).send(err.message);
     }
 })
+
+router.post("/cookies", async (req,res) =>{
+  console.log("COOKIE VALUES")
+  // console.log(req.cookies)
+  return res.status(200).send(req.cookies.token)
+})
+
+
 module.exports = router; // DEFAULT EXPORT  
 
 // exports = {

@@ -15,6 +15,7 @@ const index = () => {
   const handleToggle = () => {
     console.log("clicked");
     setNav(!nav);
+    window.localStorage.setItem('user','')
   };
   const transition = useTransition(nav,{
     from : {x:0,y:-1000, opacity : 0.7},
@@ -23,13 +24,14 @@ const index = () => {
   })
   const navigate = useNavigate();
   const handleNavigate = () => {
+    if(window.localStorage.getItem('user')!='')
     navigate("/app/home");
   };
   return (
     <Fragment>
-     <div className="">
-      <img src={background}  className={`${nav?'blur-md':' '} absolute top-0 left-0 w-full h-full mix-blend-overlay object-cover transition-all ease-linear duration-150`} alt="" />
-      <div className="fixed top-0 left-0 w-full h-[80px]">
+     <div className="" >
+      <img src={background}  className={`${nav?'blur-md':' '} absolute top-0 left-0 w-screen h-screen -z-100 mix-blend-overlay object-cover `} alt="" />
+      <div className="fixed top-0 left-0 w-full h-[80px] z-10 bg-orange-300 shadow-orange-300 shadow-md">
         <div className="px-2 flex justify-around  w-full h-full">
           <div className="flex justify-center items-center">
             <img
@@ -94,19 +96,26 @@ const index = () => {
           className="rounded-xl  m-5  py-5 font-bold bg-orange-200 w-[80%] px-8"
         >
            <div className="flex  items-center justify-end"><img onClick={handleToggle} src={x_mark} alt="/" className="w-7 hover:opacity-80 hover:cursor-pointer" /></div>
-          <li onClick = {handleToggle} className=" text-white hover:cursor-pointer flex justify-center  border-zinc-300 w-full p-2 hover:text-slate-400 ease-out duration-200">
+          <li onClick = {handleToggle} className=" text-orange-600 hover:cursor-pointer flex justify-center  border-zinc-300 w-full p-2 hover:text-slate-400 ease-out duration-200">
           <Link to ="/app/home">HOME</Link> 
           </li>
-          <li className="text-white hover:cursor-pointer flex justify-center  border-zinc-300 w-full p-2 hover:text-slate-400 ease-out duration-200">
+          <li onClick = {handleToggle} className="text-orange-600 hover:cursor-pointer flex justify-center  border-zinc-300 w-full p-2 hover:text-slate-400 ease-out duration-200">
           <Link to ="/app/about">ABOUT</Link> 
           </li>
-          <li className="text-white hover:cursor-pointer flex justify-center border-zinc-300 w-full p-2 hover:text-slate-400 ease-out duration-200">
+          <li onClick = {handleToggle} className="text-orange-600 hover:cursor-pointer flex justify-center border-zinc-300 w-full p-2 hover:text-slate-400 ease-out duration-200">
           <Link to ="/app/write">WRITE</Link> 
           </li>
-          <li className=" text-white hover:cursor-pointer flex justify-center  border-zinc-300 w-full p-2 hover:text-slate-400 ease-out duration-200">
+          <li onClick = {handleToggle} className=" text-orange-600 hover:cursor-pointer flex justify-center  border-zinc-300 w-full p-2 hover:text-slate-400 ease-out duration-200">
           <Link to ="/app/contact">CONTACT</Link> 
           </li>
+          <li
+              onClick={handleToggle}
+              className=" text-orange-600 hover:cursor-pointer flex justify-center  border-zinc-300 w-full p-2 hover:text-slate-400 ease-out duration-200"
+            >
+              <Link to="/">SIGN OUT</Link>
+            </li>
         </ul>
+  
           </animated.div>
           : ''
         )

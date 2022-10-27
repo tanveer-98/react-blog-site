@@ -22,11 +22,13 @@ const index = () => {
   };
   const navigate = useNavigate();
   const handleNavigate = () => {
+    if(window.localStorage.getItem('user')!='')
     navigate("app/home");
+    else navigate('/login')
   };
   return (
     <div className="">
-      <img src={background}  className={`${nav?'blur-md':' '} absolute top-0 left-0 w-full h-full mix-blend-overlay object-cover transition-all ease-linear duration-150`} alt="" />
+      <img src={background}  className={`${nav?'blur-md':' '} absolute top-0 left-0 w-full h-screen mix-blend-overlay object-cover transition-all ease-linear duration-150`} alt="" />
       <div className="fixed top-0 left-0 w-full h-[80px]">
         <div className="px-2 flex justify-around  w-full h-full">
           <div className="flex justify-center items-center">
@@ -80,10 +82,10 @@ const index = () => {
         >
            <div className="flex  items-center justify-end"><img onClick={handleToggle} src={x_mark} alt="/" className="w-7 hover:opacity-80 hover:cursor-pointer" /></div>
           <li onClick = {handleToggle} className=" font-trispace text-xl text-white hover:cursor-pointer flex justify-center  border-zinc-300 w-full p-2 hover:text-slate-400 ease-out duration-200">
-            LOGIN
+          <Link to="login">LOGIN</Link>
           </li>
           <li onClick = {handleToggle} className="font-trispace text-xl text-white hover:cursor-pointer flex justify-center  border-zinc-300 w-full p-2 hover:text-slate-400 ease-out duration-200">
-            REGISTER
+          <Link to="register"> REGISTER</Link>
           </li>
           
         </ul>

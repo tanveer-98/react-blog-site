@@ -39,6 +39,22 @@ export function getCookie(data: any){
     console.log(data)
     return api.post("/users/getCookie",data);
 }
+
+ // GETS USER DATA 
+
+ export function getUserData(){
+    return axios.get(`${baseUrl}/users/me`,{
+        withCredentials:true
+    })
+}
+
 // more on withCredentials : true == https://developer.mozilla.org/en-US/docs/Web/API/XMLHttpRequest/withCredentials
 // if i am not wrong , it needs to be set as true is a 3rd party is creating a cookie for our domain
 // withCredentials  never affects same-origin requests.
+
+// FOR TESTING  : DONOT USE 
+export function accessCookie (){
+    return axios.post(`${baseUrl}/cookies`,{},{
+        withCredentials :true
+    })
+}

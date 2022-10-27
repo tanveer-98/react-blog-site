@@ -42,14 +42,14 @@ const index = () => {
           const errors: any = {};
           if (!values.fName) {
             errors.fName = "First Name is Required";
-          } else if (!/^[A-Za-z]{5,30}$/.test(values.fName)) {
+          } else if (!/^[A-Za-z]{2,30}$/.test(values.fName)) {
             errors.fName =
               "First Name should not contain special characters or numbers.";
           }
 
           if (!values.lName) {
             errors.lName = "Last Name is Required";
-          } else if (!/^[A-Za-z]{5,30}$/.test(values.lName)) {
+          } else if (!/^[A-Za-z]{2,30}$/.test(values.lName)) {
             errors.lName =
               "Last Name should not contain special characters or numbers.";
           }
