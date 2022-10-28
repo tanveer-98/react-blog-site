@@ -58,3 +58,27 @@ export function accessCookie (){
         withCredentials :true
     })
 }
+
+
+
+// get user blogs 
+
+export function getUserBlogs(){
+    return axios.get(`${baseUrl}/blogs/me`,{
+        withCredentials : true 
+    })
+}
+
+export interface IPostUserBlog {
+    title : string ; 
+    description : string ;
+}
+
+export function postUserBlog(data:IPostUserBlog){
+    return axios.post(`${baseUrl}/blogs/me`,data,{
+        withCredentials : true,
+        headers:{
+            'Content-Type': 'application/json'
+        }
+    })
+}
