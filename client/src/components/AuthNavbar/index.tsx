@@ -47,10 +47,10 @@ const index = () => {
               onClick={handleToggle}
               className="  font-bold text-2xl flex flex-row items-center hover:cursor-pointer p-2 text-white  hover:text-slate-400 ease-out duration-200"
             >
-              <Link to="login">LOGIN</Link>
+              <Link  className="p-2 rounded-full w-[150px] text-orange-500 hover:text-white text-center hover:bg-orange-500 transition-all ease-linear duration-200" to="login">LOGIN</Link>
             </li>
             <li className=" text-2xl font-bold flex flex-row items-center hover:cursor-pointer p-2 text-white  hover:text-slate-400 ease-out duration-200">
-              <Link to="register"> REGISTER</Link>
+              <Link   className="p-2 rounded-full w-[150px] text-orange-500 hover:text-white text-center hover:bg-orange-500 transition-all ease-linear duration-200"to="register"> REGISTER</Link>
             </li>
           </ul>
 

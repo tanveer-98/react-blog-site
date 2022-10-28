@@ -1,6 +1,7 @@
 const express = require('express')
 const dotenv = require('dotenv')
 const users = require('../routes/user');
+const blogs = require('../routes/blog')
 const cors = require('cors')
 const cookieParser = require('cookie-parser');
 require('../db/db')
@@ -28,7 +29,8 @@ app.use(express.json());
 
 app.use(cookieParser())
 // app.use(cors());
-app.use('/api/',users)
+app.use('/api/',users);
+app.use('/api/',blogs);
 app.listen(process.env.PORT,()=>{
     console.log('Listening on port: '+process.env.PORT)
 })

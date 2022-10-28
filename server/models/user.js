@@ -154,7 +154,7 @@ userSchema.pre("save", async function (next) {
 });
 
 // middle ware toe delete all Tasks when user is deleted
-const Blog = require("../models/Blog");
+const Blog = require("../models/blog");
 userSchema.pre("remove", async function (next) {
   const user = this;
   const _id = user._id;

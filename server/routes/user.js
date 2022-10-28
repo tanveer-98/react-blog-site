@@ -190,7 +190,7 @@ router.post('/users/getCookie', async ( req,res)=>{
         // console.log(user)
         user.getPublicData();
         const token = await user.generateAuthToken(); 
-        console.log('inside user login api')
+        // console.log('inside user login api')
         const data = await user.getPublicData();
         
         /// IMPORTANT NOTE : user.getPublicDate returns a promise so make sure to get data sepeartely 
@@ -198,7 +198,7 @@ router.post('/users/getCookie', async ( req,res)=>{
         //so make sure to use await or use then() to resolve then promise 
        
        
-       console.log(data);
+      //  console.log(data);
         // return res.status(200).send({user:data,token});
         // res.setHeader("Set-Cookie", "HttpOnly;Secure;SameSite=Strict");
         // res.setHeader('Set-Cookie', ['type=ninja', 'language=javascript'],"HttpOnly;Secure;SameSite=Strict");

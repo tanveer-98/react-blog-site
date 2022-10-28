@@ -4,11 +4,6 @@ const mongoose = require("mongoose");
 
 const blogSchema = new mongoose.Schema(
   {
-    blogImage: {
-        type: String, 
-        required: true, 
-        trim: true
-    },
     title:{
         type: String, 
         required: true,
@@ -44,11 +39,6 @@ blogSchema.pre('save',async function(next){
     next() ; // if we next call next we go the to actual flow of our application 
 })
 //creating the model 
- const Blog = mongoose.model("Blog",blogSchema);
+const Blog = mongoose.model("Blog", blogSchema);
 
-
-// const newblog1 = new blog({
-//     description: "Go to the washroom"
-//   });
-  
 module.exports = Blog;
