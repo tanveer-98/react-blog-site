@@ -5,7 +5,7 @@ import mkcert from 'vite-plugin-mkcert'
 // https://vitejs.dev/config/
 export default defineConfig({
   plugins: [react(),mkcert()],
-  server: {https:true,
+  server: {https:false,
     proxy: {
       '/api': {
            target: 'http://localhost:3000',
@@ -17,3 +17,5 @@ export default defineConfig({
   
 
 })
+
+// this proxy is required for cross-site requests to work
