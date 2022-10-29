@@ -16,7 +16,7 @@ app.use(function(req, res, next) {
     res.header('Access-Control-Allow-Methods', 'GET,PUT,POST,DELETE');
     next();
 });
-app.use(cors({origin: ["https://127.0.0.1:5173","https://localhost:5173","https://blogsters.netlify.app/"] , credentials : true}))
+app.use(cors({origin: ["http://127.0.0.1:5173","http://localhost:5173","https://127.0.0.1:5173","https://localhost:5173","https://blogsters.netlify.app/"] , credentials : true}))
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 
