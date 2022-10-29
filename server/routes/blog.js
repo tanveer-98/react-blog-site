@@ -5,8 +5,10 @@ const auth = require('../middleware/auth')
 
 
 router.get('/blogs/me', auth,async (req,res)=>{
-    console.log(req.cookies.token)
+    
+    console.log("COOKIES"+req.cookies.token)
     const blogs = await Blog.find({owner : req.user._id});
+    console.log("BLOGS "+ blogs)
     
     if(blogs.length==0) return res.status(404).send({
         error:'404',

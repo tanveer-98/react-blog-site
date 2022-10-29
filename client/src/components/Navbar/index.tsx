@@ -47,16 +47,16 @@ const index = () => {
               
               className="text-2xl font-bold flex flex-row items-center text-white  hover:cursor-pointer p-2 hover:text-slate-400 ease-linear duration-200"
             >
-              <Link className="p-2 rounded-full w-[150px] text-orange-500 hover:text-white text-center hover:bg-orange-500 transition-all ease-linear duration-300" to ="/app/home">HOME</Link> 
+              <Link className="font-trispace p-2 rounded-full w-[150px] text-orange-500 hover:text-white text-center hover:bg-orange-500 transition-all ease-linear duration-300" to ="/app/home">HOME</Link> 
             </li>
             <li  className=" text-2xl font-bold flex flex-row items-center text-white  hover:cursor-pointer p-2 hover:text-slate-400 ease-linear duration-200">
-            <Link className="p-2 rounded-full w-[150px] text-orange-500 hover:text-white text-center hover:bg-orange-500 transition-all ease-linear duration-200" to ="/app/about">ABOUT</Link> 
+            <Link className="font-trispace p-2 rounded-full w-[150px] text-orange-500 hover:text-white text-center hover:bg-orange-500 transition-all ease-linear duration-200" to ="/app/about">ABOUT</Link> 
             </li>
             <li className=" text-2xl font-bold flex flex-row items-center text-white  hover:cursor-pointer p-2 hover:text-slate-400 ease-linear duration-200">
                <Link className="p-2 rounded-full w-[150px] text-orange-500 hover:text-white text-center hover:bg-orange-500 transition-all ease-linear duration-200" to ="/app/write">WRITE</Link> 
             </li>
             <li  className=" text-2xl font-bold flex flex-row items-center text-white  hover:cursor-pointer p-2 hover:text-slate-400 ease-linear duration-200">
-            <Link className="p-2 rounded-full w-[150px] text-orange-500 hover:text-white text-center hover:bg-orange-500 transition-all ease-linear duration-200" to ="/app/contact">CONTACT</Link> 
+            <Link className=" font-trispace p-2 rounded-full w-[150px] text-orange-500 hover:text-white text-center hover:bg-orange-500 transition-all ease-linear duration-200" to ="/app/contact">CONTACT</Link> 
             </li>
           </ul>
 
@@ -86,7 +86,7 @@ const index = () => {
         transition((style,item)=>
           item? 
           
-          <animated.div className="md:hidden absolute top-0 left-0 w-full flex justify-center" style = {style}>
+          <animated.div className="md:hidden absolute z-50 top-0 left-0 w-full flex justify-center" style = {style}>
             <ul
       
           // className={
@@ -95,17 +95,17 @@ const index = () => {
 
           className="rounded-xl  m-5  py-5 font-bold bg-orange-200 w-[80%] px-8"
         >
-           <div className="flex  items-center justify-end"><img onClick={handleToggle} src={x_mark} alt="/" className="w-7 hover:opacity-80 hover:cursor-pointer" /></div>
-          <li onClick = {handleToggle} className=" text-orange-600 hover:cursor-pointer flex justify-center  border-zinc-300 w-full p-2 hover:text-slate-400 ease-linear duration-200">
+           <div className="flex items-center justify-end"><img onClick={handleToggle} src={x_mark} alt="/" className="w-7 hover:opacity-80 hover:cursor-pointer" /></div>
+          <li onClick = {handleToggle} className="font-trispace  text-orange-600 hover:cursor-pointer flex justify-center  border-zinc-300 w-full p-2 hover:text-slate-400 ease-linear duration-200">
           <Link to ="/app/home">HOME</Link> 
           </li>
-          <li onClick = {handleToggle} className="text-orange-600 hover:cursor-pointer flex justify-center  border-zinc-300 w-full p-2 hover:text-slate-400 ease-linear duration-200">
+          <li onClick = {handleToggle} className="font-trispace text-orange-600 hover:cursor-pointer flex justify-center  border-zinc-300 w-full p-2 hover:text-slate-400 ease-linear duration-200">
           <Link to ="/app/about">ABOUT</Link> 
           </li>
-          <li onClick = {handleToggle} className="text-orange-600 hover:cursor-pointer flex justify-center border-zinc-300 w-full p-2 hover:text-slate-400 ease-linear duration-200">
+          <li onClick = {handleToggle} className="font-trispace text-orange-600 hover:cursor-pointer flex justify-center border-zinc-300 w-full p-2 hover:text-slate-400 ease-linear duration-200">
           <Link to ="/app/write">WRITE</Link> 
           </li>
-          <li onClick = {handleToggle} className=" text-orange-600 hover:cursor-pointer flex justify-center  border-zinc-300 w-full p-2 hover:text-slate-400 ease-linear duration-200">
+          <li onClick = {handleToggle} className=" font-trispace text-orange-600 hover:cursor-pointer flex justify-center  border-zinc-300 w-full p-2 hover:text-slate-400 ease-linear duration-200">
           <Link to ="/app/contact">CONTACT</Link> 
           </li>
           <li

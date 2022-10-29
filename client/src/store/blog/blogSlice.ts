@@ -50,7 +50,8 @@ const blogSlice = createSlice({
     extraReducers : (builder:ActionReducerMapBuilder<IState>) => {
         builder
         .addCase(fetchBlogs.fulfilled,(state:any,action:any)=>{
-            state.blogs = action.blogs;
+            console.log(action.payload)
+            state.blogs = action.payload.blogs;
             state.loading ="success"
         })
         .addCase(fetchBlogs.pending,(state:any,action:any)=>{
