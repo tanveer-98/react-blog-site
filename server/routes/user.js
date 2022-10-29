@@ -207,12 +207,12 @@ router.post('/users/getCookie', async ( req,res)=>{
         .status(200)
         .cookie('token',token, {
 
-             sameSite : 'strict',
+             sameSite : 'none',
              path: "/",
              expires : new Date( new Date().getTime() +  5000* 1000),
              httpOnly: true ,
             //  secure : true
-            secure : false // incase of development else cookie wont be saved in postman
+            secure : true // incase of development set to false else cookie wont be saved in postman
             
            
         })
