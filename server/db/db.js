@@ -5,12 +5,11 @@ const path = require('path')
 require('dotenv').config();
 // console.log(process.env.MONGODB_URL)
 // mongoose.connect(process.env.MONGODB_URL);
-
+console.log(process.env.MONGODB_URL_ATLAS)
 mongoose.connect(process.env.MONGODB_URL_ATLAS, {
   useNewUrlParser: true,
-  useUnifiedTopology: true,
-  useFindAndModify: true,
-  dbName: 'apex'
+  useUnifiedTopology: true
+
 })
   .then(() => console.log('Connected to MongoDB...'))
-  .catch(err => console.error('Could not connect to MongoDB...'));
+  .catch(err => console.error(err+'Could not connect to MongoDB...'));
