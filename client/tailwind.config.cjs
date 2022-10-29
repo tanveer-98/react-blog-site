@@ -1,3 +1,4 @@
+// import {} from './src/assets/background.jpg'
 module.exports = {
     content: [
       "./src/**/*.{js,jsx,ts,tsx}",'./node_modules/tw-elements/dist/js/**/*.js'
@@ -13,9 +14,15 @@ module.exports = {
       fontFamily: {
         sans: ['Graphik', 'sans-serif'],
         serif: ['Merriweather', 'serif'],
-        
+        trispace :['Trispace', 'sans-serif']
+
       },
+    
       extend: {
+        backgroundImage: {
+          'bg_coffee': "url('./src/assets/background.jpg')",
+          // 'footer-texture': "url('/img/footer-texture.png')",
+        },
         spacing: {
             '128': '32rem',
             '144': '36rem',
