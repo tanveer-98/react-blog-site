@@ -77,8 +77,5 @@ export interface IPostUserBlog {
 export function postUserBlog(data:IPostUserBlog){
     return axios.post(`${baseUrl}/blogs/me`,data,{
         withCredentials : true,
-        headers:{
-            'Content-Type': 'application/json'
-        }
     })
 }
