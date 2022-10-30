@@ -11,7 +11,7 @@ const index = () => {
       
       </div>
 
-       <div className="my-10 flex justify-center items-center bg-amber-600">
+       <div className="my-10 flex justify-center items-center">
        <ShowBlogs/>
   
        </div>

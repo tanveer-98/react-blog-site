@@ -1,4 +1,4 @@
-import React, { Fragment, useState } from "react";
+import React, { Fragment, useMemo, useState } from "react";
 // import '../../styles/main.css'
 import { Bars4Icon } from "@heroicons/react/24/solid";
 // import logo from "/apex_logo.png";
@@ -11,7 +11,18 @@ import background from '../../assets/background.jpg'
 import { useTransition ,animated } from "react-spring";
 const index = () => {
   const [nav, setNav] = useState(false);
+  const [color,setColor] = useState(false);
 
+  const changeColor = ()=>{
+    if(window.scrollY >= 90){
+      setColor(true);
+    }
+    else setColor(false)
+  }
+ // see if you can optimize this part in future
+  window.addEventListener('scroll',changeColor)
+
+  
   const handleToggle = () => {
     console.log("clicked");
     setNav(!nav);
@@ -30,8 +41,8 @@ const index = () => {
   return (
     <Fragment>
      <div className="" >
-      {/* <img src={background}  className={`${nav?'blur-md':' '} absolute top-0 left-0 w-screen h-screen -z-150 mix-blend-overlay object-cover `} alt="" /> */}
-      <div className="fixed top-0 left-0 w-full h-[80px] z-10shadow-md">
+      {/* <div className={` bg-white absolute top-0 left-0 z-10 w-screen h-screen mix-blend-overlay object-cover `}/> */}
+      <div className={` ${color?'bg-orange-300 text-white shadow-md':''} fixed z-10 top-0 left-0 w-full h-[80px]  transition-all duration-100 ease-linear`}>
         <div className="px-2 flex justify-around  w-full h-full">
           <div className="flex justify-center items-center">
             <img
@@ -47,16 +58,16 @@ const index = () => {
               
               className="text-2xl font-bold flex flex-row items-center text-white  hover:cursor-pointer p-2 hover:text-slate-400 ease-linear duration-200"
             >
-              <Link className="font-trispace p-2 rounded-full w-[150px] text-orange-500 hover:text-white text-center hover:bg-orange-500 transition-all ease-linear duration-300" to ="/app/home">HOME</Link> 
+              <Link className={`${color?'text-white':'text-orange-400'} font-trispace p-2 rounded-full w-[150px] hover:text-white text-center hover:bg-orange-500 transition-all ease-linear duration-300`} to ="/app/home">HOME</Link> 
             </li>
             <li  className=" text-2xl font-bold flex flex-row items-center text-white  hover:cursor-pointer p-2 hover:text-slate-400 ease-linear duration-200">
-            <Link className="font-trispace p-2 rounded-full w-[150px] text-orange-500 hover:text-white text-center hover:bg-orange-500 transition-all ease-linear duration-200" to ="/app/about">ABOUT</Link> 
+            <Link className={`${color?'text-white':'text-orange-400'} font-trispace p-2 rounded-full w-[150px] hover:text-white text-center hover:bg-orange-500 transition-all ease-linear duration-300`} to ="/app/about">ABOUT</Link> 
             </li>
             <li className=" text-2xl font-bold flex flex-row items-center text-white  hover:cursor-pointer p-2 hover:text-slate-400 ease-linear duration-200">
-               <Link className="p-2 rounded-full w-[150px] text-orange-500 hover:text-white text-center hover:bg-orange-500 transition-all ease-linear duration-200" to ="/app/write">WRITE</Link> 
+               <Link className={`${color?'text-white':'text-orange-400'} font-trispace p-2 rounded-full w-[150px] hover:text-white text-center hover:bg-orange-500 transition-all ease-linear duration-300`} to ="/app/write">WRITE</Link> 
             </li>
             <li  className=" text-2xl font-bold flex flex-row items-center text-white  hover:cursor-pointer p-2 hover:text-slate-400 ease-linear duration-200">
-            <Link className=" font-trispace p-2 rounded-full w-[150px] text-orange-500 hover:text-white text-center hover:bg-orange-500 transition-all ease-linear duration-200" to ="/app/contact">CONTACT</Link> 
+            <Link className={`${color?'text-white':'text-orange-400'} font-trispace p-2 rounded-full w-[150px] hover:text-white text-center hover:bg-orange-500 transition-all ease-linear duration-300`} to ="/app/contact">CONTACT</Link> 
             </li>
           </ul>
 
@@ -65,7 +76,7 @@ const index = () => {
               onClick={handleToggle}
               className="  font-bold text-2xl flex flex-row items-center hover:cursor-pointer p-2 text-white  hover:text-slate-400 ease-linear duration-200"
             >
-              <Link className="p-2 rounded-full w-[150px] text-orange-500 hover:text-white text-center hover:bg-orange-500 transition-all ease-linear duration-400" to="/">SIGN OUT</Link>
+              <Link className={`${color?'text-white':'text-orange-400'} font-trispace p-2 rounded-full w-[150px] hover:text-white text-center hover:bg-orange-500 transition-all ease-linear duration-300`} to="/">SIGN OUT</Link>
             </li>
           </ul>
 
@@ -123,7 +134,10 @@ const index = () => {
         
       </div>
     </div>
+    <div className={`${nav?'blur-md':' '} h-screen  w-full shadow-md`}>
     <Outlet/>
+    
+    </div>
     </Fragment>
   );
 };
