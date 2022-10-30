@@ -138,7 +138,7 @@ router.post('/users/login',async (req,res)=>{
       if(!user) return res.status(404).send('user not found')
       // console.log(user)
       user.getPublicData();
-      const token = await user.generateAuthToken(); 
+      // const token = await user.generateAuthToken(); 
       console.log('inside user login api')
       const data = await user.getPublicData();
 
@@ -150,7 +150,7 @@ router.post('/users/login',async (req,res)=>{
      console.log(data);
       // return res.status(200).send({user:data,token});
   
-      return res.status(200).send({user:data,token});
+      return res.status(200).send({user:data});
     }
   catch(err){
     return res.status(404).send(err.message);
