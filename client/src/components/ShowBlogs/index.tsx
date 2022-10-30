@@ -13,6 +13,7 @@ const Blogs = () => {
       console.log(blogs)
     })
     .catch(err=>{
+      
       console.log(err.message)
     })
   },[])
