@@ -9,7 +9,7 @@ app.use(express.json());
 
 app.use(cookieParser())
 
-app.post('/api/users/getCookie', auth, async ( req,res)=>{
+app.post('/api/users/getCookie', async ( req,res)=>{
     // return res
     // .status(202)
     // .cookie('rememberme', '1', { maxAge: 900000, httpOnly: true })
