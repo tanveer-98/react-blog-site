@@ -1,5 +1,5 @@
 import axios from 'axios'
-const baseUrl = import.meta.env.VITE_SERVERURL;
+const baseUrl = import.meta.env.VITE_SERVERURL_LOCAL;
 axios.defaults.withCredentials = true;
 
 const api = axios.create({

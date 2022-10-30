@@ -207,16 +207,19 @@ router.post('/users/getCookie', async ( req,res)=>{
         .status(200)
         .cookie('token',token, {
 
-             sameSite : 'none',
+             sameSite : 'strict',
              path: "/",
              expires : new Date( new Date().getTime() +  5000* 1000),
              httpOnly: true ,
             //  secure : true
-            secure : true // incase of development set to false else cookie wont be saved in postman
+            secure : false // incase of development set to false else cookie wont be saved in postman
             
            
         })
 
+
+        // rule : set to strict and secure :false if you are not allowing your cookies to be used in other domains 
+        // set to none and secure : true if you are allowing your cookies to be used in 3rd party context
 
        // NOTE : in case you are using https:// you have to set sameSite: 'none' and secure : false  or you want cross-site requests enabled 
        // strict and lax is only allowed to have same site cross-site requests 
