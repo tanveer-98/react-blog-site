@@ -43,9 +43,19 @@ router.post('/blogs/me',auth ,async (req,res)=>{
             err.message
         })
     }  
-    
+})
 
+router.get('/blogs/:id',async (req,res)=>{
   
+    // if(Object.keys(req.body).length==0) return res.status(404).send({error:'404', message : 'Body cannot be empty'})
+
+    const id = req.params.id;
+
+    const blog  = await Blog.findById(id);
+
+    if(!blog) return res.status(404).send({error:'404', message:' Blog not found'});
+
+    return res.status(200).send(blog);
 })
 
 

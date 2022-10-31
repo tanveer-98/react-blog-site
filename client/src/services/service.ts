@@ -79,3 +79,9 @@ export function postUserBlog(data:IPostUserBlog){
         withCredentials : true,
     })
 }
+
+export function getUserBlog(id:string){
+    return axios.get(`${baseUrl}/blogs/${id}`,{
+        withCredentials : true 
+    })
+}

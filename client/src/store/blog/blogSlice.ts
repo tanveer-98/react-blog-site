@@ -1,9 +1,10 @@
-import { ActionReducerMapBuilder, createAsyncThunk, createSlice } from "@reduxjs/toolkit";
+import { ActionReducerMapBuilder, createAsyncThunk, createSlice, isRejected, isRejectedWithValue } from "@reduxjs/toolkit";
 import { AnyIfEmpty } from "react-redux";
-import { getUserBlogs, IPostUserBlog, postUserBlog } from "../../services/service";
+import { getUserBlogs, IPostUserBlog, postUserBlog ,getUserBlog } from "../../services/service";
 import { RootState } from "../index";
 
 interface BlogType{
+    _id: string;
     title : string ; 
     description : string ; 
     owner : string ;
@@ -12,6 +13,7 @@ interface BlogType{
 interface IState {
     blogs : BlogType[];
     loading : string; 
+    fetchedBlog: BlogType;
 }
 
 export const fetchBlogs = createAsyncThunk(
@@ -21,7 +23,6 @@ export const fetchBlogs = createAsyncThunk(
         return res.data;
     }
 )
-
 
 export const postBlog = createAsyncThunk(
     "blogs/fetchBlogs",
@@ -36,9 +37,29 @@ export const postBlog = createAsyncThunk(
     }
 )
 
+export const fetchBlog = createAsyncThunk(
+    "blogs/fetchBlog",
+    async (id:string)=>{
+        try{
+            const res = await getUserBlog(id);
+            return res.data;
+        }
+        catch(err){
+            return isRejectedWithValue((err as Error).message)
+        }
+    }
+)
+const initialBlog = {
+    _id:'',
+    title : '' ,
+    description : '',
+    owner : ''
+}
+
 const initialState = {
     blogs :[],
-    loading:'idle'
+    loading:'idle',
+    fetchedBlog: initialBlog
 } as IState
 
 const blogSlice = createSlice({
@@ -62,11 +83,26 @@ const blogSlice = createSlice({
             // state.blogs = action.blogs;
             state.loading = 'rejected'
         })
+    
+        .addCase(fetchBlog.fulfilled,(state:any,action:any)=>{
+            console.log(action.payload)
+            state.fetchedBlog= action.payload;
+            state.loading ="success"
+        })
+        .addCase(fetchBlog.pending,(state:any,action:any)=>{
+            // state.blogs = action.blogs;
+            state.loading = 'pending'
+        })
+        .addCase(fetchBlog.rejected,(state:any,action:any)=>{
+            // state.blogs = action.blogs;
+            state.loading = 'rejected'
+        })
     }
 })
 
 
 export const selectBlogList = (state : RootState) => state.blog.blogs;
 export const selectLoading = (state : RootState) => state.blog.loading;
+export const selectBlog= (state : RootState) => state.blog.fetchedBlog;
 
 export default blogSlice.reducer;

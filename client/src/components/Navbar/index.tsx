@@ -120,7 +120,11 @@ const index = () => {
           <Link to ="/app/contact">CONTACT</Link> 
           </li>
           <li
-              onClick={handleToggle}
+              onClick={()=>{
+                handleToggle();
+                window.localStorage.setItem('user','');
+                navigate('')
+              }}
               className=" text-orange-600 hover:cursor-pointer flex justify-center  border-zinc-300 w-full p-2 hover:text-slate-400 ease-linear duration-200"
             >
               <Link to="/">SIGN OUT</Link>

@@ -10,20 +10,22 @@ import Contact from './routes/contact'
 import Write from './routes/write'
 import Login from './routes/login'
 import Register from './routes/register'
+import ViewBlog from './components/ViewBlog'
 function App() {
 
   return (
    <Routes>
-  <Route index path="/" element = { <Auth/>}/>
+  <Route index path="/" element = { <Auth />}/>
    <Route path = '/app' element = { <Navbar/> }>
      <Route  path="/app/home" element = { <Home/>}/>
      <Route  path="/app/about" element = { <About/>}/>
      <Route  path="/app/contact" element = { <Contact/>}/>
      <Route  path="/app/write" element = { <Write/>}/>
+     <Route  path ="/app/blog/:id" element = {<ViewBlog/>}/>   
    </Route>
    <Route path = "login" element = { <Login/> }/>
    <Route path = "register" element = { <Register/> }/>
-
+   
    </Routes>
   )
 }
