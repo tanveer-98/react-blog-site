@@ -8,7 +8,7 @@ router.get('/blogs/me', auth,async (req,res)=>{
     
     console.log("COOKIES"+req.cookies.token)
     const blogs = await Blog.find({owner : req.user._id});
-    console.log("BLOGS "+ blogs)
+    // console.log("BLOGS "+ blogs)
     
     if(blogs.length==0) return res.status(404).send({
         error:'404',
@@ -45,13 +45,15 @@ router.post('/blogs/me',auth ,async (req,res)=>{
     }  
 })
 
-router.get('/blogs/:id',async (req,res)=>{
+router.get('/blogs/:id',auth,async (req,res)=>{
   
     // if(Object.keys(req.body).length==0) return res.status(404).send({error:'404', message : 'Body cannot be empty'})
 
     const id = req.params.id;
+    console.log(id)
 
-    const blog  = await Blog.findById(id);
+    const blog  = await Blog.findOne({_id:id});
+    console.log(blog)
 
     if(!blog) return res.status(404).send({error:'404', message:' Blog not found'});
 

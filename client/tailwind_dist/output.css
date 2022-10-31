@@ -56,6 +56,14 @@ body {
   /* 1 */
   line-height: inherit;
   /* 2 */
+
+  background-image: url("../src/assets/cool-background.svg");
+  height: 100%;
+
+/* Center and scale the image nicely */
+background-position: center;
+background-repeat: no-repeat;
+background-size: cover;
 }
 
 /*

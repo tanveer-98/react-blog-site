@@ -9,8 +9,8 @@ export default defineConfig({
   // server: {https:false,
   //   proxy: {
   //     '/api': {
-  //          target: "https://blog-server-i6uh.onrender.com",
-  //         //  target: "http://localhost:3000",
+  //         //  target: "https://blog-server-i6uh.onrender.com",
+  //          target: "http://localhost:3000",
           
   //          changeOrigin: true,
   //          secure: false,      

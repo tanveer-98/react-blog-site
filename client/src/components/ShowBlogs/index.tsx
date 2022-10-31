@@ -18,16 +18,16 @@ const Blogs = () => {
       console.log(err.message)
     })
   },[])
-  const navigate = useNavigate();
+  // const navigate = useNavigate();
   return (
     <div className="p-5 w-full grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 ">
       {(blogs && loading!='pending')  ? 
         blogs.map(element=>{
           return (
             <div className="">
-  <div className="block p-6 rounded-lg shadow-lg bg-slate-800 max-w-sm m-2">
-    <h5 className="text-xl leading-tight font-medium mb-2 text-white ">{element.title}</h5>
-    <div className="text-white  text-base mb-4" dangerouslySetInnerHTML={{__html: element.description}}/>
+  <div className="block p-6 rounded-lg shadow-lg bg-white max-w-sm m-2">
+    <h5 className="text-xl leading-tight font-medium mb-2 text-black ">{element.title}</h5>
+    <div className="text-black  text-base mb-4" dangerouslySetInnerHTML={{__html: element.description}}/>
     
 
     <button type="button" className=" inline-block px-6 py-2.5 bg-orange-500 text-white font-medium text-xs leading-tight uppercase rounded shadow-md hover:bg-orange-700 hover:shadow-lg focus:bg-orange-700 focus:shadow-lg focus:outline-none focus:ring-0 active:bg-blue-800 active:shadow-lg transition duration-150 ease-in-out">

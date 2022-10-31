@@ -8,6 +8,8 @@ interface BlogType{
     title : string ; 
     description : string ; 
     owner : string ;
+    ownerName:string;
+    createdAt: string;
 }
 
 interface IState {
@@ -40,20 +42,21 @@ export const postBlog = createAsyncThunk(
 export const fetchBlog = createAsyncThunk(
     "blogs/fetchBlog",
     async (id:string)=>{
-        try{
+       
             const res = await getUserBlog(id);
+            
             return res.data;
-        }
-        catch(err){
-            return isRejectedWithValue((err as Error).message)
-        }
+        
     }
 )
 const initialBlog = {
     _id:'',
     title : '' ,
     description : '',
-    owner : ''
+    owner : '',
+    ownerName: '',
+    createdAt: ''
+
 }
 
 const initialState = {

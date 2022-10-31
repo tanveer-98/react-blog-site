@@ -213,8 +213,6 @@ router.post('/users/getCookie', async ( req,res)=>{
              httpOnly: true ,
             //  secure : true
             secure : true// incase of development set to false else cookie wont be saved in postman
-            
-           
         })
 
 

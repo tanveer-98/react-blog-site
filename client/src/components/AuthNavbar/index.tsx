@@ -28,7 +28,7 @@ const index = () => {
   };
   return (
     <div className="">
-      <img src={background}  className={`${nav?'blur-md':' '} absolute top-0 left-0 w-full h-screen mix-blend-overlay object-cover transition-all ease-linear duration-150`} alt="" />
+      {/* <img src={background}  className={`${nav?'blur-md':' '} absolute top-0 left-0 w-full h-screen mix-blend-overlay object-cover transition-all ease-linear duration-150`} alt="" /> */}
       <div className="fixed top-0 left-0 w-full h-[80px]">
         <div className="px-2 flex justify-around  w-full h-full">
           <div className="flex justify-center items-center">

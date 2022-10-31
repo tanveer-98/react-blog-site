@@ -19,10 +19,10 @@ module.exports = {
       },
     
       extend: {
-        backgroundImage: {
-          'bg_coffee': "url('./src/assets/background.jpg')",
-          // 'footer-texture': "url('/img/footer-texture.png')",
-        },
+        // backgroundImage: {
+        //   'coffee': "url('./src/assets/background.jpg')",
+        //   // 'footer-texture': "url('/img/footer-texture.png')",
+        // },
         spacing: {
             '128': '32rem',
             '144': '36rem',
