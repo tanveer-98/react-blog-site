@@ -3,7 +3,7 @@ import { useNavigate,Link } from 'react-router-dom';
 import {useAppDispatch,useAppSelector} from '../../store'
 import {selectBlogList,selectLoading,fetchBlogs,postBlog} from '../../store/blog/blogSlice'
 import LazyLoad from 'react-lazyload'
-import profile from '../../assets/editProfile.png'
+
 
 const Blogs = () => {
   const blogs = useAppSelector(selectBlogList);
@@ -23,19 +23,14 @@ const Blogs = () => {
   },[])
   // const navigate = useNavigate();
   return (
-    <div className="p-5 w-full grid grid-cols-1 ">
+    <div className="p-5 w-full grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 ">
       {(blogs && blogs.length!=0 && loading!='pending')  ? 
         blogs.map(element=>{
           return (
             <LazyLoad height={200} once offset={100}>
-  <div className="w-full p-6 rounded-lg shadow-lg bg-white m-2">
-    <div className="flex gap-1 flex-row items-center w-full">
-      <img src={profile} className="w-[40px] h-[40px]" alt="notset"/>
-      <h5 className=" text-center text-xl font-medium  text-black ">{element.title}</h5>
-      <span className=""> {element.createdAt.split('T')[0]} </span>
-    </div>
-   
-    <div className="text-black  text-base mb-4" dangerouslySetInnerHTML={{__html: element.description.replace(/<img[^>]*>/g,"")}}/>
+  <div className="block p-6 rounded-lg shadow-lg bg-white max-w-sm m-2">
+    <h5 className="text-xl leading-tight font-medium mb-2 text-black ">{element.title}</h5>
+    <div className="text-black  text-base mb-4" dangerouslySetInnerHTML={{__html: element.description}}/>
     
 
     <button type="button" className=" inline-block px-6 py-2.5 bg-orange-500 text-white font-medium text-xs leading-tight uppercase rounded shadow-md hover:bg-orange-700 hover:shadow-lg focus:bg-orange-700 focus:shadow-lg focus:outline-none focus:ring-0 active:bg-blue-800 active:shadow-lg transition duration-150 ease-in-out">

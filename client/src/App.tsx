@@ -11,6 +11,7 @@ import Write from './routes/write'
 import Login from './routes/login'
 import Register from './routes/register'
 import ViewBlog from './components/ViewBlog'
+import Profile from './routes/profile'
 function App() {
 
   return (
@@ -21,7 +22,9 @@ function App() {
      <Route  path="/app/about" element = { <About/>}/>
      <Route  path="/app/contact" element = { <Contact/>}/>
      <Route  path="/app/write" element = { <Write/>}/>
-     <Route  path ="/app/blog/:id" element = {<ViewBlog/>}/>   
+     <Route  path ="/app/blog/:id" element = {<ViewBlog/>}/>  
+     <Route  path ="/app/profile" element = {<Profile/>}/>  
+      
    </Route>
    <Route path = "login" element = { <Login/> }/>
    <Route path = "register" element = { <Register/> }/>

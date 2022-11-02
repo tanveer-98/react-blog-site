@@ -24,11 +24,15 @@ router.get('/blogs/me', auth,async (req,res)=>{
 
 router.post('/blogs/me',auth ,async (req,res)=>{
     // console.log('clicked')
+    console.log("@GET BLOGS/ME")
+    console.log(req.body)
+    console.log('USER DETAILS')
+    console.log(req.user);
     if(Object.keys(req.body).length==0) return res.status(404).send({error:'404', message : 'Body cannot be empty'})
     console.log("cookie"+ req.cookies.token)
     // console.log('user token data')
     // console.log(req.user)
-    const blog  = new Blog({...req.body, owner : req.user._id})
+    const blog  = new Blog({...req.body, owner : req.user._id , ownerName: req.user.name})
 
     try{
         await blog.save()
@@ -60,5 +64,10 @@ router.get('/blogs/:id',auth,async (req,res)=>{
     return res.status(200).send(blog);
 })
 
+
+router.get('/blogsAll',async (req,res)=>{
+    const blog = await Blog.find({});
+    return res.status(200).send(blog);
+})
 
 module.exports = router;

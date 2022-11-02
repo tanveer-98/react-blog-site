@@ -85,3 +85,9 @@ export function getUserBlog(id:string){
         withCredentials : true 
     })
 }
+
+export function getAllBlogs(){
+    return axios.get(`${baseUrl}/blogs/`,{
+        withCredentials : true 
+    })
+}

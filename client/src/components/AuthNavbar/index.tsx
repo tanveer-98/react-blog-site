@@ -5,6 +5,7 @@ import { Bars4Icon } from "@heroicons/react/24/solid";
 import { Link, Outlet, useNavigate } from "react-router-dom";
 import { Link as SLink, animateScroll as scroll } from "react-scroll";
 import { useTransition ,animated } from "react-spring";
+// import 
 // import x_mark from "/cross.svg";/
 import background from '../../assets/background.jpg'
 import x_mark from "../../assets/x-mark-32.png";
@@ -94,6 +95,12 @@ const index = () => {
         )
        }
         
+      </div>
+
+       {/* randomized blogs until user logs in and sets the localStorage interests */}
+
+      <div>
+
       </div>
     </div>
   );

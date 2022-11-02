@@ -936,13 +936,18 @@ call-bind@^1.0.0:
     function-bind "^1.1.1"
     get-intrinsic "^1.0.2"
 
-chalk@^4.1.0:
+chalk@^4, chalk@^4.1.0:
   version "4.1.2"
   resolved "https://registry.yarnpkg.com/chalk/-/chalk-4.1.2.tgz#aac4e2b7734a740867aeb16bf02aad556a1e7a01"
   integrity sha512-oKnbhFyRIXpUuez8iBMmyEa4nbj4IOQyuhc/wy9kY7/WVPcwIO9VA668Pu8RkO7+0G76SLROeyw9CpQ061i4mA==
   dependencies:
     ansi-styles "^4.1.0"
     supports-color "^7.1.0"
+
+chalk@^5.1.2:
+  version "5.1.2"
+  resolved "https://registry.yarnpkg.com/chalk/-/chalk-5.1.2.tgz#d957f370038b75ac572471e83be4c5ca9f8e8c45"
+  integrity sha512-E5CkT4jWURs1Vy5qGJye+XwCkNj7Od3Af7CP6SujMetSMkLs8Do2RWJK5yx1wamHV/op8Rz+9rltjaTQWDnEFQ==
 
 chokidar@^3.5.2:
   version "3.5.3"
@@ -1374,6 +1379,13 @@ glob@^7.1.3:
     minimatch "^3.1.1"
     once "^1.3.0"
     path-is-absolute "^1.0.0"
+
+hagen@^2.0.2:
+  version "2.0.2"
+  resolved "https://registry.yarnpkg.com/hagen/-/hagen-2.0.2.tgz#d37169f55171d1d5acbbcc67fb9e4f9ade71b388"
+  integrity sha512-0dMY1oBLOOWEUbPnhoGhy03io2+fHa6Iz8dOjsyqlqhKYZN+jO0v18VG6I3ALNT/1WAicNlnUZcwRbnHr/LSzQ==
+  dependencies:
+    chalk "^4"
 
 has-flag@^3.0.0:
   version "3.0.0"

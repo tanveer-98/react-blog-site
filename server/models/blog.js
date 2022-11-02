@@ -18,6 +18,20 @@ const blogSchema = new mongoose.Schema(
       type:mongoose.Schema.Types.ObjectId,
       required: true,
       ref:'User'
+    },
+    ownerName:{
+      type: String,
+      required:true,
+      ref :'User'
+    },
+    likes:{
+      type:Number 
+    },
+    dislikes:{
+      type:Number
+    },
+    tags:{
+      type: [String]
     }
 
   },

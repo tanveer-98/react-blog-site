@@ -2,7 +2,7 @@ import React from 'react'
 import ShowBlogs from '../ShowBlogs'
 const index = () => {
   return (
-    <div className="py-[100px] w-full h-full flex-col  flex justify-center " >
+    <div className="mt-[90px] w-[90%] h-full flex-col  flex justify-center mx-auto" >
       <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
       <h1 className="text-6xl font-trispace text-center"> Welcome back!  <span className="inline-block w-full font-trispace text-3xl text-center text-gray-700">{window.localStorage.getItem('user')}</span></h1>
       <div>

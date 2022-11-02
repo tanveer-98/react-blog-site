@@ -2,6 +2,7 @@ const express = require('express')
 const dotenv = require('dotenv')
 const users = require('../routes/user');
 const blogs = require('../routes/blog')
+
 const cors = require('cors')
 const cookieParser = require('cookie-parser');
 require('../db/db')
