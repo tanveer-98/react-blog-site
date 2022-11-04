@@ -33,7 +33,7 @@ module.exports = {
           }
           ,
           boxShadow:{
-            'neon': '0 0 10px #2196f3, 0 0 40px #2196f3, 0 0 80px #2196f3'
+            'neon': '0 0 10px #2196f3, 0 0 40px #2196f3, 0 0 40px #2196f3'
           }
       },
       

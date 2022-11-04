@@ -72,6 +72,7 @@ export function getUserBlogs(){
 export interface IPostUserBlog {
     title : string ; 
     description : string ;
+    tags : string[];
 }
 
 export function postUserBlog(data:IPostUserBlog){

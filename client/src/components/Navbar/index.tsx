@@ -51,13 +51,13 @@ const index = () => {
     setProfile(!profileModal);
   }
   const styles  = {
-    link : "font-abril rounded-full hover:shadow-neon hover:text-white hover:rounded-full  text-white hover:cursor-pointer flex justify-center  border-zinc-300 w-full p-2  ease-linear duration-200"
+    link : "font-abril rounded-full hover:shadow-neon hover:text-white hover:rounded-full  text-white hover:cursor-pointer  flex justify-center  hover:bg-[#2196f3] border-zinc-300 w-[100%]  w-[160px] ease-linear duration-300"
   }
   return (
     <Fragment>
      <div className="" >
       {/* <div className={` bg-white absolute top-0 left-0 z-10 w-screen h-screen mix-blend-overlay object-cover `}/> */}
-      <div className={` ${color?'bg-black text-white shadow-md':''} fixed z-10 top-0 left-0 w-full h-[80px]  transition-all duration-100 ease-linear`}>
+      <div className={` ${color?'bg-black shadow-lg shadow-slate-600 text-white':''} fixed z-10 top-0 left-0 w-full h-[90px]  transition-all duration-100 ease-linear`}>
         <div className="px-2 flex justify-around  w-full h-full"> 
           <div className="flex justify-center items-center">
             <img
@@ -71,18 +71,18 @@ const index = () => {
           <ul className="hidden md:flex ">
             <li
               
-              className="text-2xl font-bold flex flex-row items-center text-white  hover:cursor-pointer p-2 hover:text-slate-400 ease-linear duration-200"
+              className="text-2xl font-bold flex flex-row items-center text-white  hover:cursor-pointer m-[20px] hover:text-slate-400 ease-linear duration-200"
             >
-              <Link className={`${color?'text-white':'text-orange-400'} font-trispace p-2 rounded-full w-[150px] hover:text-white text-center hover:bg-orange-500 transition-all ease-linear duration-300`} to ="/app/home">HOME</Link> 
+              <Link className={`${color?'text-white':'text-black'} ${styles.link} `} to ="/app/home">HOME</Link> 
             </li>
             <li  className=" text-2xl font-bold flex flex-row items-center text-white  hover:cursor-pointer p-2 hover:text-slate-400 ease-linear duration-200">
-            <Link className={`${color?'text-white':'text-orange-400'} font-trispace p-2 rounded-full w-[150px] hover:text-white text-center hover:bg-orange-500 transition-all ease-linear duration-300`} to ="/app/about">ABOUT</Link> 
+            <Link className={`${color?'text-white':'text-black'} ${styles.link} `} to ="/app/about">ABOUT</Link> 
             </li>
             <li className=" text-2xl font-bold flex flex-row items-center text-white  hover:cursor-pointer p-2 hover:text-slate-400 ease-linear duration-200">
-               <Link className={`${color?'text-white':'text-orange-400'} font-trispace p-2 rounded-full w-[150px] hover:text-white text-center hover:bg-orange-500 transition-all ease-linear duration-300`} to ="/app/write">WRITE</Link> 
+               <Link className={`${color?'text-white':'text-black'} ${styles.link} `} to ="/app/write">WRITE</Link> 
             </li>
             <li  className=" text-2xl font-bold flex flex-row items-center text-white  hover:cursor-pointer p-2 hover:text-slate-400 ease-linear duration-200">
-            <Link className={`${color?'text-white':'text-orange-400'} font-trispace p-2 rounded-full w-[150px] hover:text-white text-center hover:bg-orange-500 transition-all ease-linear duration-300`} to ="/app/contact">CONTACT</Link> 
+            <Link className={`${color?'text-white':'text-black'} ${styles.link}`} to ="/app/contact">CONTACT</Link> 
             </li>
          
           </ul>
@@ -101,7 +101,7 @@ const index = () => {
               
               className="  font-bold text-2xl flex flex-row items-center hover:cursor-pointer p-2 text-white  hover:text-slate-400 ease-linear duration-200"
             >
-              <Link className={`${color?'text-white':'text-orange-400'} font-trispace p-2 rounded-full w-[150px] hover:text-white text-center hover:bg-orange-500 transition-all ease-linear duration-300`} to="/">SIGN OUT</Link>
+              <Link className={`${color?'text-white':'text-orange-400'} `} to="/">SIGN OUT</Link>
             </li> */}
           </ul>
 
@@ -134,16 +134,16 @@ const index = () => {
           className="rounded-xl  m-5  py-5 font-bold bg-black shadow-lg shadow-white w-[80%] px-8"
         >
            <div className="flex items-center justify-end"><img onClick={handleToggle} src={x_mark} alt="/" className="w-7 hover:opacity-80 hover:cursor-pointer" /></div>
-          <li  className={styles.link}>
-          <Link onClick = {handleToggle} to ="/app/home">HOME</Link> 
+          <li  className="font-trispace flex justify-center">
+          <Link onClick = {handleToggle}  className={styles.link} to ="/app/home">HOME</Link> 
           </li>
-          <li  className="font-trispace text-white hover:cursor-pointer flex justify-center  border-zinc-300 w-full p-2 hover:text-slate-400 ease-linear duration-200">
+          <li  className="font-trispace flex justify-center">
           <Link  onClick = {handleToggle} className={styles.link} to ="/app/about">ABOUT</Link> 
           </li>
-          <li  className="font-trispace text-white hover:cursor-pointer flex justify-center border-zinc-300 w-full p-2 hover:text-slate-400 ease-linear duration-200">
+          <li  className="font-trispace flex justify-center">
           <Link onClick = {handleToggle} className={styles.link} to ="/app/write">WRITE</Link> 
           </li>
-          <li className=" font-trispace text-white hover:cursor-pointer flex justify-center  border-zinc-300 w-full p-2 hover:text-slate-400 ease-linear duration-200">
+          <li className=" font-trispace flex justify-center">
           <Link  onClick = {handleToggle}  className={styles.link}to ="/app/contact">CONTACT</Link> 
           </li>
           

@@ -30,12 +30,20 @@ const TinyEditor = () => {
   const dispatch = useAppDispatch()
   const { register, handleSubmit, watch, formState: { errors } } = useForm();
   const onSubmit = (data:any) => {
+    console.log(tags)
+    const resultTags  = tags.map(x=>x.text);
+    console.log(resultTags)
     const refinedData = {
       title:data.title,
-      description:description
+      description:description,
+      tags : resultTags
     }
-    console.log(refinedData)
-    dispatch(postBlog(refinedData));
+    // console.log(refinedData)
+    dispatch(postBlog(refinedData)).
+    then(()=>{ alert('successfully added blog')})
+    .catch((err)=>{
+      alert("unable to add blog: " + (err as Error).message)
+    })
   }
   const handleDelete = (i:number)=>{
     setTags(tags.filter((tag, index) => index !== i));
@@ -43,6 +51,7 @@ const TinyEditor = () => {
 
   const handleAddition = (tag:any) => {
     setTags([...tags, tag]);
+
   };
   const handleDrag = (tag : Tag, currPos: number, newPos : number) => {
     const newTags = tags.slice();
@@ -56,26 +65,31 @@ const TinyEditor = () => {
 
   
   const handleTagClick = (index:number) => {
-    console.log('The tag at index ' + index + ' was clicked');
+    // console.log('The tag at index ' + index + ' was clicked');
   };
 
+  const styles ={
 
-  console.log(watch("example")); // watch input value by passing the name of it
+   label: "font-bold font-abril text-2xl mr-10"
+  }
+
+  // console.log(watch("example")); // watch input value by passing the name of it
 
   return (
-    <div className="relative z-0"> 
+    <div className="relative z-0 bg-slate-300 p-10"> 
   
       {/* register your input into the hook by invoking the "register" function */}
   
       <form className="relative" onSubmit={handleSubmit(onSubmit)}>
-      
+      <label htmlFor="title" className={`${styles.label}`}>Title</label>
       <input  className=" -z-10 font-trispace rounded-md border-2 my-5 border-orange-300" defaultValue="Give a title" {...register("title", {required:true})} />
       
       {/* include validation with required or other standard HTML validation rules */}
       
       {/* errors will return when field validation fails  */}
       {errors.title&& <span className="text-red-500 pl-4">This field is required</span>}
-      <div className="">
+
+      <div className="my-5">
 
       <Editor
         
@@ -83,9 +97,11 @@ const TinyEditor = () => {
        
         initialValue="<p>This is the initial content of the editor.</p>"
         init={{
+          
           height: 500,
-          menubar: false,
+          menubar: "tools insert file edit  view format table help",
           plugins: [
+            'spellchecker',
             "image code",
             "advlist",
             "autolink",
@@ -106,22 +122,33 @@ const TinyEditor = () => {
             "help",
             "wordcount",
           ],
-          toolbar:
+          draggable_modal:true,
+          toolbar: "fonts"+
             "undo redo | blocks | " +
             "bold italic forecolor | alignleft aligncenter " +
             "alignright alignjustify | bullist numlist outdent indent | " +
             "removeformat | help" +
-            "link image | code",
+            "link image | code | spellchecker",
           content_style:
-            "body { font-family:Helvetica,Arial,sans-serif; font-size:14px }",
+            "body { font-family:abril,Arial,cursive; font-size:18px }",
+          spellchecker_rpc_url: 'spellchecker.php'
         }}
         onEditorChange={(newText: string) => {
           setDescription(newText)
         }}
       />
       </div> 
-      <div>
+      <label htmlFor="title" className={`${styles.label}`}>Add Tags</label>
+      <div className="my-10">
         <ReactTags
+          classNames={{
+            tag:"border-2 border-black bg-slate-600 text-white rounded my-2 mr-1 p-1 font-trispace",
+            tagInput:"w-[400px]",
+            tagInputField:"w-[400px]  mt-5 border-0 active:border-0 focus:border-0",
+            selected : " border-0 bg-pink",
+            suggestions : " text-white font-trispace  bg-slate-800 rounded-sm p-[10px]"
+          }
+          }
           tags={tags}
           suggestions={TAGSJSON}
           delimiters={delimiters}
@@ -131,11 +158,15 @@ const TinyEditor = () => {
           handleTagClick={handleTagClick}
           inputFieldPosition="bottom"
           autocomplete
+          allowDragDrop
+          placeholder="Type your tag and press Enter"
+          allowUnique
+
         />
       </div>
 
 
-      <Button type="submit" className="font-trispace border-2 border-transparent hover:border-2 hover:border-orange-400 focus:border-orange-400 active:border-orange-400 transition-all ease-linear duration-200  bg-orange-400 shadow-lg hover:shadow-orange-400 m-2 hover:bg-orange-500"> POST </Button>
+      <Button type="submit" className="font-trispace border-2 border-transparent hover:border-2 hover:border-orange-400 focus:border-orange-400 active:border-orange-400 transition-all ease-linear duration-200  bg-orange-400 shadow-lg hover:shadow-orange-400 my-2 hover:bg-orange-500"> POST </Button>
         
 
     </form>
