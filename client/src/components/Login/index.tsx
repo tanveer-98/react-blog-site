@@ -73,6 +73,8 @@ const index = () => {
         getUserData().then((response) => {
           console.log(response.data.user);
           window.localStorage.setItem("user", response.data.user.name);
+          window.localStorage.setItem("isAdmin", response.data.user.isAdmin);
+          
           navigate("/app/home");
         });
       })

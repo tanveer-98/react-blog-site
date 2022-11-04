@@ -87,7 +87,9 @@ export function getUserBlog(id:string){
 }
 
 export function getAllBlogs(){
-    return axios.get(`${baseUrl}/blogs/`,{
-        withCredentials : true 
-    })
+    return axios.get(`${baseUrl}/blogsAll`)
+}
+
+export function getAllBlogsWithLimit(index:string){
+    return axios.get(`${baseUrl}/blogsAll?index=${index}`)
 }

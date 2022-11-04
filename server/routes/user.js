@@ -45,17 +45,17 @@ router.post("/users", async (req, res) => {
   }
 
   // below code can be simplified using await keyword
-  // user
-  //   .save()
-  //   .then(() => {
-  //       res.status(200).send("successfully added user");
-  //   })
-  //   .catch((err) => {
-  //   res.status(400).send(err);
-  //   });
+  user
+    .save()
+    .then(() => {
+        res.status(200).send("successfully added user");
+    })
+    .catch((err) => {
+    res.status(400).send(err);
+    });
 });
 
-
+// UPDATE USER PROFILE
 router.patch('/users/me',auth,async (req,res)=>{
   const updates = Object.keys(req.body);
   console.log('updates')
@@ -207,12 +207,12 @@ router.post('/users/getCookie', async ( req,res)=>{
         .status(200)
         .cookie('token',token, {
 
-             sameSite : 'none', // set to strict for local developerment 
+             sameSite : 'strict', // set to strict for local developerment 
              path: "/",
              expires : new Date( new Date().getTime() +  5000* 1000),
              httpOnly: true ,
             //  secure : true
-            secure : true // incase of development set to false else cookie wont be saved in postman
+            secure : false// incase of development set to false else cookie wont be saved in postman
         })
 
 
@@ -243,6 +243,35 @@ router.post("/cookies", async (req,res) =>{
   return res.status(200).send(req.cookies.token)
 })
 
+
+const findUnion = (arg1, arg2)=>{
+  return new Array(... new Set([...arg1,...arg2]));
+}
+
+
+// @POST /interest
+router.post("/users/me/interest", auth, async (req,res) =>{
+
+  const found = await User.findOne({_id:req.user._id},{_id:0,interested:1});
+
+  const existing_interests = await User.findOneAndUpdate({_id:req.user._id},
+    {
+      interested :  findUnion ( found.interested, req.body.interested)
+    },{new:true});
+
+  return res
+  .status(200)
+  .send({message:'Successfully Update Posts',posts: existing_interests.interested})
+})
+
+
+router.get('/users/me/interest',auth, async (req,res)=>{
+    
+    const found = await User.findOne({_id:req.user._id},{_id:0,interested:1});
+
+
+    return res.status(200).send({message:'successfully fetched',interest:found.interested})
+})
 
 module.exports = router; // DEFAULT EXPORT  
 

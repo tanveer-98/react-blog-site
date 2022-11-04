@@ -65,9 +65,18 @@ router.get('/blogs/:id',auth,async (req,res)=>{
 })
 
 
-router.get('/blogsAll',async (req,res)=>{
-    const blog = await Blog.find({});
-    return res.status(200).send(blog);
-})
+// router.get('/blogsAll',async (req,res)=>{
+//     const blog = await Blog.find({});
+//     return res.status(200).send(blog);
+// })
 
+
+router.get('/blogsAll',async ( req,res)=>{
+    // console.log(params)
+    const {index}  = req.query;
+    console.log(index)
+    const blogs = await Blog.find({}).skip(5*(index-1)).limit(5)
+
+    res.status(200).send(blogs);
+})
 module.exports = router;

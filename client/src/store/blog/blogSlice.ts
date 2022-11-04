@@ -1,6 +1,6 @@
 import { ActionReducerMapBuilder, createAsyncThunk, createSlice, isRejected, isRejectedWithValue } from "@reduxjs/toolkit";
 import { AnyIfEmpty } from "react-redux";
-import { getUserBlogs, IPostUserBlog, postUserBlog ,getUserBlog } from "../../services/service";
+import { getUserBlogs, IPostUserBlog, postUserBlog ,getUserBlog, getAllBlogs, getAllBlogsWithLimit } from "../../services/service";
 import { RootState } from "../index";
 
 interface BlogType{
@@ -13,6 +13,8 @@ interface BlogType{
 }
 
 interface IState {
+    blogsAllLimit:BlogType[],
+    blogsAll: BlogType[];
     blogs : BlogType[];
     loading : string; 
     fetchedBlog: BlogType;
@@ -49,6 +51,25 @@ export const fetchBlog = createAsyncThunk(
         
     }
 )
+
+export const fetchAllBlogs  = createAsyncThunk(
+    "blogs/fetchAllBlogs",
+    async ()=>{
+        const res = await getAllBlogs();
+        return res.data;
+    }
+);
+
+export const fetchAllBlogs_withLimit = createAsyncThunk(
+    "blogs/fetchAllBlogs_withLimit",
+    async (index:Number)=>{
+        console.log("index: ",index)
+        const res = await getAllBlogsWithLimit(index.toString());
+        return res.data;
+    }
+);
+
+
 const initialBlog = {
     _id:'',
     title : '' ,
@@ -60,6 +81,8 @@ const initialBlog = {
 }
 
 const initialState = {
+    blogsAllLimit:[],
+    blogsAll:[],
     blogs :[],
     loading:'idle',
     fetchedBlog: initialBlog
@@ -100,6 +123,32 @@ const blogSlice = createSlice({
             // state.blogs = action.blogs;
             state.loading = 'rejected'
         })
+        .addCase(fetchAllBlogs.fulfilled,(state:any,action:any)=>{
+            console.log(action.payload)
+            state.blogsAll= action.payload;
+            state.loading ="success"
+        })
+        .addCase(fetchAllBlogs.pending,(state:any,action:any)=>{
+            // state.blogs = action.blogs;
+            state.loading = 'pending'
+        })
+        .addCase(fetchAllBlogs.rejected,(state:any,action:any)=>{
+            // state.blogs = action.blogs;
+            state.loading = 'rejected'
+        })
+        .addCase(fetchAllBlogs_withLimit.fulfilled,(state:any,action:any)=>{
+            console.log(action.payload)
+            state.blogsAllLimit.push(...action.payload);
+            state.loading ="success"
+        })
+        .addCase(fetchAllBlogs_withLimit.pending,(state:any,action:any)=>{
+            // state.blogs = action.blogs;
+            state.loading = 'pending'
+        })
+        .addCase(fetchAllBlogs_withLimit.rejected,(state:any,action:any)=>{
+            // state.blogs = action.blogs;
+            state.loading = 'rejected'
+        })
     }
 })
 
@@ -107,5 +156,7 @@ const blogSlice = createSlice({
 export const selectBlogList = (state : RootState) => state.blog.blogs;
 export const selectLoading = (state : RootState) => state.blog.loading;
 export const selectBlog= (state : RootState) => state.blog.fetchedBlog;
+export const selectAllBlogs = (state : RootState) => state.blog.blogsAll;
+export const selectAllBlogsLimit = (state : RootState) => state.blog.blogsAllLimit;
 
 export default blogSlice.reducer;

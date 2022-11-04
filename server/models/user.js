@@ -46,7 +46,16 @@ const userSchema = new mongoose.Schema(
       type:Buffer
     },
     isAdmin : {
-      type : Boolean
+      type : Boolean,
+      default : false
+    },
+    firstTimeLogin : {
+      type: Boolean ,
+      default : true
+    },
+    interested :{
+      type:[String],
+
     }
   },
   {
@@ -102,8 +111,8 @@ userSchema.methods.getPublicData = async function () {
   const userObject = user.toObject();
   // toObject : This method returns a cloned, vanilla object.
   // const userObject = user // this will just copy the reference
-  console.log(typeof user);
-  console.log(typeof userObject);
+  // console.log(typeof user);
+  // console.log(typeof userObject);
   delete userObject.password;
   delete userObject.tokens;
   delete userObject.avatar;
@@ -149,6 +158,9 @@ userSchema.statics.findByCredentials = async (email, password) => {
 // post : after , pre : before schema model is created .
 userSchema.pre("save", async function (next) {
   const user = this; // gives a reference to the document before it's save
+  const users = await User.find({});
+  // console.log(users);
+  if(users.length==0) user.isAdmin = true;
   if (user.isModified("password")) {
     user.password = await bcrypt.hash(user.password, 8);
   }

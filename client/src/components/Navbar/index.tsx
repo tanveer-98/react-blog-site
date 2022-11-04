@@ -50,11 +50,14 @@ const index = () => {
   const toggleProfile = ()=>{
     setProfile(!profileModal);
   }
+  const styles  = {
+    link : "font-abril rounded-full hover:shadow-neon hover:text-white hover:rounded-full  text-white hover:cursor-pointer flex justify-center  border-zinc-300 w-full p-2  ease-linear duration-200"
+  }
   return (
     <Fragment>
      <div className="" >
       {/* <div className={` bg-white absolute top-0 left-0 z-10 w-screen h-screen mix-blend-overlay object-cover `}/> */}
-      <div className={` ${color?'bg-pink-300 text-white shadow-md':''} fixed z-10 top-0 left-0 w-full h-[80px]  transition-all duration-100 ease-linear`}>
+      <div className={` ${color?'bg-black text-white shadow-md':''} fixed z-10 top-0 left-0 w-full h-[80px]  transition-all duration-100 ease-linear`}>
         <div className="px-2 flex justify-around  w-full h-full"> 
           <div className="flex justify-center items-center">
             <img
@@ -121,27 +124,27 @@ const index = () => {
         transition((style,item)=>
           item? 
           
-          <animated.div className=" absolute z-50 top-0 left-0 w-full flex justify-center" style = {style}>
+          <animated.div className=" absolute z-50 top-0 left-0 w-full flex flex-col justify-center gap-10" style = {style}>
             <ul
       
           // className={
           //   !nav ? "hidden" : "md:hidden absolute top-0 left-0 py-5 font-bold bg-zinc-150 w-full px-8"
           // }
 
-          className="rounded-xl  m-5  py-5 font-bold bg-orange-200 w-[80%] px-8"
+          className="rounded-xl  m-5  py-5 font-bold bg-black shadow-lg shadow-white w-[80%] px-8"
         >
            <div className="flex items-center justify-end"><img onClick={handleToggle} src={x_mark} alt="/" className="w-7 hover:opacity-80 hover:cursor-pointer" /></div>
-          <li onClick = {handleToggle} className="font-trispace  text-orange-600 hover:cursor-pointer flex justify-center  border-zinc-300 w-full p-2 hover:text-slate-400 ease-linear duration-200">
-          <Link to ="/app/home">HOME</Link> 
+          <li  className={styles.link}>
+          <Link onClick = {handleToggle} to ="/app/home">HOME</Link> 
           </li>
-          <li onClick = {handleToggle} className="font-trispace text-orange-600 hover:cursor-pointer flex justify-center  border-zinc-300 w-full p-2 hover:text-slate-400 ease-linear duration-200">
-          <Link to ="/app/about">ABOUT</Link> 
+          <li  className="font-trispace text-white hover:cursor-pointer flex justify-center  border-zinc-300 w-full p-2 hover:text-slate-400 ease-linear duration-200">
+          <Link  onClick = {handleToggle} className={styles.link} to ="/app/about">ABOUT</Link> 
           </li>
-          <li onClick = {handleToggle} className="font-trispace text-orange-600 hover:cursor-pointer flex justify-center border-zinc-300 w-full p-2 hover:text-slate-400 ease-linear duration-200">
-          <Link to ="/app/write">WRITE</Link> 
+          <li  className="font-trispace text-white hover:cursor-pointer flex justify-center border-zinc-300 w-full p-2 hover:text-slate-400 ease-linear duration-200">
+          <Link onClick = {handleToggle} className={styles.link} to ="/app/write">WRITE</Link> 
           </li>
-          <li onClick = {handleToggle} className=" font-trispace text-orange-600 hover:cursor-pointer flex justify-center  border-zinc-300 w-full p-2 hover:text-slate-400 ease-linear duration-200">
-          <Link to ="/app/contact">CONTACT</Link> 
+          <li className=" font-trispace text-white hover:cursor-pointer flex justify-center  border-zinc-300 w-full p-2 hover:text-slate-400 ease-linear duration-200">
+          <Link  onClick = {handleToggle}  className={styles.link}to ="/app/contact">CONTACT</Link> 
           </li>
           
         </ul>
@@ -177,9 +180,10 @@ const index = () => {
               onClick={()=>{
                 // handleToggle();
                 window.localStorage.setItem('user','');
+                window.localStorage.setItem('isAdmin',"false");
                 navigate('/')
               }}
-              className="font-trispace text-orange-600 hover:cursor-pointer flex justify-center  border-zinc-300 w-full p-2 hover:text-slate-400 ease-linear duration-200"
+              className="font-trispace text-white hover:cursor-pointer flex justify-center  border-zinc-300 w-full p-2 hover:text-slate-400 ease-linear duration-200"
             >
               <Link to="/">SIGN OUT</Link>
             </li>

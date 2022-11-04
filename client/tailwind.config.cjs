@@ -14,7 +14,8 @@ module.exports = {
       fontFamily: {
         sans: ['Graphik', 'sans-serif'],
         serif: ['Merriweather', 'serif'],
-        trispace :['Trispace', 'sans-serif']
+        trispace :['Trispace', 'sans-serif'],
+        abril:['Abril Fatface','cursive']
 
       },
     
@@ -29,6 +30,10 @@ module.exports = {
           },
           borderRadius: {
             '4xl': '2rem',
+          }
+          ,
+          boxShadow:{
+            'neon': '0 0 10px #2196f3, 0 0 40px #2196f3, 0 0 80px #2196f3'
           }
       },
       
