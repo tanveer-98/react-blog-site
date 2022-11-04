@@ -63,7 +63,7 @@ export const fetchAllBlogs  = createAsyncThunk(
 export const fetchAllBlogs_withLimit = createAsyncThunk(
     "blogs/fetchAllBlogs_withLimit",
     async (index:Number)=>{
-        console.log("index: ",index)
+        //console.log("index: ",index)
         const res = await getAllBlogsWithLimit(index.toString());
         return res.data;
     }
@@ -97,7 +97,7 @@ const blogSlice = createSlice({
     extraReducers : (builder:ActionReducerMapBuilder<IState>) => {
         builder
         .addCase(fetchBlogs.fulfilled,(state:any,action:any)=>{
-            console.log(action.payload)
+            //console.log(action.payload)
             state.blogs = action.payload.blogs;
             state.loading ="success"
         })
@@ -111,7 +111,7 @@ const blogSlice = createSlice({
         })
     
         .addCase(fetchBlog.fulfilled,(state:any,action:any)=>{
-            console.log(action.payload)
+            //console.log(action.payload)
             state.fetchedBlog= action.payload;
             state.loading ="success"
         })
@@ -124,7 +124,7 @@ const blogSlice = createSlice({
             state.loading = 'rejected'
         })
         .addCase(fetchAllBlogs.fulfilled,(state:any,action:any)=>{
-            console.log(action.payload)
+            //console.log(action.payload)
             state.blogsAll= action.payload;
             state.loading ="success"
         })
@@ -137,7 +137,7 @@ const blogSlice = createSlice({
             state.loading = 'rejected'
         })
         .addCase(fetchAllBlogs_withLimit.fulfilled,(state:any,action:any)=>{
-            console.log(action.payload)
+            //console.log(action.payload)
             state.blogsAllLimit.push(...action.payload);
             state.loading ="success"
         })

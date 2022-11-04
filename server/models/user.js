@@ -96,7 +96,7 @@ userSchema.methods.getPublicData = async function () {
   // publicdata.forEach(x=>{
   //     publicUser[x] = user[x];
   // });
-  // console.log(publicUser)
+  // //console.log(publicUser)
   // return publicUser;
 
   // method 2: using reducer
@@ -111,8 +111,8 @@ userSchema.methods.getPublicData = async function () {
   const userObject = user.toObject();
   // toObject : This method returns a cloned, vanilla object.
   // const userObject = user // this will just copy the reference
-  // console.log(typeof user);
-  // console.log(typeof userObject);
+  // //console.log(typeof user);
+  // //console.log(typeof userObject);
   delete userObject.password;
   delete userObject.tokens;
   delete userObject.avatar;
@@ -141,15 +141,15 @@ userSchema.methods.toJSON = function () {
 userSchema.statics.findByCredentials = async (email, password) => {
   const user = await User.findOne({ email: email });
   //findone returns the document
-  //    console.log(user)
+  //    //console.log(user)
   if (user == null) throw new Error(`Unable to login`);
 
   const userPassword = user.password;
 
   const isMatch = await bcrypt.compare(password, userPassword);
-  // console.log(isMatch);
+  // //console.log(isMatch);
   if (isMatch) {
-    console.log("Successfully logged in");
+    //console.log("Successfully logged in");
   } else throw new Error("Unable to login");
   return user;
 };
@@ -159,12 +159,12 @@ userSchema.statics.findByCredentials = async (email, password) => {
 userSchema.pre("save", async function (next) {
   const user = this; // gives a reference to the document before it's save
   const users = await User.find({});
-  // console.log(users);
+  // //console.log(users);
   if(users.length==0) user.isAdmin = true;
   if (user.isModified("password")) {
     user.password = await bcrypt.hash(user.password, 8);
   }
-  console.log("just before saving");
+  //console.log("just before saving");
   next(); // if we next call next we go the to actual flow of our application
 });
 

@@ -64,7 +64,7 @@ const index = () => {
 
           if (!values.password) {
             errors.password = "Password is Required";
-            // console.log(/^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!#%*?&]{8,}$/i.test(values.password))
+            // //console.log(/^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!#%*?&]{8,}$/i.test(values.password))
           } else if (!/^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9])(?=.*?[#?!@$%^&*-]).{8,}$/i.test(values.password)) {
             errors.password = "Password should contain Minimum eight characters, at least one letter, one number and one special character among @$!%*?&#";
           }
@@ -84,13 +84,13 @@ const index = () => {
             email : values.email, 
             password: values.password            
           }
-          console.log(requiredData)
+          //console.log(requiredData)
           register(requiredData).then(()=>{
             alert('successfully registered , Please Login');
             navigate('/login')
           })
           .catch(err=>{
-            console.log(err)
+            //console.log(err)
             alert(`ERROR-${err.response.status} : ${err.response.data.message}`)
           });
           resetForm();

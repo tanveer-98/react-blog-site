@@ -37,41 +37,41 @@ const index = () => {
 
     // login(formDataObj)
     // .then((response)=>{
-    //   console.log(response.data)
+    //   //console.log(response.data)
     //     // window.localStorage.setItem('user',)
     //   window.sessionStorage.setItem('user', response.data.user.name)
     //   window.sessionStorage.setItem('authToken', response.data.token)
-    //   console.log(window.sessionStorage.getItem('user'))
+    //   //console.log(window.sessionStorage.getItem('user'))
     //   navigate('/app/home')
     // })
     // .catch(err=>{
-    //   // console.log(err)
+    //   // //console.log(err)
     //   alert(`ERROR-${err.response.status} : ${err.response.data.message}`)
     // })
 
     // STORING JWT IN HTTPONLY COOKIE
     getCookie(formDataObj)
       .then((response) => {
-        console.log(response);
+        //console.log(response);
         // window.localStorage.setItem('user',)
         // window.sessionStorage.setItem('user', response.data.user.name)
         // window.sessionStorage.setItem('authToken', response.data.token)
-        // console.log(window.sessionStorage.getItem('user'))
+        // //console.log(window.sessionStorage.getItem('user'))
         // navigate('/app/home')
 
         // LINE 57 TO 64 IS FOR TESTING ONLY
         // accessCookie()
         // .then((response)=>{
-        //     console.log(response.data)
+        //     //console.log(response.data)
         // })
         // .catch(err=>{
-        //   console.log(err.message)
+        //   //console.log(err.message)
         // })
 
         // AFTER USER LOGS IN AND GETS TOKEN , retreive user data -> store in localstorage -> REDIRECT TO HOME PAGE
 
         getUserData().then((response) => {
-          console.log(response.data.user);
+          //console.log(response.data.user);
           window.localStorage.setItem("user", response.data.user.name);
           window.localStorage.setItem("isAdmin", response.data.user.isAdmin);
           
@@ -79,13 +79,13 @@ const index = () => {
         });
       })
       .catch((err) => {
-        console.log(err);
-        if (!err.response) console.log("no response");
-        // console.log(err.response.data.message)
+        //console.log(err);
+        if (!err.response) //console.log("no response");
+        // //console.log(err.response.data.message)
         // alert(`Invalid`);
-        console.log("span ref");
+        //console.log("span ref");
         const currentElem = spanRef.current;
-        console.log(currentElem);
+        //console.log(currentElem);
         if (currentElem != null) {
           currentElem.classList.remove("hidden");
         }

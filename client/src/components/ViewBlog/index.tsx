@@ -13,7 +13,7 @@ const index = () => {
 
     useEffect(()=>{
         dispatch(fetchBlog(id!))
-        console.log(blog)
+        //console.log(blog)
     },[])
   return (
     <div className="my-[100px] max-w-[400px]  sm:max-w-[600px] h-screen  md:max-w-[800px] lg:max-w-[1240px] mx-auto flex justify-center items-center ">

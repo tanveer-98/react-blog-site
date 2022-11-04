@@ -19,10 +19,10 @@ app.post('/api/users/getCookie', async ( req,res)=>{
 
         const user = await User.findByCredentials(req.body.email,req.body.password);
         if(!user) return res.status(404).send('user not found')
-        // console.log(user)
+        // //console.log(user)
         user.getPublicData();
         const token = await user.generateAuthToken(); 
-        console.log('inside user login api')
+        //console.log('inside user login api')
         const data = await user.getPublicData();
         
         /// IMPORTANT NOTE : user.getPublicDate returns a promise so make sure to get data sepeartely 
@@ -30,7 +30,7 @@ app.post('/api/users/getCookie', async ( req,res)=>{
         //so make sure to use await or use then() to resolve then promise 
        
        
-       console.log(data);
+       //console.log(data);
         // return res.status(200).send({user:data,token});
     
         return res

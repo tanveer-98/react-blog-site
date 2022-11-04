@@ -7,7 +7,7 @@ const auth = require('../middleware/auth');
 const sharp = require('sharp');
 
 router.get("/users", async (req, res) => {
-  console.log('inside GET users')
+  //console.log('inside GET users')
   try {
     const users = await User.find({});
     res.status(200).send(users);
@@ -58,8 +58,8 @@ router.post("/users", async (req, res) => {
 // UPDATE USER PROFILE
 router.patch('/users/me',auth,async (req,res)=>{
   const updates = Object.keys(req.body);
-  console.log('updates')
-  console.log(updates);
+  //console.log('updates')
+  //console.log(updates);
   const validupdates = ['name','email','password','age'];
   const isValidOperation = updates.every(element=>validupdates.includes(element));
   if (!isValidOperation) return res.status(400).send("invalid update request");
@@ -73,12 +73,12 @@ router.patch('/users/me',auth,async (req,res)=>{
 
 router.patch("/users/:id", async (req, res) => {
   const updates = Object.keys(req.body);
-  console.log(updates);
+  //console.log(updates);
   const allowedUpdates = ["name", "email", "password", "age"];
   const isValidOperation = updates.every((update) =>
     allowedUpdates.includes(update)
   );
-  console.log(isValidOperation);
+  //console.log(isValidOperation);
   if (!isValidOperation) return res.status(400).send("invalid update request");
 
   try {
@@ -87,7 +87,7 @@ router.patch("/users/:id", async (req, res) => {
 
     // Note: Note :  findbyIdAndUpdate() bypassed mongoose schema , it directly updates into the database.
 
-    //So we we try to do something like pre middlewares it won't give any console.log statements
+    //So we we try to do something like pre middlewares it won't give any //console.log statements
 
     const user = await User.findById(req.params.id);
     if (!user || user == null) {
@@ -136,10 +136,10 @@ router.post('/users/login',async (req,res)=>{
 
       const user = await User.findByCredentials(req.body.email,req.body.password);
       if(!user) return res.status(404).send('user not found')
-      // console.log(user)
+      // //console.log(user)
       user.getPublicData();
       // const token = await user.generateAuthToken(); 
-      console.log('inside user login api')
+      //console.log('inside user login api')
       const data = await user.getPublicData();
 
       /// IMPORTANT NOTE : user.getPublicDate returns a promise so make sure to get data sepeartely 
@@ -147,7 +147,7 @@ router.post('/users/login',async (req,res)=>{
       //so make sure to use await or use then() to resolve then promise 
      
      
-     console.log(data);
+     //console.log(data);
       // return res.status(200).send({user:data,token});
   
       return res.status(200).send({user:data});
@@ -177,7 +177,7 @@ router.post('/users/signup',async (req,res)=>{
 
 
 router.post('/users/getCookie', async ( req,res)=>{
-    console.log('USERS GET COOKIE REQUESTED')
+    //console.log('USERS GET COOKIE REQUESTED')
     // return res
     // .status(202)
     // .cookie('rememberme', '1', { maxAge: 900000, httpOnly: true })
@@ -187,10 +187,10 @@ router.post('/users/getCookie', async ( req,res)=>{
 
         const user = await User.findByCredentials(req.body.email,req.body.password);
         if(!user) return res.status(404).send('user not found')
-        // console.log(user)
+        // //console.log(user)
         user.getPublicData();
         const token = await user.generateAuthToken(); 
-        // console.log('inside user login api')
+        // //console.log('inside user login api')
         const data = await user.getPublicData();
         
         /// IMPORTANT NOTE : user.getPublicDate returns a promise so make sure to get data sepeartely 
@@ -198,7 +198,7 @@ router.post('/users/getCookie', async ( req,res)=>{
         //so make sure to use await or use then() to resolve then promise 
        
        
-      //  console.log(data);
+      //  //console.log(data);
         // return res.status(200).send({user:data,token});
         // res.setHeader("Set-Cookie", "HttpOnly;Secure;SameSite=Strict");
         // res.setHeader('Set-Cookie', ['type=ninja', 'language=javascript'],"HttpOnly;Secure;SameSite=Strict");
@@ -238,8 +238,8 @@ router.post('/users/getCookie', async ( req,res)=>{
 })
 
 router.post("/cookies", async (req,res) =>{
-  console.log("COOKIE VALUES")
-  // console.log(req.cookies)
+  //console.log("COOKIE VALUES")
+  // //console.log(req.cookies)
   return res.status(200).send(req.cookies.token)
 })
 

@@ -35,7 +35,7 @@ const index = () => {
     leave : {x:0,y:-1000, opacity : 0.7}
   })
   const handleToggle = () => {
-    console.log("clicked");
+    //console.log("clicked");
     setNav(!nav);
   };
   const navigate = useNavigate();

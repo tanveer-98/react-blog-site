@@ -27,7 +27,7 @@ const index = () => {
 
   
   const handleToggle = () => {
-    console.log("clicked");
+    //console.log("clicked");
     setNav(!nav);
     // window.localStorage.setItem('user','')
   };

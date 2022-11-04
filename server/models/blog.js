@@ -47,9 +47,9 @@ blogSchema.pre('save',async function(next){
     const blog = this; // gives a reference to the document before it's save 
     blog.toJSON({virtuals:true})
     if(blog.isModified('description')){
-       console.log("description updatd")
+       //console.log("description updatd")
     }
-    console.log('just before saving')
+    //console.log('just before saving')
     next() ; // if we next call next we go the to actual flow of our application 
 })
 //creating the model 

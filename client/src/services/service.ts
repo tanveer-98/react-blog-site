@@ -35,8 +35,8 @@ export function getCookie(data: any){
             'Content-Type': 'application/json'
         }
     })
-    console.log("INSIDE AXIOS FUNCTION")
-    console.log(data)
+    //console.log("INSIDE AXIOS FUNCTION")
+    //console.log(data)
     return api.post("/users/getCookie",data);
 }
 

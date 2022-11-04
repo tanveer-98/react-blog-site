@@ -13,12 +13,12 @@ const Blogs = () => {
     // loading
     dispatch(fetchBlogs())
     .then(()=>{
-      console.log('successfully fetched booking')
-      console.log(blogs)
+      //console.log('successfully fetched booking')
+      //console.log(blogs)
     })
     .catch(err=>{
       
-      console.log(err.message)
+      //console.log(err.message)
     })
   },[])
   // const navigate = useNavigate();

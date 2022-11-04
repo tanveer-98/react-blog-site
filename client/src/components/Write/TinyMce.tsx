@@ -30,15 +30,15 @@ const TinyEditor = () => {
   const dispatch = useAppDispatch()
   const { register, handleSubmit, watch, formState: { errors } } = useForm();
   const onSubmit = (data:any) => {
-    console.log(tags)
+    //console.log(tags)
     const resultTags  = tags.map(x=>x.text);
-    console.log(resultTags)
+    //console.log(resultTags)
     const refinedData = {
       title:data.title,
       description:description,
       tags : resultTags
     }
-    // console.log(refinedData)
+    // //console.log(refinedData)
     dispatch(postBlog(refinedData)).
     then(()=>{ alert('successfully added blog')})
     .catch((err)=>{
@@ -65,7 +65,7 @@ const TinyEditor = () => {
 
   
   const handleTagClick = (index:number) => {
-    // console.log('The tag at index ' + index + ' was clicked');
+    // //console.log('The tag at index ' + index + ' was clicked');
   };
 
   const styles ={
@@ -73,7 +73,7 @@ const TinyEditor = () => {
    label: "font-bold font-abril text-2xl mr-10"
   }
 
-  // console.log(watch("example")); // watch input value by passing the name of it
+  // //console.log(watch("example")); // watch input value by passing the name of it
 
   return (
     <div className="relative z-0 bg-slate-300 p-10"> 

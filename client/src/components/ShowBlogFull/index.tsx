@@ -16,12 +16,12 @@ const Blogs = () => {
   useEffect(()=>{
     dispatch(fetchAllBlogs_withLimit(counter))
     .then(()=>{
-      console.log('successfully fetched booking')
-      console.log(blogs)
+      //console.log('successfully fetched booking')
+      //console.log(blogs)
     })
     .catch(err=>{
       
-      console.log(err.message)
+      //console.log(err.message)
     })
   },[counter])
   const loadMoreHandler = () => {
@@ -41,7 +41,7 @@ const Blogs = () => {
     </div>  
     <h5 className=" my-2 text-left text-xl font-medium  text-black ">{element.title}</h5>
     
-    {/* {console.log(element.description.replace(/"<p>"+"<img[^>]*>"+"</p>"/g,"").match(/<p[^>]*>/).input)} */}
+    {/* {//console.log(element.description.replace(/"<p>"+"<img[^>]*>"+"</p>"/g,"").match(/<p[^>]*>/).input)} */}
     {element!=null ? <div className="hidden md:flex text-black  text-base mb-4" dangerouslySetInnerHTML={{__html:  element.description.replace(/<img[^>]*>/g,"")}} />:""}
     
 
