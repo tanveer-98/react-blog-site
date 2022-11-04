@@ -11,7 +11,8 @@ import ViewBlog from './components/ViewBlog'
 import Profile from './routes/profile'
 import {useLocation} from 'react-router-dom'
 import {useTransition , animated} from 'react-spring'
-
+import Contact from './routes/contact'
+import About from './routes/about'
 const LazyWrapper = (str:string) => React.lazy(()=>import(str));
 
 const LazyAbout  = LazyWrapper('./routes/about')
@@ -34,14 +35,14 @@ function App() {
    <Route path = '/app' element = { <Navbar/> }>
      <Route  path="/app/home" element = { <Home/>}/>
      <Route  path="/app/about" element = {
-      <Wrapper>
-        <LazyAbout/>
-      </Wrapper>
+   
+        <About/>
+    
        }/>
      <Route  path="/app/contact" element = {
-       <Wrapper>
-         <LazyContact/>
-       </Wrapper>
+      
+         <Contact/>
+       
        }/>
      <Route  path="/app/write" element = { 
 <Write/>
@@ -50,14 +51,14 @@ function App() {
      <Route  path ="/app/profile" element = {<Profile/>}/>  
    </Route>
    <Route path = "login" element = { 
-   <Wrapper>
-    <LazyLogin/>
-   </Wrapper>
+  
+    <Login/>
+   
    }/>
    <Route path = "register" element = { 
-   <Wrapper>
-<LazyRegister/>
-   </Wrapper>
+   
+<Register/>
+  
     }/>
    </Routes>
   )
