@@ -33,7 +33,6 @@ const blogSchema = new mongoose.Schema(
     tags:{
       type: [String]
     }
-
   },
   {
     timestamps:true

@@ -252,16 +252,24 @@ const findUnion = (arg1, arg2)=>{
 // @POST /interest
 router.post("/users/me/interest", auth, async (req,res) =>{
 
-  const found = await User.findOne({_id:req.user._id},{_id:0,interested:1});
-
-  const existing_interests = await User.findOneAndUpdate({_id:req.user._id},
-    {
-      interested :  findUnion ( found.interested, req.body.interested)
-    },{new:true});
-
-  return res
-  .status(200)
-  .send({message:'Successfully Update Posts',posts: existing_interests.interested})
+  const {firstlogin} = req.query;
+  console.log(firstlogin)
+  if(firstlogin && JSON.parse(firstlogin)){
+    // if first login is true then set firstlogin to false in backend 
+    const user =  await User.findOneAndUpdate({_id:req.user._id},{firstTimeLogin:false});
+    console.log('inside')
+  }
+    const found = await User.findOne({_id:req.user._id},{_id:0,interested:1});
+    const existing_interests = await User.findOneAndUpdate({_id:req.user._id},
+      {
+        interested :  findUnion ( found.interested, req.body.tags)
+      },{new:true});
+  
+    return res
+    .status(200)
+    .send({message:'Successfully Update Posts',posts: existing_interests.interested})
+  
+ 
 })
 
 
@@ -273,6 +281,7 @@ router.get('/users/me/interest',auth, async (req,res)=>{
     return res.status(200).send({message:'successfully fetched',interest:found.interested})
 })
 
+router.get('/users/')
 module.exports = router; // DEFAULT EXPORT  
 
 // exports = {
