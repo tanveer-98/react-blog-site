@@ -79,4 +79,13 @@ router.get('/blogsAll',async ( req,res)=>{
 
     res.status(200).send(blogs);
 })
+
+router.get('/totalPages',async ( req,res)=>{
+    // //console.log(params)
+    
+    //console.log(index)
+    const totalBlogs = await Blog.find({});
+    return res.status(200).send( JSON.stringify(totalBlogs.length
+    ))
+})
 module.exports = router;

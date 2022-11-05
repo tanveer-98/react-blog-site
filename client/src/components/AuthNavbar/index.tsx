@@ -1,4 +1,4 @@
-import React, { Fragment, useState } from "react";
+import React, { Fragment, useEffect, useState } from "react";
 // import '../../styles/main.css'
 import { Bars4Icon } from "@heroicons/react/24/solid";
 // import logo from "/apex_logo.png";
@@ -11,7 +11,8 @@ import Blogs from '../ShowBlogFull'
 import background from '../../assets/background-headphone.jpg'
 import x_mark from "../../assets/x-mark-32.png";
 import blogicon from "../../assets/blog.webp";
-
+import { clearBlogs } from "../../store/blog/blogSlice";
+import {useDispatch} from 'react-redux'
 const index = () => {
   const [color,setColor] = useState(false);
   const [nav, setNav] = useState(false);
@@ -44,7 +45,10 @@ const index = () => {
     navigate("app/home");
     else navigate('/login')
   };
-
+  const dispatch = useDispatch();
+  useEffect(()=>{
+    dispatch(clearBlogs([]))
+  },[])
   return (
     <div className={``}>
       <img src={background}  className={`${nav?'blur-md':' '} absolute top-0 left-0 w-full h-[600px] mix-blend-overlay object-cover transition-all ease-linear duration-150`} alt="" />
@@ -117,18 +121,21 @@ const index = () => {
       </div>
 
        {/* randomized blogs until user logs in and sets the localStorage interests */}
-       <div className={`${nav?'blur-md':' '} grid grid-cols-2 w-screen mt-[650px]`}>
-        <div className="max-w-[80%]">
-        <h4 className="uppercase font-abril text-4xl"> Trending</h4>
+       <div className={`${nav?'blur-md':' '} grid grid-cols-1 md:grid-cols-2 gap-4  mt-[650px] max-w-[90%] mx-auto`}>
+        <div className="">
+        <h4 className="uppercase text-center font-abril text-4xl"> Trending</h4>
        
-       <Blogs/>
+        <div className="w-full flex  justify-center">
+        <Blogs/>
 
         </div>
-        <div className="flex justify-end overflow-y-hidden">
+       
+        </div>
+        <div className="flex justify-center ">
 
-       <div className="  bg-black w-[300px] h-screen overflow-hidden">
+       <div className="   w-[300px] h-screen ">
           <div className="flex items-center">
-            <h3 className="text-white font-abril">Topics that might interest you</h3>
+            <h3 className="text-black font-abril text-4xl text-center">Topics that might interest you</h3>
 
           </div>
         </div>

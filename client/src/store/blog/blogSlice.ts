@@ -92,6 +92,10 @@ const blogSlice = createSlice({
     name: 'blog',
     initialState,
     reducers : {
+        clearBlogs: (state:any ,action:any) => {
+            state.blogsAll = action.payload;
+            state.blogsAllLimit = action.payload;
+        }
 
     },
     extraReducers : (builder:ActionReducerMapBuilder<IState>) => {
@@ -151,6 +155,8 @@ const blogSlice = createSlice({
         })
     }
 })
+
+export const {clearBlogs} =  blogSlice.actions;
 
 
 export const selectBlogList = (state : RootState) => state.blog.blogs;

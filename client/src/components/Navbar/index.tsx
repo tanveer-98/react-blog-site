@@ -13,6 +13,8 @@ import editprofile from '../../assets/editProfile.png'
 import profile from '../../assets/profile.png'
 import { useTransition ,animated } from "react-spring";
 import FirstLogin from '../../components/Home/modals/NewLogin'
+import { useDispatch } from "react-redux";
+import { clearBlogs } from "../../store/blog/blogSlice";
 const check = ()=>{
   return (window.localStorage.getItem('firstlogin')=='true' && window.localStorage.getItem('skipTagSet') =="false")
 }
@@ -30,6 +32,7 @@ const index = () => {
     }
     else setColor(false)
   }
+  const dispatch = useDispatch();
  // see if you can optimize this part in future
   window.addEventListener('scroll',changeColor)
 
@@ -61,6 +64,7 @@ const index = () => {
   const styles  = {
     link : "font-abril rounded-full hover:shadow-neon hover:text-white hover:rounded-full  text-white hover:cursor-pointer  flex justify-center  hover:bg-[#2196f3] border-zinc-300 w-[100%]  w-[160px] ease-linear duration-300"
   }
+  
   return (
     <Fragment>
      <div className="" >
@@ -189,7 +193,9 @@ const index = () => {
                 // handleToggle();
                 window.localStorage.setItem('user','');
                 window.localStorage.setItem('isAdmin',"false");
+                dispatch(clearBlogs([]))
                 navigate('/')
+
               }}
               className="font-trispace text-white hover:cursor-pointer flex justify-center  border-zinc-300 w-full p-2 hover:text-slate-400 ease-linear duration-200"
             >
