@@ -1,4 +1,4 @@
-import React, { useRef } from "react";
+import React, { useLayoutEffect, useRef } from "react";
 import blogicon from "../../assets/blog.webp";
 import { useNavigate } from "react-router-dom";
 import {
@@ -8,6 +8,7 @@ import {
   getUserData,
 } from "../../services/service";
 import axios from "axios";
+import { RiWindowLine } from "react-icons/ri";
 
 const index = () => {
   const navigate = useNavigate();
@@ -74,7 +75,8 @@ const index = () => {
           //console.log(response.data.user);
           window.localStorage.setItem("user", response.data.user.name);
           window.localStorage.setItem("isAdmin", response.data.user.isAdmin);
-          
+          window.localStorage.setItem("firstlogin", JSON.stringify(response.data.user.firstTimeLogin));
+          window.localStorage.setItem('skipTagSet',"false");
           navigate("/app/home");
         });
       })
@@ -84,10 +86,10 @@ const index = () => {
         // //console.log(err.response.data.message)
         // alert(`Invalid`);
         //console.log("span ref");
-        const currentElem = spanRef.current;
+        
         //console.log(currentElem);
-        if (currentElem != null) {
-          currentElem.classList.remove("hidden");
+        if (spanRef.current != null) {
+          spanRef.current.classList.remove("hidden");
         }
       });
 

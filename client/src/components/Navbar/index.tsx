@@ -1,4 +1,4 @@
-import React, { Fragment, useMemo, useState } from "react";
+import React, { Fragment, useEffect, useMemo, useState } from "react";
 // import '../../styles/main.css'
 import { Bars4Icon, WindowIcon } from "@heroicons/react/24/solid";
 // import logo from "/apex_logo.png";
@@ -12,7 +12,15 @@ import background from '../../assets/background.jpg'
 import editprofile from '../../assets/editProfile.png'
 import profile from '../../assets/profile.png'
 import { useTransition ,animated } from "react-spring";
+import FirstLogin from '../../components/Home/modals/NewLogin'
+const check = ()=>{
+  return (window.localStorage.getItem('firstlogin')=='true' && window.localStorage.getItem('skipTagSet') =="false")
+}
+
 const index = () => {
+  useEffect(()=>{
+
+  },[window.localStorage.getItem('firstlogin')])
   const [nav, setNav] = useState(false);
   const [color,setColor] = useState(false);
   const [profileModal,setProfile] = useState(false);
@@ -201,7 +209,8 @@ const index = () => {
       </div>
       
     </div>
-    <div className={`${nav?'blur-md':' '} h-screen  w-full`}>
+    { check()?<FirstLogin />:""}
+    <div className={`${nav || check() ?'blur-md':' '} h-screen  w-full`}>
     <Outlet/>
     </div>
     

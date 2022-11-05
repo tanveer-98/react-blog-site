@@ -94,3 +94,29 @@ export function getAllBlogs(){
 export function getAllBlogsWithLimit(index:string){
     return axios.get(`${baseUrl}/blogsAll?index=${index}`)
 }
+
+////// 
+
+export function  setFirstlogin (){
+    return axios.post(`${baseUrl}/users/toggleFistLogin`,{
+        withCredentials : true 
+    })
+}
+
+interface IsetUsertags{
+    tags:string[];
+}
+
+export function setUserInterests(data:IsetUsertags) {
+    return axios.post(`${baseUrl}/users/me/interest?firstlogin=${window.localStorage.getItem('firstlogin')}`,data,{
+        withCredentials : true,
+    })
+}
+
+export function  getUserInterests() {
+    return axios.get(`${baseUrl}/users/me/interest`,{
+        withCredentials : true,
+    })
+}
+
+////

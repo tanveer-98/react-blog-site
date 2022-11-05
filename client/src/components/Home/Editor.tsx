@@ -2,7 +2,7 @@ import React, { useRef, useState } from "react";
 import {useForm} from 'react-hook-form'
 import { Editor } from "@tinymce/tinymce-react";
 import { Button } from "../Button";
-import { postBlog} from '../../store/blog/blogSlice'
+import { setUserInterests} from '../../services/service'
 import { useAppDispatch,useAppSelector} from '../../store'
 import {WithContext as ReactTags} from 'react-tag-input';
 import TAGSJSON from './suggestions.json'
@@ -34,15 +34,16 @@ const TinyEditor = () => {
     const resultTags  = tags.map(x=>x.text);
     //console.log(resultTags)
     const refinedData = {
-      title:data.title,
-      description:description,
       tags : resultTags
     }
     // //console.log(refinedData)
-    dispatch(postBlog(refinedData)).
-    then(()=>{ alert('successfully added blog')})
+    setUserInterests(refinedData)
+    .then(()=>{
+        alert('successfully added')
+        window.localStorage.setItem('firstlogin',"false");
+    })
     .catch((err)=>{
-      alert("unable to add blog: " + (err as Error).message)
+        alert('request invalid : '+ (err as Error).message)
     })
   }
   const handleDelete = (i:number)=>{
@@ -76,67 +77,11 @@ const TinyEditor = () => {
   // //console.log(watch("example")); // watch input value by passing the name of it
 
   return (
-    <div className="relative z-0 bg-slate-300 p-10  shadow-neon"> 
+    <div className="relative z-0  bg-transparent p-10  shadow-neon"> 
   
       {/* register your input into the hook by invoking the "register" function */}
   
       <form className="relative" onSubmit={handleSubmit(onSubmit)}>
-      <label htmlFor="title" className={`${styles.label}`}>Title</label>
-      <input  className=" -z-10 font-trispace rounded-md border-2 my-5 border-orange-300" defaultValue="Give a title" {...register("title", {required:true})} />
-      
-      {/* include validation with required or other standard HTML validation rules */}
-      
-      {/* errors will return when field validation fails  */}
-      {errors.title&& <span className="text-red-500 pl-4">This field is required</span>}
-
-      <div className="my-5">
-
-      <Editor
-        
-        apiKey={import.meta.env.VITE_TINYMCE_APIKEY}
-       
-        initialValue="<p>This is the initial content of the editor.</p>"
-        init={{
-          
-          height: 500,
-          menubar: "tools insert file edit  view format table help",
-          plugins: [
-            "image code",
-            "advlist",
-            "autolink",
-            "lists",
-            "link",
-            "image",
-            "charmap",
-            "preview",
-            "anchor",
-            "searchreplace",
-            "visualblocks",
-            "code",
-            "fullscreen",
-            "insertdatetime",
-            "media",
-            "table",
-            "code",
-            "help",
-            "wordcount",
-          ],
-          draggable_modal:true,
-          toolbar: "fonts"+
-            "undo redo | blocks | " +
-            "bold italic forecolor | alignleft aligncenter " +
-            "alignright alignjustify | bullist numlist outdent indent | " +
-            "removeformat | help" +
-            "link image | code ",
-          content_style:
-            "body { font-family:abril,Arial,cursive; font-size:18px }",
-          
-        }}
-        onEditorChange={(newText: string) => {
-          setDescription(newText)
-        }}
-      />
-      </div> 
       <label htmlFor="title" className={`${styles.label}`}>Add Tags</label>
       <div className="my-10">
         <ReactTags
