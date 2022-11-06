@@ -174,21 +174,21 @@ const index = () => {
       // (profileModal && window.location.href !='http://127.0.0.1:5173/app/profile')?
       transitionProfile((style,item)=> item?<animated.div className="absolute top-[100%] right-[10%] width-[320px]" style = {style}>
       
-      <div className="text-white bg-black  m-[10px]  rounded-lg">
+      <div className="text-white bg-black shadow-lg shadow-black opacity-95 m-[10px]  rounded-lg">
         <div className="flex items-center mb-2 p-5">
           <img  className="w-[60px] rounded-[50%] mr-[15px]" src = {profile}/>
           <h2 className="text-2xl"> {window.localStorage.getItem('user')}</h2>
           
         </div>
         <hr className="border-0 h-[1px] mb-2 w-[100%] bg-[#ccc] "/>
-        <Link onClick={()=>toggleProfile()} to="profile" className="p-2 transition-all duration-200 hover:bg-slate-400 hover:text-black flex items-center no-underline">
+        <Link onClick={()=>toggleProfile()} to="profile" className="p-4 transition-all duration-200 hover:bg-slate-400 hover:text-black flex items-center no-underline">
             <img className=" mr-[15px] p-[8px] bg-[#e5e5e5] w-[40px] rounded-[50%] " src={editprofile} alt="" />
             <p className="w-[100%] ">Edit Profile</p>
             <span className="font-bold">&gt;</span>
           </Link>
-          <Link onClick={()=>toggleProfile()} to="profile" className="p-2 transition-all duration-200 hover:bg-slate-400 hover:text-black flex items-center no-underline">
+          <Link onClick={()=>toggleProfile()} to="profile" className="p-4 transition-all duration-200 hover:bg-slate-400 hover:text-black flex items-center no-underline">
             <img className=" mr-[15px] p-[8px] bg-[#e5e5e5] w-[40px] rounded-[50%] " src={editprofile} alt="" />
-            <p className="w-[100%] ">Edit Profile</p>
+            <p className="w-[100%] ">My Blogs</p>
             <span className="font-bold">&gt;</span>
           </Link>
         
