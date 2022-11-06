@@ -28,7 +28,7 @@ const Wrapper = ({ children }: any) => {
 function App() {
   return (
     <Routes>
-      <Route index path="/" element={<Auth />} />
+      <Route path="/" element={<Auth />} />
       <Route path="/app" element={<Navbar />}>
         <Route path="/app/home" element={<Home />} />
         <Route path="/app/about" element={<About />} />
@@ -37,6 +37,7 @@ function App() {
         <Route path="/app/blog/:id" element={<ViewBlog />} />
         <Route path="/app/profile" element={<Profile />} />
       </Route>
+      <Route path="blog/:id" element={<ViewBlog />} />
       <Route path="login" element={<Login />} />
       <Route path="register" element={<Register />} />
     </Routes>

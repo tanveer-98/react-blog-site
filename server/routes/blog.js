@@ -88,4 +88,14 @@ router.get('/totalPages',async ( req,res)=>{
     return res.status(200).send( JSON.stringify(totalBlogs.length
     ))
 })
+
+router.get('/userInterested',auth,async (req,res)=>{
+
+    const userinterests = req.user.interested;
+    const {index} = req.query;
+    console.log(userinterests)
+    const blogs = await Blog.find( { tags: { $in: userinterests } , owner:{$ne:req.user._id} }, { _id: 0 }).skip(5*(index-1)).limit(5)
+    return res.status(200).send(blogs)
+})
+
 module.exports = router;

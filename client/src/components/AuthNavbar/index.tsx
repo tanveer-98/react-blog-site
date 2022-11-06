@@ -121,27 +121,30 @@ const index = () => {
       </div>
 
        {/* randomized blogs until user logs in and sets the localStorage interests */}
-       <div className={`${nav?'blur-md':' '} grid grid-cols-1 md:grid-cols-2 gap-4  mt-[650px] max-w-[90%] mx-auto`}>
-        <div className="">
-        <h4 className="uppercase text-center font-abril text-4xl"> Trending</h4>
+ 
+ <div className={`${nav?'blur-md':' '} grid grid-cols-1 md:grid-cols-2 gap-4  mt-[650px] max-w-[90%] mx-auto`}>
+ <div className="">
+ <h4 className="uppercase text-center font-abril text-4xl"> Trending</h4>
+
+ <div className="w-full flex  justify-center">
+ <Blogs/>
+
+ </div>
+
+ </div>
+ <div className="flex justify-center ">
+
+<div className="   w-[300px] h-screen ">
+   <div className="flex items-center">
+     <h3 className="text-black font-abril text-4xl text-center">Topics that might interest you</h3>
+
+   </div>
+ </div>
+
+</div>
+ </div>
        
-        <div className="w-full flex  justify-center">
-        <Blogs/>
-
-        </div>
-       
-        </div>
-        <div className="flex justify-center ">
-
-       <div className="   w-[300px] h-screen ">
-          <div className="flex items-center">
-            <h3 className="text-black font-abril text-4xl text-center">Topics that might interest you</h3>
-
-          </div>
-        </div>
-
-       </div>
-        </div>
+      
        
       <div>
 

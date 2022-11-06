@@ -18,6 +18,7 @@ import { Button } from "../Button";
 import InfiniteScroll from "react-infinite-scroll-component";
 import axios from "axios";
 import { useDispatch } from "react-redux";
+import { ClipLoader ,PropagateLoader} from "react-spinners";
 // const Blogs = () => {
 
 //   const blogs = useAppSelector(selectAllBlogsLimit);
@@ -94,13 +95,11 @@ const Blogs = () => {
         if(response.payload.length==0)
         setNoMore(false);
       })
-    },1700)
+    },1500)
     setCurrentPage(currentPage + 1);
   };
-  useEffect(() => {
-    // dispatch2(clearBlogs([]));
- 
-   
+  useLayoutEffect(() => {
+    dispatch(fetchAllBlogs_withLimit(currentPage))
   }, []);
   return (
     <div className=" w-full grid grid-cols-1 ">
@@ -110,9 +109,9 @@ const Blogs = () => {
         dataLength={blogs.length}
         next={fetchMoreData}
         hasMore={noMore}
-        loader={<h4 className="text-4xl font-bold text-center">Loading...</h4>}
+        loader={<h4 className=" font-bold mt-10 text-center"><ClipLoader color="#2196f2"/></h4>}
       >
-        {blogs.map((element) => (
+        {blogs.map((element:any) => (
           <div className="my-2 w-[90%] mx-auto p-6 rounded-lg">
             <div className="my-2 flex gap-1 flex-row items-center w-full">
               <img src={profile} className="w-[40px] h-[40px]" alt="notset" />
@@ -126,7 +125,7 @@ const Blogs = () => {
                 type="button"
                 className=" inline-block px-6 py-2.5 bg-orange-500 text-white font-medium text-xs leading-tight uppercase rounded shadow-md hover:bg-orange-700 hover:shadow-lg focus:bg-orange-700 focus:shadow-lg focus:outline-none focus:ring-0 active:bg-blue-800 active:shadow-lg transition duration-150 ease-in-out"
               >
-                <Link to={`/app/blog/${element._id}`}> READ MORE</Link>
+                <Link to={`/blog/${element._id}`}> READ MORE</Link>
               </button>
               <span className="pl-5 text-xl">
                 {" "}

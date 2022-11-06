@@ -19,7 +19,7 @@ const styles = {
     "bg-gray-100 w-[300px] sm:w-[600px] lg:w-[800px] focus:shadow-outline rounded block w-full appearance-none focus:bg-gray-200 p-5",
 };
 
-const addUserInterests = () => {
+const addUserInterests = ({toggleskip,toggletagmodal}:any) => {
 
   return (
     <div className= "fixed top-[80px] left-0 modal w-full h-full outline-none overflow-x-hidden overflow-y-hidden " id="tagModal" aria-labelledby="tagModalTitle" aria-modal="true" role="dialog">
@@ -35,17 +35,14 @@ const addUserInterests = () => {
       </div>
       <div className="modal-body relative p-4 ">
         
-       <Editor/>
+       <Editor toggletagmodal={toggletagmodal}/>
       </div>
       <div
         className="modal-footer flex flex-shrink-0 flex-wrap items-center justify-end p-4 border-t border-gray-200 rounded-b-md">
+        
         <button type="button"
-          className="inline-block px-6 py-2.5 bg-purple-600 text-white font-medium text-xs leading-tight uppercase rounded shadow-md hover:bg-purple-700 hover:shadow-lg focus:bg-purple-700 focus:shadow-lg focus:outline-none focus:ring-0 active:bg-purple-800 active:shadow-lg transition duration-150 ease-in-out"
-          data-bs-dismiss="modal">
-          ADD
-        </button>
-        <button type="button"
-          className="inline-block px-6 py-2.5 bg-blue-600 text-white font-medium text-xs leading-tight uppercase rounded shadow-md hover:bg-blue-700 hover:shadow-lg focus:bg-blue-700 focus:shadow-lg focus:outline-none focus:ring-0 active:bg-blue-800 active:shadow-lg transition duration-150 ease-in-out ml-1">
+          onClick = {toggleskip}
+          className="inline-block px-6 py-2.5 text-white font-medium text-xs leading-tight uppercase rounded shadow-md hover:bg-blue-700 hover:shadow-lg focus:bg-blue-700 focus:shadow-lg focus:outline-none focus:ring-0 active:bg-blue-800 active:shadow-lg transition duration-150 ease-in-out ml-1">
           SKIP
         </button>
       </div>

@@ -120,3 +120,11 @@ export function  getUserInterests() {
 }
 
 ////
+
+
+
+export function getSuggestedBlogs (index:string){
+    return axios.get(`${baseUrl}/userInterested?index=${index}`,{
+        withCredentials : true,
+    })
+}

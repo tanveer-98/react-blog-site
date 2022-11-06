@@ -15,28 +15,28 @@ import { useTransition ,animated } from "react-spring";
 import FirstLogin from '../../components/Home/modals/NewLogin'
 import { useDispatch } from "react-redux";
 import { clearBlogs } from "../../store/blog/blogSlice";
-const check = ()=>{
-  return (window.localStorage.getItem('firstlogin')=='true' && window.localStorage.getItem('skipTagSet') =="false")
-}
+
 
 const index = () => {
-  useEffect(()=>{
 
-  },[window.localStorage.getItem('firstlogin')])
   const [nav, setNav] = useState(false);
   const [color,setColor] = useState(false);
   const [profileModal,setProfile] = useState(false);
+  const [tagmodal,setTagModal] = useState(JSON.parse(window.localStorage.getItem('firstlogin')!));
+  const [skiptagmodal,setskipTagModal] = useState(false);
   const changeColor = ()=>{
     if(window.scrollY >= 90){
       setColor(true);
     }
     else setColor(false)
   }
+  const check = ()=>{
+    console.log("tagmodal: " + typeof tagmodal + "skiptagmodal: "+skiptagmodal)
+    return (tagmodal==true && skiptagmodal==false)
+  }
   const dispatch = useDispatch();
  // see if you can optimize this part in future
   window.addEventListener('scroll',changeColor)
-
-  
   const handleToggle = () => {
     //console.log("clicked");
     setNav(!nav);
@@ -64,7 +64,12 @@ const index = () => {
   const styles  = {
     link : "font-abril rounded-full hover:shadow-neon hover:text-white hover:rounded-full  text-white hover:cursor-pointer  flex justify-center  hover:bg-[#2196f3] border-zinc-300 w-[100%]  w-[160px] ease-linear duration-300"
   }
-  
+  const handletoggleskip = ()=>{
+    setskipTagModal(!skiptagmodal)
+  }
+  const handletoggletagmodal = ()=>{
+    setTagModal(!tagmodal)
+  }
   return (
     <Fragment>
      <div className="" >
@@ -166,26 +171,26 @@ const index = () => {
         )
        }
        {
-      (profileModal && window.location.href !='http://127.0.0.1:5173/app/profile')?
+      // (profileModal && window.location.href !='http://127.0.0.1:5173/app/profile')?
       transitionProfile((style,item)=> item?<animated.div className="absolute top-[100%] right-[10%] width-[320px]" style = {style}>
       
-      <div className="text-black bg-[pink] p-[20px] m-[10px]  rounded-lg">
-        <div className="flex items-center mb-2 ">
+      <div className="text-white bg-black  m-[10px]  rounded-lg">
+        <div className="flex items-center mb-2 p-5">
           <img  className="w-[60px] rounded-[50%] mr-[15px]" src = {profile}/>
           <h2 className="text-2xl"> {window.localStorage.getItem('user')}</h2>
           
         </div>
         <hr className="border-0 h-[1px] mb-2 w-[100%] bg-[#ccc] "/>
-        <Link onClick={()=>toggleProfile()} to="profile" className="flex items-center no-underline">
+        <Link onClick={()=>toggleProfile()} to="profile" className="p-2 transition-all duration-200 hover:bg-slate-400 hover:text-black flex items-center no-underline">
             <img className=" mr-[15px] p-[8px] bg-[#e5e5e5] w-[40px] rounded-[50%] " src={editprofile} alt="" />
             <p className="w-[100%] ">Edit Profile</p>
             <span className="font-bold">&gt;</span>
           </Link>
-          <a className="flex items-center no-underline">
+          <Link onClick={()=>toggleProfile()} to="profile" className="p-2 transition-all duration-200 hover:bg-slate-400 hover:text-black flex items-center no-underline">
             <img className=" mr-[15px] p-[8px] bg-[#e5e5e5] w-[40px] rounded-[50%] " src={editprofile} alt="" />
             <p className="w-[100%] ">Edit Profile</p>
             <span className="font-bold">&gt;</span>
-          </a>
+          </Link>
         
         <ul>
         <li
@@ -207,16 +212,14 @@ const index = () => {
       </div>
       
      
-          </animated.div> :""):""
-    
-
-
+          </animated.div> :"")
+          // :""
     }
       </div>
       
     </div>
-    { check()?<FirstLogin />:""}
-    <div className={`${nav || check() ?'blur-md':' '} h-screen  w-full`}>
+    { check()?<FirstLogin  toggletagmodal={handletoggletagmodal} toggleskip ={handletoggleskip}/>:""}
+    <div className={`${nav || check() ?'blur-md':' '}   w-full overflow-x-hidden`}>
     <Outlet/>
     </div>
     

@@ -1,6 +1,6 @@
 import { ActionReducerMapBuilder, createAsyncThunk, createSlice, isRejected, isRejectedWithValue } from "@reduxjs/toolkit";
 import { AnyIfEmpty } from "react-redux";
-import { getUserBlogs, IPostUserBlog, postUserBlog ,getUserBlog, getAllBlogs, getAllBlogsWithLimit } from "../../services/service";
+import { getUserBlogs, IPostUserBlog, postUserBlog ,getUserBlog, getAllBlogs, getAllBlogsWithLimit, getSuggestedBlogs } from "../../services/service";
 import { RootState } from "../index";
 
 interface BlogType{
@@ -16,6 +16,7 @@ interface IState {
     blogsAllLimit:BlogType[],
     blogsAll: BlogType[];
     blogs : BlogType[];
+    blogsSuggested:BlogType[];
     loading : string; 
     fetchedBlog: BlogType;
 }
@@ -68,7 +69,14 @@ export const fetchAllBlogs_withLimit = createAsyncThunk(
         return res.data;
     }
 );
-
+export const fetchSuggestedBlogs  = createAsyncThunk(
+    "blogs/fetchSuggestedBlogs", 
+    async (index:Number)=>{
+        const res = await getSuggestedBlogs(index.toString());
+        console.log(res)
+        return res.data;
+    }
+)
 
 const initialBlog = {
     _id:'',
@@ -84,6 +92,7 @@ const initialState = {
     blogsAllLimit:[],
     blogsAll:[],
     blogs :[],
+    blogsSuggested:[],
     loading:'idle',
     fetchedBlog: initialBlog
 } as IState
@@ -153,6 +162,20 @@ const blogSlice = createSlice({
             // state.blogs = action.blogs;
             state.loading = 'rejected'
         })
+        .addCase(fetchSuggestedBlogs.fulfilled,(state:any,action:any)=>{
+            //console.log(action.payload)
+            state.blogsSuggested.push(...action.payload);
+            state.loading ="success"
+        })
+        .addCase(fetchSuggestedBlogs.pending,(state:any,action:any)=>{
+            // state.blogs = action.blogs;
+            state.loading = 'pending'
+        })
+        .addCase(fetchSuggestedBlogs.rejected,(state:any,action:any)=>{
+            // state.blogs = action.blogs;
+            state.loading = 'rejected'
+        })
+    
     }
 })
 
@@ -164,5 +187,7 @@ export const selectLoading = (state : RootState) => state.blog.loading;
 export const selectBlog= (state : RootState) => state.blog.fetchedBlog;
 export const selectAllBlogs = (state : RootState) => state.blog.blogsAll;
 export const selectAllBlogsLimit = (state : RootState) => state.blog.blogsAllLimit;
+export const selectBlogsSuggested = (state : RootState) => state.blog.blogsSuggested;
+
 
 export default blogSlice.reducer;

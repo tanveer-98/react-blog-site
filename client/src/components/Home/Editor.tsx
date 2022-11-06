@@ -21,8 +21,8 @@ const initialState =[
 
 ] as Tag[]
 // import tinymce from 't'
-const TinyEditor = () => {
-
+const TinyEditor = (props:any) => {
+  // console.log(props)
   const [tags,setTags] = useState(initialState)
  
   const [title ,setTitle]  = useState("")
@@ -41,6 +41,7 @@ const TinyEditor = () => {
     .then(()=>{
         alert('successfully added')
         window.localStorage.setItem('firstlogin',"false");
+        props.toggletagmodal();
     })
     .catch((err)=>{
         alert('request invalid : '+ (err as Error).message)

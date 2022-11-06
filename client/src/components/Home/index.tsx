@@ -2,7 +2,7 @@ import React from 'react'
 import ShowBlogs from '../ShowBlogs'
 import  TEMPicon from '../../assets/usericon.webp'
 import FirstLogin from '../../components/Home/modals/NewLogin'
-
+import SuggestedBlogs from '../../components/SuggestedBlogs'
 const index = () => {
   return (
     <div className={` mt-[90px] w-[90%] h-full flex-col  flex justify-center mx-auto`} >
@@ -13,16 +13,26 @@ const index = () => {
       </div>
       
       </div>
+
+      <div>
       <h3 className=" mt-10 font-abril text-4xl md:text-5xl border-b-2 pb-5 border-collapse border-black"> Suggested Blogs </h3>
-      <div className="w-full h-[600px] overflow-x-auto">
+      <div id="div_1" className="w-full h-[600px] my-10 overflow-y-auto scrollbar scrollbar-thumb-blue-600 scrollbar-thumb-rounded-full ">
+        <SuggestedBlogs/>
+      </div>
 
       </div>
+      <div>
+      
       <h3 className="font-abril text-4xl md:text-5xl border-b-2 pb-5 border-collapse border-black"> Your Blogs</h3>
        <div className="my-10 flex justify-center items-center">
         
        <ShowBlogs/>
   
        </div>
+
+
+      </div>
+      
        <div className="h-screen w-screen flex items-center">
 
        </div>

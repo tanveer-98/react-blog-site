@@ -114,7 +114,7 @@ const index = () => {
                       <img className="mx-auto w-48" src={blogicon} alt="logo" />
                     </div>
                     <h4 className="text-xl text-center font-semibold mb-6 text-red-300">
-                      BLOGSTER
+                      BLOGWIZ
                     </h4>
                     <p className="text-center text-sm text-slate-700">
                       A Site where you write and share your knowledge

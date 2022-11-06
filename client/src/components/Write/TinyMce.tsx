@@ -31,7 +31,7 @@ const TinyEditor = () => {
   const { register, handleSubmit, watch, formState: { errors } } = useForm();
   const onSubmit = (data:any) => {
     //console.log(tags)
-    const resultTags  = tags.map(x=>x.text);
+    const resultTags  = tags.map(x=>x.text.toLowerCase());
     //console.log(resultTags)
     const refinedData = {
       title:data.title,

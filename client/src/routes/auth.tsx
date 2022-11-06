@@ -1,9 +1,13 @@
 import React from 'react'
-import { Link} from 'react-router-dom'
+import { Link, Outlet} from 'react-router-dom'
 import Auth from '../components/Auth'
 const auth = () => {
-  return <Auth/>
-  
+  return (
+    <>
+     <Auth/>
+      <Outlet/>
+    </>
+  )
 }
 
 export default auth
