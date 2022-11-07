@@ -1,6 +1,6 @@
 import { ActionReducerMapBuilder, createAsyncThunk, createSlice, isRejected, isRejectedWithValue } from "@reduxjs/toolkit";
 import { AnyIfEmpty } from "react-redux";
-import { getUserBlogs, IPostUserBlog, postUserBlog ,getUserBlog, getAllBlogs, getAllBlogsWithLimit, getSuggestedBlogs } from "../../services/service";
+import { getUserBlogs, IPostUserBlog, postUserBlog ,getUserBlog, getAllBlogs, getAllBlogsWithLimit, getSuggestedBlogs, updateUserProfile } from "../../services/service";
 import { RootState } from "../index";
 
 interface BlogType{
@@ -78,6 +78,14 @@ export const fetchSuggestedBlogs  = createAsyncThunk(
     }
 )
 
+
+// export const updateUserProfile_ = createAsyncThunk(
+//     "users/updateUserProfile",
+//     async (index:Number)=>{
+//         const res = await updateUserProfile(index.toString());
+//         return res.data;
+//     }
+// )
 const initialBlog = {
     _id:'',
     title : '' ,
@@ -104,6 +112,13 @@ const blogSlice = createSlice({
         clearBlogs: (state:any ,action:any) => {
             state.blogsAll = action.payload;
             state.blogsAllLimit = action.payload;
+        },
+        updateProfile : (state:any,action:any)=>{
+            updateUserProfile(action.payload)
+            .then(()=>{
+                window.localStorage.setItem('profileurl',action.payload);
+            })
+            .catch(err=>console.log((err as Error).message))
         }
 
     },
@@ -179,7 +194,7 @@ const blogSlice = createSlice({
     }
 })
 
-export const {clearBlogs} =  blogSlice.actions;
+export const {clearBlogs,updateProfile} =  blogSlice.actions;
 
 
 export const selectBlogList = (state : RootState) => state.blog.blogs;

@@ -2,7 +2,7 @@ const express = require('express')
 const dotenv = require('dotenv')
 const users = require('../routes/user');
 const blogs = require('../routes/blog')
-
+const cloudinary = require('../routes/cloudinary')
 const cors = require('cors')
 const cookieParser = require('cookie-parser');
 require('../db/db')
@@ -32,6 +32,8 @@ app.use(cookieParser())
 // app.use(cors());
 app.use('/api/',users);
 app.use('/api/',blogs);
+app.use('/api/cloudinary',cloudinary);
+
 app.listen(process.env.PORT,()=>{
-    //console.log('Listening on port: '+process.env.PORT)
+    console.log('Listening on port: '+process.env.PORT)
 })

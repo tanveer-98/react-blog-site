@@ -78,6 +78,7 @@ const index = () => {
           window.localStorage.setItem("firstlogin", JSON.stringify(response.data.user.firstTimeLogin));
           window.localStorage.setItem('skipTagSet',"false");
           window.sessionStorage.setItem('loggedIn',response.data.user._id)
+          window.sessionStorage.setItem('email',response.data.user.email)
           navigate("/app/home");
         });
       })

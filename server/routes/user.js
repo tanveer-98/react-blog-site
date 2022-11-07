@@ -71,10 +71,10 @@ router.patch('/users/me',auth,async (req,res)=>{
   return res.status(200).send({message:'Password changed',token:req.token});
 })
 
-router.patch("/users/:id", async (req, res) => {
+router.patch("/users/me/updateProfile", auth, async (req, res) => {
   const updates = Object.keys(req.body);
   //console.log(updates);
-  const allowedUpdates = ["name", "email", "password", "age"];
+  const allowedUpdates = ["name", "email", "password", "age","profileurl"];
   const isValidOperation = updates.every((update) =>
     allowedUpdates.includes(update)
   );
@@ -89,7 +89,7 @@ router.patch("/users/:id", async (req, res) => {
 
     //So we we try to do something like pre middlewares it won't give any //console.log statements
 
-    const user = await User.findById(req.params.id);
+    const user = await User.findById(req.user._id);
     if (!user || user == null) {
       return res.status(404).send("user not found");
     }

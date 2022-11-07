@@ -31,7 +31,7 @@ const index = () => {
     else setColor(false)
   }
   const check = ()=>{
-    console.log("tagmodal: " + typeof tagmodal + "skiptagmodal: "+skiptagmodal)
+    // console.log("tagmodal: " + typeof tagmodal + "skiptagmodal: "+skiptagmodal)
     return (tagmodal==true && skiptagmodal==false)
   }
   const dispatch = useDispatch();

@@ -45,6 +45,10 @@ const userSchema = new mongoose.Schema(
     avatar: {
       type:Buffer
     },
+    profileurl:{
+      type:String,
+      trim:true
+    },
     isAdmin : {
       type : Boolean,
       default : false

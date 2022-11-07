@@ -128,3 +128,15 @@ export function getSuggestedBlogs (index:string){
         withCredentials : true,
     })
 }
+
+
+export const getBookingUploadSign = () => {
+    return axios.get(`${baseUrl}/cloudinary/booking`);
+}
+
+
+export const updateUserProfile = (data:any) =>{
+    return axios.patch(`${baseUrl}/users/me/updateProfile`,data,{
+        withCredentials : true,
+    })
+}
