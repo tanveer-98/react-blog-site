@@ -115,6 +115,13 @@ a {
   text-decoration: none;
 }
 
+p{
+ white-space : nowrap;
+ overflow:hidden ; 
+ text-overflow : ellipsis;
+ max-width: 30rem;
+}
+
 /*
 Add the correct font weight in Edge and Safari.
 */

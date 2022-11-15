@@ -19,6 +19,7 @@ import InfiniteScroll from "react-infinite-scroll-component";
 import axios from "axios";
 import { useDispatch } from "react-redux";
 import { ClipLoader ,PropagateLoader} from "react-spinners";
+import { changeDateFormat } from "../Functions/dateFormat";
 // const Blogs = () => {
 
 //   const blogs = useAppSelector(selectAllBlogsLimit);
@@ -83,6 +84,7 @@ import { ClipLoader ,PropagateLoader} from "react-spinners";
 const baseUrl = import.meta.env.VITE_SERVERURL;
 const Blogs = () => {
   const blogs = useAppSelector(selectAllBlogsLimit);
+  
   const loading = useAppSelector(selectLoading);
   const dispatch = useAppDispatch();
   const dispatch2 = useDispatch();
@@ -111,7 +113,7 @@ const Blogs = () => {
         hasMore={noMore}
         loader={<h4 className=" font-bold mt-10 text-center"><ClipLoader color="#2196f2"/></h4>}
       >
-        {blogs.map((element:any) => (
+         {blogs.map((element:any) => (
           <div className="my-2 w-[90%] mx-auto p-6 rounded-lg">
             <div className="my-2 flex gap-1 flex-row items-center w-full">
               <img src={profile} className="w-[40px] h-[40px]" alt="notset" />
@@ -120,16 +122,20 @@ const Blogs = () => {
             <h5 className=" my-2 font-sans font-bold text-left text-[24px] text-black ">
               {element.title}
             </h5>
+            <>
+             <p className="truncate md:flex text-black  text-base mb-4" dangerouslySetInnerHTML={{__html:  element.description.replace(/<img[^>]*>/g,"")}} ></p>
+            </>
+
             <div>
               <button
                 type="button"
-                className=" inline-block px-6 py-2.5 bg-orange-500 text-white font-medium text-xs leading-tight uppercase rounded shadow-md hover:bg-orange-700 hover:shadow-lg focus:bg-orange-700 focus:shadow-lg focus:outline-none focus:ring-0 active:bg-blue-800 active:shadow-lg transition duration-150 ease-in-out"
+                className="inline-block px-6 py-2.5 bg-orange-500 text-white font-medium text-xs leading-tight uppercase rounded shadow-md hover:bg-orange-700 hover:shadow-lg focus:bg-orange-700 focus:shadow-lg focus:outline-none focus:ring-0 active:bg-blue-800 active:shadow-lg transition duration-150 ease-in-out"
               >
                 <Link to={`/blog/${element._id}`}> READ MORE</Link>
               </button>
-              <span className="pl-5 text-xl">
+              <span className="pl-5 text-sm text-gray-400">
                 {" "}
-                {element.createdAt.split("T")[0]}{" "}
+                {changeDateFormat(element.createdAt.split("T")[0])}{" "}
               </span>
             </div>
             <hr className="mt-5"></hr>
@@ -137,6 +143,7 @@ const Blogs = () => {
         ))}
       </InfiniteScroll>
     </div>
+    
   );
 };
 

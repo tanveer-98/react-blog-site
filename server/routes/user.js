@@ -161,7 +161,7 @@ router.post('/users/signup',async (req,res)=>{
     const user = new User(req.body);
     try{
       await user.save() ;
-      sendWelcomeEmail(req.body.email,req.body.name); 
+      // sendWelcomeEmail(req.body.email,req.body.name); 
     }
     catch(error){
         if (error.code == "11000" && error.keyValue.email ==  `${user.email}`)
