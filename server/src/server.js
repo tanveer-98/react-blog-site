@@ -33,7 +33,7 @@ app.use(cookieParser())
 app.use('/api/',users);
 app.use('/api/',blogs);
 app.use('/api/cloudinary',cloudinary);
-
+// console.log(process.env.PORT)
 app.listen(process.env.PORT,()=>{
     console.log('Listening on port: '+process.env.PORT)
 })

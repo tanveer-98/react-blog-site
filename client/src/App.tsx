@@ -13,17 +13,17 @@ import { useLocation } from "react-router-dom";
 import { useTransition, animated } from "react-spring";
 import Contact from "./routes/contact";
 import About from "./routes/about";
-const LazyWrapper = (str: string) => React.lazy(() => import(str));
+// const LazyWrapper = (str: string) => React.lazy(() => import(str));
 
-const LazyAbout = LazyWrapper("./routes/about");
-const LazyContact = LazyWrapper("./routes/contact");
+// const LazyAbout = LazyWrapper("./routes/about");
+// const LazyContact = LazyWrapper("./routes/contact");
 import Write from "./routes/write";
-const LazyLogin = LazyWrapper("./routes/login");
-const LazyRegister = LazyWrapper("./routes/register");
+// const LazyLogin = LazyWrapper("./routes/login");
+// const LazyRegister = LazyWrapper("./routes/register");
 
-const Wrapper = ({ children }: any) => {
-  return <React.Suspense fallback="Loaading...">{children}</React.Suspense>;
-};
+// const Wrapper = ({ children }: any) => {
+//   return <React.Suspense fallback="Loaading...">{children}</React.Suspense>;
+// };
 
 function App() {
   return (
