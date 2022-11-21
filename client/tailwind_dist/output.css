@@ -116,10 +116,8 @@ a {
 }
 
 p{
- white-space : nowrap;
  overflow:hidden ; 
  text-overflow : ellipsis;
- max-width: 30rem;
 }
 
 /*

@@ -164,7 +164,7 @@ const index = () => {
           </div>
         </div>
         <div className="flex justify-center ">
-          <div className="   w-[300px] h-screen ">
+          <div className="   w-full h-screen ">
             <div className="flex items-center">
               <h3 className="text-center ">Topics that might interest you</h3>
             </div>

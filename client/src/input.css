@@ -27,3 +27,8 @@ body {
 .blog-icons{
     @apply hover:scale-110 cursor-pointer
 }
+
+.p-ellipse{
+    @apply  overflow-hidden max-w-[30rem]
+  
+   }

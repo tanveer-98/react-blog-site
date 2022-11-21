@@ -126,7 +126,7 @@ const Blogs = () => {
               {element.title}
             </h5>
             <>
-             <p className="truncate md:flex text-black  text-base mb-4" dangerouslySetInnerHTML={{__html:  element.description.replace(/<img[^>]*>/g,"")}} ></p>
+             <p className="p-ellipse truncate md:flex text-black  text-base mb-4" dangerouslySetInnerHTML={{__html:  element.description.replace(/<img[^>]*>/g,"")}} ></p>
             </>
 
             <div className="flex flex-row items-center ">

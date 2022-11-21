@@ -16,12 +16,12 @@ const index = () => {
         //console.log(blog)
     },[])
   return (
-    <div className="pt-[100px] text-black max-w-[400px]  sm:max-w-[600px] h-screen  md:max-w-[1024px] lg:max-w-[1240px] mx-auto flex justify-center items-center ">
+    <div className="flex justify-center items-center  h-screen pt-[100px]  max-w-[400px]  mx-auto  shadow-xl shadow-black text-darkGrayishBlue md:max-w-[1024px] sm:max-w-[600px] lg:max-w-5xl ">
       {
-        blog && <div className="block rounded-lg  m-2">
-        <h4 className="text-5xl leading-tight font-medium mb-2  ">{blog.title}</h4>
-        <span className="font-trispace text-2xl ">Date Created : {blog.createdAt.split('T')[0]}</span>
-        <div className=" my-5 text-3xl" dangerouslySetInnerHTML={{__html: blog.description}}/>
+        blog && <div className=" w-full rounded-lg  m-2">
+        <h3 className=" leading-tight mx-10  ">{blog.title}</h3>
+        <span className="font-trispace text-2xl mx-10 ">Date Created : {blog.createdAt.split('T')[0]}</span>
+        <p className="my-5 text-3xl" dangerouslySetInnerHTML={{__html: blog.description}}/>
       </div>
       }
     </div>
