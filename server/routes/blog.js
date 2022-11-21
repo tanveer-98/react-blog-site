@@ -49,7 +49,7 @@ router.post('/blogs/me',auth ,async (req,res)=>{
     }  
 })
 
-router.get('/blogs/:id',auth,async (req,res)=>{
+router.get('/blogs/:id',async (req,res)=>{
   
     // if(Object.keys(req.body).length==0) return res.status(404).send({error:'404', message : 'Body cannot be empty'})
 

@@ -60,8 +60,8 @@ const index = () => {
       />
       <div
         className={`${
-          color ? "bg-black" : ""
-        } fixed opacity-90 z-10 shadow-md shadow-black transition-all ease-in-out  duration-300 top-0 left-0 w-full h-[80px]`}
+          color ? "bg-black shadow-md shadow-black" : ""
+        } fixed opacity-90 z-10  transition-all ease-in-out  duration-300 top-0 left-0 w-full h-[80px]`}
       >
         <div className="px-2 flex justify-around  w-full h-full">
           <div className="flex justify-center items-center">
@@ -71,7 +71,7 @@ const index = () => {
               onClick={handleNavigate}
               className="w-[50px] h-[50px] sm:w-[70px] sm:h-[70px] hover:cursor-pointer hover:opacity-80"
             />
-            <h3 className={` pl-5 font-abril text-5xl text-white`}> BlogWiz</h3>
+            <h3 className=" p-3  h-full text-white"> BlogWiz</h3>
           </div>
 
           <ul className="  hidden md:flex">
@@ -154,12 +154,12 @@ const index = () => {
       <div
         className={`${
           nav ? "blur-md" : " "
-        } grid grid-cols-1 md:grid-cols-2 gap-4  mt-[650px] max-w-[90%] mx-auto`}
+        } grid grid-cols-1 md:grid-cols-2 gap-4  mt-[650px] max-w-xl md:max-w-3xl mx-auto`}
       >
         <div className="">
           <h3 className="uppercase text-center"> Trending</h3>
 
-          <div className="w-full flex  justify-center">
+          <div className="max-w-xl md:max-w-3xl flex  justify-center">
             <Blogs />
           </div>
         </div>
