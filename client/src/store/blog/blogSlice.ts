@@ -1,6 +1,6 @@
 import { ActionReducerMapBuilder, createAsyncThunk, createSlice, isRejected, isRejectedWithValue } from "@reduxjs/toolkit";
 import { AnyIfEmpty } from "react-redux";
-import { getUserBlogs, IPostUserBlog, postUserBlog ,getUserBlog, getAllBlogs, getAllBlogsWithLimit, getSuggestedBlogs, updateUserProfile } from "../../services/service";
+import { getUserBlogs, IPostUserBlog, postUserBlog ,getUserBlog, getAllBlogs, getAllBlogsWithLimit, getSuggestedBlogs, updateUserProfile, updateLike, updateDisLike } from "../../services/service";
 import { RootState } from "../index";
 
 interface BlogType{
@@ -10,6 +10,9 @@ interface BlogType{
     owner : string ;
     ownerName:string;
     createdAt: string;
+    ownerProfilePic:string;
+    likes:number;
+    dislikes:number;
 }
 
 interface IState {
@@ -75,9 +78,27 @@ export const fetchSuggestedBlogs  = createAsyncThunk(
         const res = await getSuggestedBlogs(index.toString());
         console.log(res)
         return res.data;
+    }  
+)
+
+
+export const updateDislike_  = createAsyncThunk(
+    "blogs/updateDisLike", 
+    async (id:string) =>{
+        const res = await updateDisLike(id);
+        return res.data;
     }
 )
 
+export const updateLike_  = createAsyncThunk(
+    "blogs/updateLike", 
+    async (id:string) =>{
+        const res = await updateLike(id);
+        return res.data;
+    }
+)
+
+// export const up
 
 // export const updateUserProfile_ = createAsyncThunk(
 //     "users/updateUserProfile",
@@ -86,13 +107,17 @@ export const fetchSuggestedBlogs  = createAsyncThunk(
 //         return res.data;
 //     }
 // )
+
 const initialBlog = {
     _id:'',
     title : '' ,
     description : '',
     owner : '',
     ownerName: '',
-    createdAt: ''
+    createdAt: '',
+    ownerProfilePic:'',
+    likes: 0 ,
+    dislikes : 0
 
 }
 
@@ -190,6 +215,34 @@ const blogSlice = createSlice({
             // state.blogs = action.blogs;
             state.loading = 'rejected'
         })
+        .addCase(updateDislike_.fulfilled,(state:any,action:any)=>{
+            //console.log(action.payload)
+            state.blogsSuggested.push(...action.payload);
+            state.loading ="success"
+        })
+        .addCase(updateDislike_.pending,(state:any,action:any)=>{
+            // state.blogs = action.blogs;
+            state.loading = 'pending'
+        })
+        .addCase(updateDislike_.rejected,(state:any,action:any)=>{
+            // state.blogs = action.blogs;
+            state.loading = 'rejected'
+        })
+        
+        .addCase(updateLike_.fulfilled,(state:any,action:any)=>{
+            //console.log(action.payload)
+            state.blogsSuggested.push(...action.payload);
+            state.loading ="success"
+        })
+        .addCase(updateLike_.pending,(state:any,action:any)=>{
+            // state.blogs = action.blogs;
+            state.loading = 'pending'
+        })
+        .addCase(updateLike_.rejected,(state:any,action:any)=>{
+            // state.blogs = action.blogs;
+            state.loading = 'rejected'
+        })
+       
     
     }
 })

@@ -4,6 +4,7 @@ const mongoose = require("mongoose");
 
 const blogSchema = new mongoose.Schema(
   {
+    
     title:{
         type: String, 
         required: true,
@@ -24,11 +25,19 @@ const blogSchema = new mongoose.Schema(
       required:true,
       ref :'User'
     },
+    profileurl : {
+      type: String, 
+      ref :'User',
+      trim : true
+    },
+    
     likes:{
-      type:Number 
+      type:Number, 
+      default : 0
     },
     dislikes:{
-      type:Number
+      type:Number,
+      default : 0
     },
     tags:{
       type: [String]

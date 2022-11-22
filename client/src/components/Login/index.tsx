@@ -72,6 +72,7 @@ const index = () => {
         // AFTER USER LOGS IN AND GETS TOKEN , retreive user data -> store in localstorage -> REDIRECT TO HOME PAGE
 
         getUserData().then((response) => {
+          console.log("RESPONSE DATA : "+ response.data);
           console.log(response.data.user);
           window.localStorage.setItem("user", response.data.user.name);
           window.localStorage.setItem("isAdmin", response.data.user.isAdmin);
@@ -79,6 +80,8 @@ const index = () => {
           window.localStorage.setItem('skipTagSet',"false");
           window.sessionStorage.setItem('loggedIn',response.data.user._id)
           window.sessionStorage.setItem('email',response.data.user.email)
+          window.sessionStorage.setItem('profileurl',response.data.user.profileurl);
+
           navigate("/app/home");
         });
       })

@@ -140,3 +140,21 @@ export const updateUserProfile = (data:any) =>{
         withCredentials : true,
     })
 }
+
+export const updateLike = (id : string)=>{
+     const data = {
+        blogId: id
+     }
+    return axios.post(`${baseUrl}/users/me/updateLike`, data ,{
+        withCredentials : true,
+    })
+}
+
+export const updateDisLike = (id : string)=>{
+    const data = {
+       blogId: id
+    }
+   return axios.post(`${baseUrl}/users/me/updateDislike`, data ,{
+       withCredentials : true,
+   })
+}

@@ -6,18 +6,18 @@ import mkcert from 'vite-plugin-mkcert'
 // https://vitejs.dev/config/
 export default defineConfig({
   plugins: [react()],
-  // server: {https:false,
-  //   proxy: {
-  //     '/api': {
-  //         //  target: "https://blog-server-i6uh.onrender.com",
-  //          target: "http://localhost:3000",
+  server: {https:false,
+    proxy: {
+      '/api': {
+          //  target: "https://blog-server-i6uh.onrender.com",
+           target: "http://localhost:3000",
           
-  //          changeOrigin: true,
-  //          secure: false,      
-  //          ws: true,
-  //      }
+           changeOrigin: true,
+           secure: false,      
+           ws: true,
+       }
       
-  // }},
+  }},
   
 
 })

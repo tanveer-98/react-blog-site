@@ -98,4 +98,23 @@ router.get('/userInterested',auth,async (req,res)=>{
     return res.status(200).send(blogs)
 })
 
+router.post('/blogs/like',auth, async ( req, res) =>{
+    const {blogId} = req.body;
+    const blog = await Blog.findOne({id:blogId});
+    if(!blog) return res.status(404).send('Blog not found');
+
+    const updated = await Blog.findOneAndUpdate({id:blogId} , {likes : blog.likes+1});
+
+    return res.status
+
+})
+router.post('/blogs/dislike',auth, async ( req, res) =>{
+    const {blogId} = req.body;
+    const blog = await Blog.findOne({id:blogId});
+    if(!blog) return res.status(404).send('Blog not found');
+
+    const updated = await Blog.findOneAndUpdate({id:blogId} , {likes : blog.likes+1});
+
+})
+
 module.exports = router;

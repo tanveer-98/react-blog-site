@@ -39,7 +39,9 @@ const index = () => {
         email: window.sessionStorage.getItem('email'),
         profileurl:window.sessionStorage.getItem('profileurl')
       };
-
+      console.log("VITE CLOUD NAME: "+import.meta.env.VITE_CLOUD_NAME)
+      console.log("VITE CLOUD API KEY: "+import.meta.env.VITE_CLOUD_API_KEY)
+      
       const cloudName = `${import.meta.env.VITE_CLOUD_NAME}`; // replace with your own cloud name
   const uploadPreset = "profile"; // replace with your own upload preset
   const api_key = import.meta.env.VITE_CLOUDINARY_API_KEY;
@@ -125,6 +127,7 @@ const index = () => {
           console.log(requiredData)
           updateUserProfile(requiredData)
           .then(()=>{
+            window.sessionStorage.setItem('profileurl',bookingUploadedFilename)
             alert('successfully updated profile')
           })
           .catch((err)=>{
