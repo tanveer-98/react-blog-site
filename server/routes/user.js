@@ -102,11 +102,12 @@ router.patch("/users/me/updateProfile", auth, async (req, res) => {
     await user.save();
 
     // update profileurl for blogs 
-
+      
     const updatedBlogs = await Blog.updateMany({owner: req.user._id},{
-      profileurl : req.user.profileurl
+      profileurl : req.body.profileurl
     })
-    console.log(req.user.profileurl);
+    
+    console.log(req.body.profileurl);
     // console.log("UPDATED BLOGS: ",updatedBlogs)
 
     return res.send(user);
@@ -215,12 +216,12 @@ router.post('/users/getCookie', async ( req,res)=>{
         .status(200)
         .cookie('token',token, {
 
-             sameSite : 'strict', // set to strict for local developerment 
+             sameSite : 'none', // set to strict for local developerment 
              path: "/",
              expires : new Date( new Date().getTime() +  5000* 1000),
              httpOnly: true ,
             //  secure : true
-            secure : false // incase of development set to false else cookie wont be saved in postman
+            secure : true // incase of development set to false else cookie wont be saved in postman
         })
 
 

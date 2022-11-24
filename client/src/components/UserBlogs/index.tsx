@@ -30,7 +30,7 @@ const Blogs = () => {
             <LazyLoad height={200} once offset={100}>
   <div className="w-full p-6 rounded-lg shadow-lg bg-white m-2">
     <div className="flex gap-1 flex-row items-center w-full">
-      <img src={profile} className="w-[40px] h-[40px]" alt="notset"/>
+      <img src={element.profileurl} className="w-[40px] h-[40px]" alt="notset"/>
       <h5 className=" text-center text-xl font-medium  text-black ">{element.title}</h5>
       <span className=""> {element.createdAt.split('T')[0]} </span>
     </div>
