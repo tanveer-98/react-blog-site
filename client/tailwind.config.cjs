@@ -12,10 +12,10 @@ module.exports = {
       '2xl':'1536px',
   
       extend: {
-        // backgroundImage: {
-        //   'coffee': "url('./src/assets/background.jpg')",
-        //   // 'footer-texture': "url('/img/footer-texture.png')",
-        // },
+        backgroundImage: {
+          // darkImg: "url('./assets/background3.jpg')",
+          // 'footer-texture': "url('/img/footer-texture.png')",
+        },
       
           colors: {
             strongCyan: 'hsl(171, 66%, 44%)',

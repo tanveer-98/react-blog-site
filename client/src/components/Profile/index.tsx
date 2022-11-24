@@ -124,7 +124,7 @@ const index = () => {
             email : values.email,
             profileurl:bookingUploadedFilename
           }
-          console.log(requiredData)
+          console.log("REQUIRED DATA: ",requiredData)
           updateUserProfile(requiredData)
           .then(()=>{
             window.sessionStorage.setItem('profileurl',bookingUploadedFilename)
@@ -204,7 +204,7 @@ const index = () => {
                 />
               </div>
               <div className="form-group row py-sm-2  pb-5 px-sm-3">
-                <label className={styles.label} htmlFor="email">
+                <label className={styles.label} htmlFor="profileurl">
 
                   Upload Profile Pic
                 </label>

@@ -31,8 +31,8 @@ router.post('/blogs/me',auth ,async (req,res)=>{
     if(Object.keys(req.body).length==0) return res.status(404).send({error:'404', message : 'Body cannot be empty'})
     //console.log("cookie"+ req.cookies.token)
     // //console.log('user token data')
-    // //console.log(req.user)
-    const blog  = new Blog({...req.body, owner : req.user._id , ownerName: req.user.name})
+    console.log(req.user)
+    const blog  = new Blog({...req.body, owner : req.user._id , ownerName: req.user.name,profileurl : req.user.profileurl})
 
     try{
         await blog.save()

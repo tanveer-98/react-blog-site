@@ -3,14 +3,14 @@ import { AnyIfEmpty } from "react-redux";
 import { getUserBlogs, IPostUserBlog, postUserBlog ,getUserBlog, getAllBlogs, getAllBlogsWithLimit, getSuggestedBlogs, updateUserProfile, updateLike, updateDisLike } from "../../services/service";
 import { RootState } from "../index";
 
-interface BlogType{
+export interface BlogType{
     _id: string;
     title : string ; 
     description : string ; 
     owner : string ;
     ownerName:string;
     createdAt: string;
-    ownerProfilePic:string;
+    profileurl:string;
     likes:number;
     dislikes:number;
 }
@@ -68,7 +68,10 @@ export const fetchAllBlogs_withLimit = createAsyncThunk(
     "blogs/fetchAllBlogs_withLimit",
     async (index:Number)=>{
         //console.log("index: ",index)
+       
         const res = await getAllBlogsWithLimit(index.toString());
+        console.log(res.data)
+        console.log("hello")
         return res.data;
     }
 );
@@ -115,7 +118,7 @@ const initialBlog = {
     owner : '',
     ownerName: '',
     createdAt: '',
-    ownerProfilePic:'',
+    profileurl:'',
     likes: 0 ,
     dislikes : 0
 
@@ -192,6 +195,7 @@ const blogSlice = createSlice({
         .addCase(fetchAllBlogs_withLimit.fulfilled,(state:any,action:any)=>{
             //console.log(action.payload)
             state.blogsAllLimit.push(...action.payload);
+            console.log(action.payload)
             state.loading ="success"
         })
         .addCase(fetchAllBlogs_withLimit.pending,(state:any,action:any)=>{

@@ -76,7 +76,7 @@ const TinyEditor = () => {
   // //console.log(watch("example")); // watch input value by passing the name of it
 
   return (
-    <div className="relative z-0 bg-slate-300 p-10  shadow-neon"> 
+    <div className="relative z-0 bg-lightBlue p-10  shadow-neon"> 
   
       {/* register your input into the hook by invoking the "register" function */}
   

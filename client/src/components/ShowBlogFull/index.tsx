@@ -11,6 +11,7 @@ import {
   fetchAllBlogs_withLimit,
   selectAllBlogsLimit,
   clearBlogs,
+  BlogType,
 } from "../../store/blog/blogSlice";
 import LazyLoad from "react-lazyload";
 import profile from "../../assets/editProfile.png";
@@ -36,11 +37,11 @@ const Blogs = () => {
     setTimeout(()=>{
       dispatch(fetchAllBlogs_withLimit(currentPage + 1)).
       then(response=>{
-        console.log(blogs);
+        console.log("BLOGS:"+blogs);
         if(response.payload.length==0)
         setNoMore(false);
       })
-    },1500)
+    },1000)
     setCurrentPage(currentPage + 1);
   };
   useLayoutEffect(() => {
@@ -56,11 +57,11 @@ const Blogs = () => {
         hasMore={noMore}
         loader={<h4 className=" font-bold mt-10 text-center"><ClipLoader color="#2196f2"/></h4>}
       >
-         {blogs.map((element:any) => (
+         {blogs.map((element:BlogType) => (
           
           <div className="my-2 w-[90%] mx-auto p-6 rounded-lg">
             <div className="my-2 flex gap-1 flex-row items-center w-full">
-              <img src={profile} className="w-[40px] h-[40px]" alt="notset" />
+              <img src={`${element.profileurl}`} className="w-[40px] h-[40px] rounded-full" alt="notset" />
               <span className="text-xl"> {element.ownerName} </span>
             </div>
             <h5 className=" my-2 font-sans font-bold text-left text-[24px] text-black ">

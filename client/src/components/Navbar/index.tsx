@@ -74,6 +74,14 @@ const index = () => {
     <Fragment>
      <div className="" >
       {/* <div className={` bg-white absolute top-0 left-0 z-10 w-screen h-screen mix-blend-overlay object-cover `}/> */}
+      
+      {/* <img
+        src={background}
+        className={`${
+          nav ? "blur-md" : " "
+        } absolute object-cover  top-[90px] left-0 w-full h-vh mix-blend-overlay bg-fixed transition-all ease-linear duration-150`}
+        alt=""
+      /> */}
       <div className={` ${color?'bg-black shadow-lg shadow-slate-600 text-white':''} fixed z-10 top-0 left-0 w-full h-[90px]  transition-all duration-100 ease-linear`}>
         <div className="px-2 flex justify-around  w-full h-full"> 
           <div className="flex justify-center items-center">

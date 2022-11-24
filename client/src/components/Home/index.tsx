@@ -9,7 +9,7 @@ const index = () => {
     console.log("PROFILE URL : "+window.sessionStorage.getItem('profileurl'));
   },[]);
   return (
-    <div className={` mt-[90px] w-[90%] h-full flex-col  flex justify-center mx-auto`} >
+    <div className={` mt-[90px] w-full h-full px-10 flex-col bg-darkImg  bg-scroll flex justify-center mx-auto`} >
       {/* <img src={background}  className={`absolute -z-20 top-0 left-0 w-full h-[600px] mix-blend-overlay object-cover transition-all ease-linear duration-150`} alt="" /> */}
       
       <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 mt-[40px]">

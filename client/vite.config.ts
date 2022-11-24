@@ -1,23 +1,24 @@
 import { defineConfig } from 'vite'
 import react from '@vitejs/plugin-react'
-import mkcert from 'vite-plugin-mkcert'
+// import mkcert from 'vite-plugin-mkcert'
 
 // mkcert() add into plugin if you want secure https: certificate
 // https://vitejs.dev/config/
 export default defineConfig({
   plugins: [react()],
-  // server: {https:false,
-  //   proxy: {
-  //     '/api': {
-  //         //  target: "https://blog-server-i6uh.onrender.com",
-  //          target: "http://localhost:3000",
+  assetsInclude: ['**/*.png', '**/*.jpeg','**/*.jpg'],
+  server: {https:false,
+    proxy: {
+      '/api': {
+          //  target: "https://blog-server-i6uh.onrender.com",
+           target: "http://localhost:3000",
           
-  //          changeOrigin: true,
-  //          secure: false,      
-  //          ws: true,
-  //      }
+           changeOrigin: true,
+           secure: false,      
+           ws: true,
+       }
       
-  // }},
+  }},
   
 
 })
