@@ -72,7 +72,7 @@ const index = () => {
   }
   return (
     <Fragment>
-     <div className="" >
+     
       {/* <div className={` bg-white absolute top-0 left-0 z-10 w-screen h-screen mix-blend-overlay object-cover `}/> */}
       
       {/* <img
@@ -196,7 +196,7 @@ const index = () => {
           </Link>
           <Link onClick={()=>toggleProfile()} to="myblogs" className="p-4 transition-all duration-200 hover:bg-slate-400 hover:text-black flex items-center no-underline">
             <img className=" mr-[15px] p-[8px] bg-[#e5e5e5] w-[40px] rounded-[50%] " src={editprofile} alt="" />
-            <p className="w-[100%] ">My Blogs</p>
+            <p className="w-[100%] ">Edit Blogs</p>
             <span className="font-bold">&gt;</span>
           </Link>
         
@@ -223,14 +223,15 @@ const index = () => {
           </animated.div> :"")
           // :""
     }
+     { check()?<FirstLogin  toggletagmodal={handletoggletagmodal} toggleskip ={handletoggleskip}/>:""}
+    
+    
       </div>
-      
-    </div>
-    { check()?<FirstLogin  toggletagmodal={handletoggletagmodal} toggleskip ={handletoggleskip}/>:""}
-    <div className={`${nav || check() ?'blur-md':' '}   w-full overflow-x-hidden`}>
+      <div className={`${nav || check() ?'blur-md':' '}   `}>
     <Outlet/>
     </div>
     
+   
     
     </Fragment>
   );

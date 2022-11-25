@@ -158,3 +158,9 @@ export const updateDisLike = (id : string)=>{
        withCredentials : true,
    })
 }
+
+export const deleteBlog  = (id: string)=>{
+    return axios.delete(`${baseUrl}/blogs/me/:id`,{
+        withCredentials : true,
+    })
+}

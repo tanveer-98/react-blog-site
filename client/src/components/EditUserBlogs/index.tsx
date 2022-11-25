@@ -6,6 +6,7 @@ import {
   selectLoading,
   fetchBlogs,
   postBlog,
+  BlogType,
 } from "../../store/blog/blogSlice";
 import LazyLoad from "react-lazyload";
 import profile from "../../assets/editProfile.png";
@@ -26,10 +27,14 @@ const Blogs = () => {
       });
   }, []);
   // const navigate = useNavigate();
-  return (
+  return (<div className="my-40 w-full h-full flex flex-col items-center justify-center">
+     
+   
+   
+
     <div className="p-5 max-w-[460px] md:max-w-[768px] lg:max-w-[1024px] grid grid-cols-1 ">
       {blogs && blogs.length != 0 && loading != "pending" ? (
-        blogs.map((element) => {
+        blogs.map((element:BlogType) => {
           return (
             <LazyLoad height={200} once offset={100}>
               <div className="w-full p-6 rounded-lg shadow-lg bg-white m-2">
@@ -44,16 +49,7 @@ const Blogs = () => {
                   </h5>
                   <span className=""> {element.createdAt.split("T")[0]} </span>
                 </div>
-
-                <p className="p-ellipse truncate text-black  text-base mb-4 md:flex" dangerouslySetInnerHTML={{__html: element.description.replace(/<img[^>]*>/g,"")}}/>
-    
-
-                <button
-                  type="button"
-                  className=" inline-block px-6 py-2.5 bg-orange-500 text-white font-medium text-xs leading-tight uppercase rounded shadow-md hover:bg-orange-700 hover:shadow-lg focus:bg-orange-700 focus:shadow-lg focus:outline-none focus:ring-0 active:bg-blue-800 active:shadow-lg transition duration-150 ease-in-out"
-                >
-                  <Link to={`/app/blog/${element._id}`}> READ MORE</Link>
-                </button>
+                <p className="p-ellipse truncate text-black  text-base mb-4 md:flex" dangerouslySetInnerHTML={{__html: element.description.replace(/<img[^>]*>/g,"")}}/> 
               </div>
             </LazyLoad>
           );
@@ -66,6 +62,7 @@ const Blogs = () => {
         ""
       )}
     </div>
+      </div>
   );
 };
 

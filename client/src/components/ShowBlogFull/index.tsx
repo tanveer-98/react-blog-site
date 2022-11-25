@@ -22,9 +22,9 @@ import { useDispatch } from "react-redux";
 import { ClipLoader ,PropagateLoader} from "react-spinners";
 import { changeDateFormat } from "../Functions/dateFormat";
 import { AiFillDislike, AiFillLike } from "react-icons/ai";
-
+import Blogs from '../Blogs'
 const baseUrl = import.meta.env.VITE_SERVERURL;
-const Blogs = () => {
+const index = () => {
   
   const blogs = useAppSelector(selectAllBlogsLimit);
   
@@ -57,45 +57,13 @@ const Blogs = () => {
         hasMore={noMore}
         loader={<h4 className=" font-bold mt-10 text-center"><ClipLoader color="#2196f2"/></h4>}
       >
-         {blogs.map((element:BlogType) => (
-          
-          <div className="my-2 w-[90%] mx-auto p-6 rounded-lg">
-            <div className="my-2 flex gap-1 flex-row items-center w-full">
-              <img src={`${element.profileurl}`} className="w-[40px] h-[40px] rounded-full" alt="notset" />
-              <span className="text-xl"> {element.ownerName} </span>
-            </div>
-            <h5 className=" my-2 font-sans font-bold text-left text-[24px] text-black ">
-              {element.title}
-            </h5>
-            <>
-             <p className="p-ellipse truncate md:flex text-black  text-base mb-4" dangerouslySetInnerHTML={{__html:  element.description.replace(/<img[^>]*>/g,"")}} ></p>
-            </>
-
-            <div className="flex flex-row items-center ">
-              <button
-                type="button"
-                className="inline-block px-6 py-2.5 bg-orange-500 text-white font-medium text-xs leading-tight uppercase rounded shadow-md hover:bg-orange-700 hover:shadow-lg focus:bg-orange-700 focus:shadow-lg focus:outline-none focus:ring-0 active:bg-blue-800 active:shadow-lg transition duration-150 ease-in-out"
-              >
-                <Link to={`/blog/${element._id}`}> READ MORE</Link>
-              </button>
-              <span className="pl-5 text-sm text-gray-400">
-                {" "}
-                {changeDateFormat(element.createdAt.split("T")[0])}{" "}
-              </span>
-              
-              {/* <div className="mx-2 flex flex-row items-center">
-             <AiFillLike onClick = {} className="blog-icons text-green-400"/>
-             <AiFillDislike className="blog-icons text-red-400"/>
-              </div> */}
-
-            </div>
-            <hr className="mt-5"></hr>
-          </div>
-        ))}
+         <Blogs readmore="/blog/" blogs={blogs}/>
       </InfiniteScroll>
     </div>
     
   );
 };
 
-export default Blogs;
+{/* <Link to={`/blog/${element._id}`}> READ MORE</Link> */}
+
+export default index;

@@ -1,1 +1,1 @@
-shows all blogs
+shows all blogs also shows user blogs if info provided

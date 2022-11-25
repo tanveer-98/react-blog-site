@@ -49,6 +49,25 @@ router.post('/blogs/me',auth ,async (req,res)=>{
     }  
 })
 
+
+router.delete('/blogs/me/:id',auth,async (req,res)=>{
+    const id = req.params.id; 
+    const blog = await Blog.findOneAndDelete({
+        id:id , owner : req.user._id
+    });
+    if(!blog){
+        return res.status(404).send({
+            error:404,
+            message: 'Blog not found'
+        })
+    }
+
+    return res.status(400).send({
+        error:404,
+        message: "Blog Not Found " 
+    })
+});
+
 router.get('/blogs/:id',async (req,res)=>{
   
     // if(Object.keys(req.body).length==0) return res.status(404).send({error:'404', message : 'Body cannot be empty'})

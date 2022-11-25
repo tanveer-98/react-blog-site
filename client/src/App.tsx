@@ -13,6 +13,7 @@ import { useLocation } from "react-router-dom";
 import { useTransition, animated } from "react-spring";
 import Contact from "./routes/contact";
 import About from "./routes/about";
+import EditUserBlogs from './routes/edituserblogs'
 // const LazyWrapper = (str: string) => React.lazy(() => import(str));
 
 // const LazyAbout = LazyWrapper("./routes/about");
@@ -36,6 +37,8 @@ function App() {
         <Route path="/app/write" element={<Write />} />
         <Route path="/app/blog/:id" element={<ViewBlog />} />
         <Route path="/app/profile" element={<Profile />} />
+        <Route path="/app/myblogs" element={<EditUserBlogs />} />
+        
       </Route>
       <Route path="blog/:id" element={<ViewBlog />} />
       <Route path="login" element={<Login />} />

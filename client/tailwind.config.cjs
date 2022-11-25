@@ -30,6 +30,7 @@ module.exports = {
               'Roboto_Mono': ['Roboto Mono', 'monospace'],
               'Gemini_Libre': ['Gemunu Libre', 'sans-serif'],
               sans: ['Bai Jamjuree', 'sans-serif'],
+              merryWeather:['Merriweather', 'serif']
             },
             
         

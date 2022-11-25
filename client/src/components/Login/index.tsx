@@ -101,7 +101,7 @@ const index = () => {
     // alert(JSON.stringify(formDataObj))
   };
   return (
-    <section className="h-screen w-screen shadow-2xl shadow-teal-300 md:h-screen">
+    <section className="h-full w-full shadow-2xl shadow-teal-300 md:h-screen">
       <div className="mx-auto container py-12 px-6 h-full w-full">
         <div className="flex justify-center items-center flex-wrap h-full g-6 text-gray-800">
           <div className="xl:w-10/12">
