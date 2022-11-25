@@ -14,7 +14,7 @@ const dotenv = require('dotenv')
 //     secure: true
 // });
 const options ={
-    Origin:"https://blogwiz.netlify.app"
+    origin:"https://blogwiz.netlify.app"
 }
 dotenv.config();
 router.get('/booking' ,cors(options),(req, res) => {
