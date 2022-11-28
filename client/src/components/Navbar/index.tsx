@@ -144,22 +144,23 @@ const index = () => {
             </li>
           </div>
         </div>
-       
+       <div className={`relative w-full ${nav?"h-screen":"h-full"}`}>
+
        {
         transition((style,item)=>
           item? 
           
-          <animated.div className=" absolute z-50 top-0 left-0 w-full flex flex-col justify-center gap-10" style = {style}>
+          <animated.div className="flex  translate-x-[500px]   w-[90%]  top-0 right-[50%] mx-auto justify-center items-center " style = {style}>
             <ul
       
           // className={
           //   !nav ? "hidden" : "md:hidden absolute top-0 left-0 py-5 font-bold bg-zinc-150 w-full px-8"
           // }
 
-          className="rounded-xl  m-5  py-5 font-bold bg-black shadow-lg shadow-white w-[80%] px-8"
+          className="rounded-xl   py-5 font-bold w-full bg-black shadow-lg shadow-white  px-8"
         >
            <div className="flex items-center justify-end"><img onClick={handleToggle} src={x_mark} alt="/" className="w-7 hover:opacity-80 hover:cursor-pointer" /></div>
-          <li  className="font-trispace flex justify-center">
+          <li  className="font- flex justify-center">
           <Link onClick = {handleToggle}  className={styles.link} to ="/app/home">HOME</Link> 
           </li>
           <li  className="font-trispace flex justify-center">
@@ -178,6 +179,7 @@ const index = () => {
           : ''
         )
        }
+       </div>
        {
       // (profileModal && window.location.href !='http://127.0.0.1:5173/app/profile')?
       transitionProfile((style,item)=> item?<animated.div className="absolute top-[100%] right-[10%] width-[320px]" style = {style}>

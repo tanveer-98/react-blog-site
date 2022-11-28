@@ -142,8 +142,8 @@ const TinyEditor = () => {
         <ReactTags
           classNames={{
             tag:"border-2 border-black bg-slate-600 text-white rounded my-2 mr-1 p-1 font-trispace",
-            tagInput:"w-[400px]",
-            tagInputField:"w-[400px]  mt-5 border-0 active:border-0 focus:border-0",
+            tagInput:"max-w-sm",
+            tagInputField:"max-w-sm  mt-5 border-0 active:border-0 focus:border-0",
             selected : " border-0 bg-pink",
             suggestions : " text-white font-trispace  bg-slate-800 rounded-sm p-[10px]"
           }

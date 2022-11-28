@@ -6,7 +6,7 @@ import Editor from "./TinyMce";
 const Write = () => {
   return (
     <div className="App my-[150px] ">
-      <div className=" container   mx-auto p-2  opacity-100 rounded-lg">
+      <div className="max-w-sm md:max-w-[768px] lg:max-w-[1024px]   mx-auto p-1   rounded-lg">
         <Editor />
       </div>
     </div>
