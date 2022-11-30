@@ -81,7 +81,7 @@ const index = () => {
           window.sessionStorage.setItem('loggedIn',response.data.user._id)
           window.sessionStorage.setItem('email',response.data.user.email)
           window.sessionStorage.setItem('profileurl',response.data.user.profileurl);
-
+          window.sessionStorage.setItem('aboutme',response.data.user.aboutme);
           navigate("/app/home");
         });
       })

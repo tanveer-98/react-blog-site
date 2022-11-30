@@ -74,7 +74,7 @@ router.patch('/users/me',auth,async (req,res)=>{
 router.patch("/users/me/updateProfile", auth, async (req, res) => {
   const updates = Object.keys(req.body);
   //console.log(updates);
-  const allowedUpdates = ["name", "email", "password", "age","profileurl"];
+  const allowedUpdates = ["name", "email", "password", "age","profileurl","aboutme"];
   const isValidOperation = updates.every((update) =>
     allowedUpdates.includes(update)
   );

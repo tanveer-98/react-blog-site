@@ -60,6 +60,9 @@ const userSchema = new mongoose.Schema(
     interested :{
       type:[String],
 
+    },
+    aboutme :{
+      type: String
     }
   },
   {
