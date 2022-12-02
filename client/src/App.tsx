@@ -8,7 +8,7 @@ import Auth from "./routes/auth";
 import Login from "./routes/login";
 import Register from "./routes/register";
 import ViewBlog from "./components/ViewBlog";
-import Profile from "./routes/profile";
+import Profile from "./routes/editprofile";
 import { useLocation } from "react-router-dom";
 import { useTransition, animated } from "react-spring";
 import Contact from "./routes/contact";
