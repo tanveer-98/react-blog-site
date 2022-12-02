@@ -13,6 +13,18 @@ import x_mark from "../../assets/x-mark-32.png";
 import blogicon from "../../assets/blog.webp";
 import { clearBlogs } from "../../store/blog/blogSlice";
 import { useDispatch } from "react-redux";
+import Tag from "./shared/Tag";
+
+const tags = [
+{id:1,tag:'Gaming'},
+{id:2,tag:'Food'},
+{id:3,tag:'Cycling'},
+{id:4,tag:'Cooking'},
+{id:5,tag:'Apex Legends'},
+{id:6,tag:'Politics'},
+{id:7,tag:'stock market'}]
+
+
 const index = () => {
   const [color, setColor] = useState(false);
   const [nav, setNav] = useState(false);
@@ -165,8 +177,14 @@ const index = () => {
         </div>
         <div className="flex justify-center ">
           <div className="   w-full h-screen ">
-            <div className="flex items-center">
+            <div className="flex items-center flex-col">
               <h3 className="text-center ">Topics that might interest you</h3>
+              {/* LIST RECOMMENDED TOPICS AS TAGS */}
+              <div className="flex flex-wrap gap-1">
+                {
+                  tags.map(tag=><Tag key={tag.id} tag={tag.tag}/>)
+                }
+              </div>
             </div>
           </div>
         </div>
