@@ -136,4 +136,26 @@ router.post('/blogs/dislike',auth, async ( req, res) =>{
 
 })
 
+const {union}  = require( '../utils/union');
+
+router.get('/blogs/get/AllTags',async (req,res)=>{
+    const blogs = await Blog.find({},{tags:1});
+    const blogsgrouped = await Blog.aggregate([{
+        $unwind:'$tags'
+    },
+    {
+        $project:{_id:1,tags:1} 
+    },
+        {
+          $group: { _id: "$_id",  tags: { $push: "$tags" } }
+        }
+      ])
+    // console.log(blogs)
+
+    // SELECT THE DISCTICT TAGS 
+    Blog.find({},{tags:1}).distinct('tags', function(error, result ) {
+        return res.status(200).send(result);
+    });
+    // return res.status(200).send(blogsgrouped);
+})
 module.exports = router;
