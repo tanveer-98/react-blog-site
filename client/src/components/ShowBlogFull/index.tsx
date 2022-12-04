@@ -37,7 +37,7 @@ const index = () => {
     setTimeout(()=>{
       dispatch(fetchAllBlogs_withLimit(currentPage + 1)).
       then(response=>{
-        console.log("BLOGS:"+blogs);
+        // console.log("BLOGS:"+blogs);
         if(response.payload.length==0)
         setNoMore(false);
       })

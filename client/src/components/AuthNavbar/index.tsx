@@ -11,9 +11,10 @@ import Blogs from "../ShowBlogFull";
 import background from "../../assets/background-headphone.jpg";
 import x_mark from "../../assets/x-mark-32.png";
 import blogicon from "../../assets/blog.webp";
-import { clearBlogs } from "../../store/blog/blogSlice";
+import { clearBlogs ,fetchDistictTags_,selectBlog,selectBlogTags, selectLoading} from "../../store/blog/blogSlice";
 import { useDispatch } from "react-redux";
 import Tag from "./shared/Tag";
+import {useAppDispatch,useAppSelector} from '../../store'
 
 const tags = [
 {id:1,tag:'Gaming'},
@@ -26,6 +27,8 @@ const tags = [
 
 
 const index = () => {
+  const blogTags = useAppSelector(selectBlogTags);
+  const loading = useAppSelector(selectLoading)
   const [color, setColor] = useState(false);
   const [nav, setNav] = useState(false);
   const changeColor = () => {
@@ -58,8 +61,14 @@ const index = () => {
     else navigate("/login");
   };
   const dispatch = useDispatch();
+  const async_dispatch = useAppDispatch();
+  
   useEffect(() => {
     dispatch(clearBlogs([]));
+    async_dispatch(fetchDistictTags_()).then((response)=>{
+
+      console.log("BLOG TAGS"+blogTags)
+    })
   }, []);
   return (
     <div className={``}>
@@ -182,7 +191,9 @@ const index = () => {
               {/* LIST RECOMMENDED TOPICS AS TAGS */}
               <div className="flex flex-wrap gap-1">
                 {
-                  tags.map(tag=><Tag key={tag.id} tag={tag.tag}/>)
+                  (blogTags && loading!="pending")? blogTags.map((tag,idx):any=>{ 
+                    console.log("tag"+ tag);
+                    return <Tag key={idx} tag={tag}/>}):" Loading ..."
                 }
               </div>
             </div>

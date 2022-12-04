@@ -1,4 +1,5 @@
 import axios from 'axios'
+import { AiOutlineConsoleSql } from 'react-icons/ai';
 const baseUrl = import.meta.env.VITE_SERVERURL;
 axios.defaults.withCredentials = true;
 
@@ -163,4 +164,11 @@ export const deleteBlog  = (id: string)=>{
     return axios.delete(`${baseUrl}/blogs/me/:id`,{
         withCredentials : true,
     })
+}
+
+export const fetchDistinctTags = async ()=>{
+    console.log('Called')
+   const data =  await axios.get(`${baseUrl}/blogs/get/AllTags`)
+   console.log(data)
+   return data;
 }

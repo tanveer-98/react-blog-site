@@ -154,7 +154,9 @@ router.get('/blogs/get/AllTags',async (req,res)=>{
 
     // SELECT THE DISCTICT TAGS 
     Blog.find({},{tags:1}).distinct('tags', function(error, result ) {
-        return res.status(200).send(result);
+        return res.status(200).send({
+            tags:result
+        });
     });
     // return res.status(200).send(blogsgrouped);
 })

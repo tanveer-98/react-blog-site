@@ -4,6 +4,7 @@ interface ITagProps{
 }
 import {Button} from '../Button'
 const Tag = ({tag}:ITagProps) => {
+  console.log(tag)
   return (
     <Button>{tag}</Button>
   )
