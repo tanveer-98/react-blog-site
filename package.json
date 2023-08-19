@@ -9,7 +9,7 @@
     "server": "cd client && yarn watch --prefix server",
     "client": "cd server && yarn vite --prefix client",
     "build": "cd client && tsc && vite build",
-    "dev": "concurrently \"cd server && yarn watch\" \"cd client && yarn vite\""
+    "dev": "concurrently \"cd server && yarn dev:watch\" \"cd client && yarn vite\""
   },
   "keywords": [],
   "author": "",
