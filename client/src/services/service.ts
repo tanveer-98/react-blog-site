@@ -167,8 +167,8 @@ export const deleteBlog  = (id: string)=>{
 }
 
 export const fetchDistinctTags = async ()=>{
-    console.log('Called')
+    // console.log('Called')
    const data =  await axios.get(`${baseUrl}/blogs/get/AllTags`)
-   console.log(data)
+//    console.log(data)
    return data;
 }

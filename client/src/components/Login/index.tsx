@@ -72,8 +72,8 @@ const index = () => {
         // AFTER USER LOGS IN AND GETS TOKEN , retreive user data -> store in localstorage -> REDIRECT TO HOME PAGE
 
         getUserData().then((response) => {
-          console.log("RESPONSE DATA : "+ response.data);
-          console.log(response.data.user);
+          // console.log("RESPONSE DATA : "+ response.data);
+          // console.log(response.data.user);
           window.localStorage.setItem("user", response.data.user.name);
           window.localStorage.setItem("isAdmin", response.data.user.isAdmin);
           window.localStorage.setItem("firstlogin", JSON.stringify(response.data.user.firstTimeLogin));

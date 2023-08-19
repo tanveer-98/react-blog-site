@@ -215,12 +215,12 @@ router.post('/users/getCookie', async ( req,res)=>{
         return res
         .status(200)
         .cookie('token',token, {
-             sameSite : 'none', // set to strict for local developerment 
+             sameSite : 'strict ', // set to strict for local developerment 
              path: "/",
              expires : new Date( new Date().getTime() +  5000* 1000),
              httpOnly: true ,
             //  secure : true
-            secure : true// incase of development set to false else cookie wont be saved in postman
+            secure : false// incase of development set to false else cookie wont be saved in postman
         })
 
 
@@ -261,11 +261,11 @@ const findUnion = (arg1, arg2)=>{
 router.post("/users/me/interest", auth, async (req,res) =>{
 
   const {firstlogin} = req.query;
-  console.log(firstlogin)
+  // console.log(firstlogin)
   if(firstlogin && JSON.parse(firstlogin)){
     // if first login is true then set firstlogin to false in backend 
     const user =  await User.findOneAndUpdate({_id:req.user._id},{firstTimeLogin:false});
-    console.log('inside')
+    // console.log('inside')
   }
     const found = await User.findOne({_id:req.user._id},{_id:0,interested:1});
     const existing_interests = await User.findOneAndUpdate({_id:req.user._id},

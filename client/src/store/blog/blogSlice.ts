@@ -72,8 +72,8 @@ export const fetchAllBlogs_withLimit = createAsyncThunk(
         //console.log("index: ",index)
        
         const res = await getAllBlogsWithLimit(index.toString());
-        console.log(res.data)
-        console.log("hello")
+        // console.log(res.data)
+        // console.log("hello")
         return res.data;
     }
 );
@@ -81,7 +81,7 @@ export const fetchSuggestedBlogs  = createAsyncThunk(
     "blogs/fetchSuggestedBlogs", 
     async (index:Number)=>{
         const res = await getSuggestedBlogs(index.toString());
-        console.log(res)
+        // console.log(res)
         return res.data;
     }  
 )
@@ -262,7 +262,7 @@ const blogSlice = createSlice({
         })
         .addCase(fetchDistictTags_.fulfilled,(state:any,action:any)=>{
             //console.log(action.payload)
-            console.log("BLOGS : "+action.payload.tags)
+            // console.log("BLOGS : "+action.payload.tags)
             state.blogsTags = action.payload;
             state.loading ="success"
         })

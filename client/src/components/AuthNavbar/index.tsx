@@ -67,7 +67,7 @@ const index = () => {
     dispatch(clearBlogs([]));
     async_dispatch(fetchDistictTags_()).then((response)=>{
 
-      console.log("BLOG TAGS"+blogTags)
+      // console.log("BLOG TAGS"+blogTags)
     })
   }, []);
   return (
