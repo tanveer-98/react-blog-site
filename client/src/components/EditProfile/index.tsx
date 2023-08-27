@@ -111,7 +111,7 @@ const index = () => {
       },
       (error: any, result: any) => {
         if (!error && result && result.event === "success") {
-          console.log("Done! Here is the file info: ", result.info);
+          // console.log("Done! Here is the file info: ", result.info);
           setBookingUploadedFilename(result.info.secure_url);
           setBookingUploadedFilenamePublic(result.info.public_id);
           alert("file upload successfull");
@@ -137,7 +137,7 @@ const index = () => {
               profileurl: bookingUploadedFilename,
               aboutme: values.aboutme,
             };
-            console.log("REQUIRED DATA: ", requiredData);
+            // console.log("REQUIRED DATA: ", requiredData);
             updateUserProfile(requiredData)
               .then(() => {
                 window.sessionStorage.setItem(

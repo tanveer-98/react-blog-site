@@ -28,7 +28,7 @@ router.get('/booking' ,cors(options),(req, res) => {
     },
         process.env.CLOUDINARY_API_SECRET
     );
-    console.log(signature)
+    // console.log(signature)
     res.send({signature, timestamp});
 });
 

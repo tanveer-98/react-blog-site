@@ -6,7 +6,7 @@ import SuggestedBlogs from "../../components/SuggestedBlogs";
 import background from "../../assets/background-headphone.jpg";
 const index = () => {
   useEffect(() => {
-    console.log("PROFILE URL : " + window.sessionStorage.getItem("profileurl"));
+    // console.log("PROFILE URL : " + window.sessionStorage.getItem("profileurl"));
   }, []);
   return (
     <div

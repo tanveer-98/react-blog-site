@@ -107,8 +107,8 @@ export const fetchDistictTags_  = createAsyncThunk(
     "blogs/fetchDistictTags", 
     async () =>{
         const res = await fetchDistinctTags();
-        console.log("FETCH DISTINCT TAGS SLICE ") 
-        console.log(res.data.tags)
+        // console.log("FETCH DISTINCT TAGS SLICE ") 
+        // console.log(res.data.tags)
         return res.data;
     }
 )
@@ -209,7 +209,7 @@ const blogSlice = createSlice({
         .addCase(fetchAllBlogs_withLimit.fulfilled,(state:any,action:any)=>{
             //console.log(action.payload)
             state.blogsAllLimit.push(...action.payload);
-            console.log(action.payload)
+            // console.log(action.payload)
             state.loading ="success"
         })
         .addCase(fetchAllBlogs_withLimit.pending,(state:any,action:any)=>{

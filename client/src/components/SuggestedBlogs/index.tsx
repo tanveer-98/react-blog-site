@@ -36,8 +36,8 @@ const index = () => {
   };
   useLayoutEffect(() => {
     dispatch(fetchSuggestedBlogs(currentPage))
-    console.log("suggested blogs")
-    console.log(blogs)
+    // console.log("suggested blogs")
+    // console.log(blogs)
   }, []);
   return (
     <div id="targetDiv" className=" w-full grid grid-cols-1 overflow-y-auto scrollbar scrollbar-thumb-blue-600">

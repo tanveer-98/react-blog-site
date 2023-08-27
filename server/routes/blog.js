@@ -31,7 +31,7 @@ router.post('/blogs/me',auth ,async (req,res)=>{
     if(Object.keys(req.body).length==0) return res.status(404).send({error:'404', message : 'Body cannot be empty'})
     //console.log("cookie"+ req.cookies.token)
     // //console.log('user token data')
-    console.log(req.user)
+    // console.log(req.user)
     const blog  = new Blog({...req.body, owner : req.user._id , ownerName: req.user.name,profileurl : req.user.profileurl})
 
     try{
@@ -112,7 +112,7 @@ router.get('/userInterested',auth,async (req,res)=>{
 
     const userinterests = req.user.interested;
     const {index} = req.query;
-    console.log(userinterests)
+    // console.log(userinterests)
     const blogs = await Blog.find( { tags: { $in: userinterests } , owner:{$ne:req.user._id} }, { _id: 0 }).skip(5*(index-1)).limit(5)
     return res.status(200).send(blogs)
 })
