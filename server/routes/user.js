@@ -219,8 +219,8 @@ router.post('/users/getCookie', async ( req,res)=>{
              path: "/",
              expires : new Date( new Date().getTime() +  5000* 1000),
              httpOnly: true ,
-            //  secure : true
-            secure : false// incase of development set to false else cookie wont be saved in postman
+             secure : true
+            // secure : false// incase of development set to false else cookie wont be saved in postman
         })
 
 
